@@ -1,7 +1,7 @@
 import { useState } from 'react';
+import './App.css';
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
-import './App.css';
 
 function App() {
   const [count, setCount] = useState(0);
@@ -33,7 +33,8 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logo s to learn more
       </p>
-      <h1 className="text-3xl font-bold underline none">Hello world!</h1>
+      <h1 className="text-3xl text-blue-950">Hello world !</h1>
+      <h1 className="">Hello world!</h1>
     </>
   );
 }
