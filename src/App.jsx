@@ -34,7 +34,7 @@ function App() {
         Click on the Vite and React logo s to learn more
       </p>
       <h1 className="text-3xl text-blue-950">Hello world !</h1>
-      <h1 className="">Hello world!</h1>
+      <h1 className="bg-blue-700">Hello world!</h1>
     </>
   );
 }
