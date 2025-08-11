@@ -13,7 +13,7 @@ const Header = () => {
         <h3 className="font-bold text-gray-900">Rolling</h3>
       </div>
       <div>
-        <button className="">롤링 페이퍼 만들기</button>
+        <button className="">임시 버튼</button>
       </div>
     </header>
   );
