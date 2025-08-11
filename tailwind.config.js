@@ -1,11 +1,19 @@
-/ @type {import('tailwindcss').Config} */;
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    './index.html', // HTML
-    './src//*.{js,jsx,ts,tsx}', // src 폴더 내 JS/TSX 파일만
-  ],
+  content: ['./index.html', './src/**/*.{js,jsx,ts,tsx}'],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: [
+          'Pretendard',
+          'system-ui',
+          'Avenir',
+          'Helvetica',
+          'Arial',
+          'sans-serif',
+        ],
+      },
+    },
   },
   plugins: [],
 };
