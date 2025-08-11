@@ -1,11 +1,14 @@
 import './App.css';
+import Dropdown from './components/Dropdown';
 import Header from './components/Header';
+import RecipientInfo from './components/RecipientInfo';
 
 function App() {
   return (
     <>
       <Header />
-      <div className="bg-slate-600">,fdsf</div>
+      <RecipientInfo />
+      <Dropdown />
     </>
   );
 }
