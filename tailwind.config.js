@@ -67,18 +67,6 @@ module.exports = {
         surface: '#F6F8FF',
       },
     },
-    extend: {
-      fontFamily: {
-        sans: [
-          'Pretendard',
-          'system-ui',
-          'Avenir',
-          'Helvetica',
-          'Arial',
-          'sans-serif',
-        ],
-      },
-    },
   },
   plugins: [],
 };
