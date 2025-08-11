@@ -2,10 +2,21 @@
 module.exports = {
   content: [
     './index.html', // HTML
-    './src//*.{js,jsx,ts,tsx}', // src 폴더 내 JS/TSX 파일만
+    './src/**/*.{js,jsx,ts,tsx}', // src 폴더 내 JS/TSX 파일만
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: [
+          'Pretendard',
+          'system-ui',
+          'Avenir',
+          'Helvetica',
+          'Arial',
+          'sans-serif',
+        ],
+      },
+    },
   },
   plugins: [],
 };
