@@ -6,7 +6,7 @@ import purple from '../assets/images/purple.svg';
 const SHADOW_IMAGES = { purple, beige, blue, green };
 
 export default function Shadow({ color }) {
-  const src = SHADOW_IMAGES[color] || purple; // 기본값은 purple
+  const src = SHADOW_IMAGES[color];
   return (
     <>
       <img
