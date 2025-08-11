@@ -67,7 +67,6 @@ module.exports = {
         error: '#DC3A3A',
         surface: '#F6F8FF',
       },
->>>>>>> d27fd60043c86b9ddd8b9e03b5e4c7e937918728
     },
   },
   plugins: [],
