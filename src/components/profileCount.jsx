@@ -4,7 +4,7 @@ import profileWoman from '../assets/profile/profile-woman.png';
 export default function ProfileCount({ isColumn, totalCount }) {
   return (
     <div
-      className={`flex justify-start ${isColumn ? 'flex-col items-start gap-3' : 'flex-row items-center'}`}
+      className={`z-10 flex justify-start ${isColumn ? 'flex-col items-start gap-3' : 'flex-row items-center'}`}
     >
       <div className="mr-[11px] profileBox relative  flex w-[76px] h-[28px]">
         <img
