@@ -1,23 +1,12 @@
-
 import './App.css';
 import Dropdown from './components/Dropdown';
 import Header from './components/Header';
 import InputField from './components/InputField';
 import RecipientInfo from './components/RecipientInfo';
-
-function App() {
-  return (
-    <>
-      <Header />
-      <RecipientInfo />
-      <Dropdown />
-      <InputField />
-
 import { useState, useEffect } from 'react';
 import UserRollingContainer from './components/UserRollingContainer';
 import BackgroundSelect from './components/BackgroundSelect';
 import UserProfilePreview from './components/UserProfilePreview';
-import './App.css';
 
 import Modal from './components/Modal';
 import Toast from './components/Toast';
@@ -42,10 +31,13 @@ function App() {
   }, []);
   return (
     <>
+      <Header />
+      <RecipientInfo />
+      <Dropdown />
+      <InputField />
       <Toast />
       <div></div>
-      <Modal />
-      {' '}
+      <Modal />{' '}
       <div className="cardList grid grid-cols-4 gap-[10px]">
         <CardListCard bgColor="bg-purple1" color="purple" name="Sowon" />
         <CardListCard bgColor="bg-beige2" color="beige" name="Sowon" />
@@ -81,7 +73,6 @@ function App() {
         <BackgroundSelect />
         <UserProfilePreview />
       </div>
-
     </>
   );
 }
