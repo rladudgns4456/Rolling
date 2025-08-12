@@ -16,7 +16,7 @@ export default function Modal({}) {
                 <div>
                   <span className="text-xl font-normal">From.</span>
                   <span className="text-xl font-bold"> API 이름</span>
-                  <Badge relation="친구" />
+                  <Badge relationship="친구" />
                 </div>
               </div>
               <span className="text-sm font-normal text-grayscale4">

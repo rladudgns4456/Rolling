@@ -1,4 +1,4 @@
-export default function Badge({ relation }) {
+export default function Badge({ relationship }) {
   const relationToStyle = {
     지인: 'bg-beige1 text-beige5',
     동료: 'bg-purple1 text-purple6',
@@ -6,13 +6,13 @@ export default function Badge({ relation }) {
     친구: 'bg-blue1 text-blue5',
   };
 
-  const styles = relationToStyle[relation];
+  const styles = relationToStyle[relationship];
   return (
     <>
       <div
         className={`w-[41px] h-5 px-2 text-sm font-normal rounded ${styles}`}
       >
-        {relation}
+        {relationship}
       </div>
     </>
   );
