@@ -15,7 +15,7 @@ const BaseURL = 'https://rolling-api.vercel.app/';
 
 import CardListCard from './components/CardListCard';
 
-function App() {
+export default function App() {
   const [bgImageUrl, setBgImageUrl] = useState([]);
   useEffect(() => {
     fetch(`${BaseURL}background-images/`, { method: 'GET' })
@@ -76,5 +76,3 @@ function App() {
     </>
   );
 }
-
-export default App;
