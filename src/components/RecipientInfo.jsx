@@ -1,16 +1,9 @@
 import { useEffect, useState, useRef } from 'react';
 
-/**
- * To. (받는 사람)에게 보내는 롤링페이퍼의 상단 바 컴포넌트입니다.
- * 공유하기, 이모지 추가 등의 인터랙션을 담당합니다.
- */
 const RecipientInfo = () => {
-  // 공유 메뉴를 보여줄지 여부를 결정하는 상태
   const [isShare, setIsShare] = useState(false);
-  // 공유 메뉴 DOM 요소에 직접 접근하기 위한 ref
   const shareMenuRef = useRef(null);
 
-  // 공유 버튼 클릭 시 메뉴를 토글하는 함수
   const handleShareClick = () => {
     setIsShare(!isShare);
   };
@@ -24,13 +17,11 @@ const RecipientInfo = () => {
       }
     };
 
-    // 컴포넌트가 마운트될 때 이벤트 리스너를 등록
     document.addEventListener('mousedown', handleClickOutside);
-    // 컴포넌트가 언마운트될 때 이벤트 리스너를 제거 (메모리 누수 방지)
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, []); // 의존성 배열이 비어있으므로, 첫 렌더링 시에만 실행됩니다.
+  }, []);
 
   return (
     <div className="flex items-center justify-between h-16 max-w-full px-5 m-auto tablet:max-w-7xl pc:max-w-screen-xl">
