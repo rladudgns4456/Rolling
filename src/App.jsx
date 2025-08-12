@@ -1,15 +1,14 @@
-import { useState } from 'react';
-import CardContainer from './components/CardContainer';
+import UserRollingContainer from './components/UserRollingContainer';
 import BackgroundSelect from './components/BackgroundSelect';
-import UserProfileInput from './components/UserProfileInput';
+import UserProfilePreview from './components/UserProfilePreview';
 
 function App() {
   return (
     <>
       <div className="px-5 sm:px-6 xl:px-10 w-max-[1280px]">
-        <CardContainer />
+        <UserRollingContainer />
         <BackgroundSelect />
-        <UserProfileInput />
+        <UserProfilePreview />
       </div>
     </>
   );
