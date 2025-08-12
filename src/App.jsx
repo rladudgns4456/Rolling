@@ -49,6 +49,19 @@ function App() {
         bgImageUrl={bgImageUrl[3]} //길이는 0~3까지만 4부터는 아무것도없음 나중에 수정
       />
     </div>
+import UserRollingContainer from './components/UserRollingContainer';
+import BackgroundSelect from './components/BackgroundSelect';
+import UserProfilePreview from './components/UserProfilePreview';
+
+function App() {
+  return (
+    <>
+      <div className="px-5 sm:px-6 xl:px-10 w-max-[1280px]">
+        <UserRollingContainer />
+        <BackgroundSelect />
+        <UserProfilePreview />
+      </div>
+    </>
   );
 }
 

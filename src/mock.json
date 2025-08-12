@@ -1,0 +1,161 @@
+[
+  {
+    "id": 2,
+    "name": "강영훈",
+    "backgroundColor": "green",
+    "backgroundImageURL": null,
+    "createdAt": "2023-10-26T13:19:31.401765Z",
+    "messageCount": 3,
+    "recentMessages": [
+      {
+        "id": 32,
+        "recipientId": 2,
+        "sender": "김하은",
+        "profileImageURL": "https://fastly.picsum.photos/id/311/200/200.jpg?hmac=CHiYGYQ3Xpesshw5eYWH7U0Kyl9zMTZLQuRDU4OtyH8",
+        "relationship": "가족",
+        "content": "열심히 일하는 모습 멋있습니다.",
+        "font": "Pretendard",
+        "createdAt": "2023-11-01T08:05:25.399056Z"
+      },
+      {
+        "id": 31,
+        "recipientId": 2,
+        "sender": "이영준",
+        "profileImageURL": "https://fastly.picsum.photos/id/311/200/200.jpg?hmac=CHiYGYQ3Xpesshw5eYWH7U0Kyl9zMTZLQuRDU4OtyH8",
+        "relationship": "지인",
+        "content": "항상 응원합니다. 항상 건강하시고, 행복하세요. 항상 응원합니다. 항상 건강하시고, 행복하세요. 항상 응원합니다. 항상 건강하시고, 행복하세요. ",
+        "font": "Noto Sans",
+        "createdAt": "2023-11-01T08:04:12.852691Z"
+      },
+      {
+        "id": 30,
+        "recipientId": 2,
+        "sender": "이수민",
+        "profileImageURL": "https://fastly.picsum.photos/id/311/200/200.jpg?hmac=CHiYGYQ3Xpesshw5eYWH7U0Kyl9zMTZLQuRDU4OtyH8",
+        "relationship": "친구",
+        "content": "오늘도 화이팅!",
+        "font": "Noto Sans",
+        "createdAt": "2023-09-15T10:20:00.000Z"
+      },
+      {
+        "id": 29,
+        "recipientId": 2,
+        "sender": "이수민",
+        "profileImageURL": "https://fastly.picsum.photos/id/311/200/200.jpg?hmac=CHiYGYQ3Xpesshw5eYWH7U0Kyl9zMTZLQuRDU4OtyH8",
+        "relationship": "지인",
+        "content": "오늘도 화이팅!",
+        "font": "Noto Sans",
+        "createdAt": "2023-09-15T10:20:00.000Z"
+      },
+      {
+        "id": 28,
+        "recipientId": 2,
+        "sender": "이수민",
+        "profileImageURL": "https://fastly.picsum.photos/id/311/200/200.jpg?hmac=CHiYGYQ3Xpesshw5eYWH7U0Kyl9zMTZLQuRDU4OtyH8",
+        "relationship": "동료",
+        "content": "오늘도 화이팅!",
+        "font": "Noto Sans",
+        "createdAt": "2023-09-15T10:20:00.000Z"
+      },
+      {
+        "id": 29,
+        "recipientId": 2,
+        "sender": "이수민",
+        "profileImageURL": "https://fastly.picsum.photos/id/311/200/200.jpg?hmac=CHiYGYQ3Xpesshw5eYWH7U0Kyl9zMTZLQuRDU4OtyH8",
+        "relationship": "지인",
+        "content": "오늘도 화이팅!",
+        "font": "Noto Sans",
+        "createdAt": "2023-09-15T10:20:00.000Z"
+      }
+    ],
+    "reactionCount": 48,
+    "topReactions": [
+      {
+        "id": 27,
+        "emoji": "😀",
+        "count": 14
+      },
+      {
+        "id": 31,
+        "emoji": "🥹",
+        "count": 11
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "이수민",
+    "backgroundColor": "blue",
+    "backgroundImageURL": null,
+    "createdAt": "2023-09-15T10:20:00.000Z",
+    "messageCount": 5,
+    "recentMessages": [
+      {
+        "id": 33,
+        "recipientId": 3,
+        "sender": "박지훈",
+        "profileImageURL": "https://fastly.picsum.photos/id/312/200/200.jpg?hmac=XYZ123",
+        "relationship": "친구",
+        "content": "오늘도 화이팅!",
+        "font": "Noto Sans",
+        "createdAt": "2023-11-02T09:15:00.000Z"
+      },
+      {
+        "id": 34,
+        "recipientId": 3,
+        "sender": "김민수",
+        "profileImageURL": "https://fastly.picsum.photos/id/313/200/200.jpg?hmac=XYZ456",
+        "relationship": "동료",
+        "content": "회의 잘 마무리하세요.",
+        "font": "Pretendard",
+        "createdAt": "2023-11-02T10:00:00.000Z"
+      }
+    ],
+    "reactionCount": 30,
+    "topReactions": [
+      {
+        "id": 28,
+        "emoji": "👍",
+        "count": 20
+      },
+      {
+        "id": 29,
+        "emoji": "🎉",
+        "count": 10
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "김영희",
+    "backgroundColor": "red",
+    "backgroundImageURL": null,
+    "createdAt": "2023-08-10T14:30:00.000Z",
+    "messageCount": 2,
+    "recentMessages": [
+      {
+        "id": 35,
+        "recipientId": 4,
+        "sender": "이수진",
+        "profileImageURL": "https://fastly.picsum.photos/id/314/200/200.jpg?hmac=XYZ789",
+        "relationship": "친구",
+        "content": "오랜만이야!",
+        "font": "Noto Sans",
+        "createdAt": "2023-11-03T11:20:00.000Z"
+      }
+    ],
+    "reactionCount": 15,
+    "topReactions": [
+      {
+        "id": 30,
+        "emoji": "❤️",
+        "count": 10
+      },
+      {
+        "id": 32,
+        "emoji": "🔥",
+        "count": 5
+      }
+    ]
+  }
+]
