@@ -1,3 +1,4 @@
+
 // src/App.jsx
 // -----------------------------------------------------------------------------
 // Design System Showcase (협업 가이드)
@@ -313,5 +314,16 @@ export default function App() {
         <RichTextEditor />
       </div>
     </div>
+
+import './App.css';
+import Header from './components/Header';
+
+function App() {
+  return (
+    <>
+      <Header />
+      <div className="bg-slate-600">,fdsf</div>
+    </>
+
   );
 }
