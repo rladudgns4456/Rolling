@@ -4,6 +4,9 @@ import BackgroundSelect from './components/BackgroundSelect';
 import UserProfilePreview from './components/UserProfilePreview';
 import './App.css';
 
+import Modal from './components/Modal';
+import Toast from './components/Toast';
+
 const BaseURL = 'https://rolling-api.vercel.app/';
 
 import CardListCard from './components/CardListCard';
@@ -24,6 +27,9 @@ function App() {
   }, []);
   return (
     <>
+      <Toast />
+      <div></div>
+      <Modal />
       {' '}
       <div className="cardList grid grid-cols-4 gap-[10px]">
         <CardListCard bgColor="bg-purple1" color="purple" name="Sowon" />
