@@ -56,17 +56,8 @@
         "content": "오늘도 화이팅!",
         "font": "Noto Sans",
         "createdAt": "2023-09-15T10:20:00.000Z"
-      },
-      {
-        "id": 29,
-        "recipientId": 2,
-        "sender": "이수민",
-        "profileImageURL": "https://fastly.picsum.photos/id/311/200/200.jpg?hmac=CHiYGYQ3Xpesshw5eYWH7U0Kyl9zMTZLQuRDU4OtyH8",
-        "relationship": "지인",
-        "content": "오늘도 화이팅!",
-        "font": "Noto Sans",
-        "createdAt": "2023-09-15T10:20:00.000Z"
       }
+
     ],
     "reactionCount": 48,
     "topReactions": [

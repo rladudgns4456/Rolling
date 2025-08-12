@@ -1,34 +1,39 @@
 import UserProfile from './UserProfile';
 import CardCreateAt from './CardCreateAt';
 import items from '../mock.json';
+import CircleIconButton from './CircleIconButton';
+import Plus from '../assets/icon/ic_plus.svg';
 
 const userObject = items.find((obj) => obj.id === 2); // 목록에서 클릭했을때 내려주는 Prop 대용
 
 //개인롤링페이지 컨테이너
 function UserRollingContainer({ userCardId = userObject.recentMessages }) {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-x-6 gap-7">
-      <CardCreate />
-      {userCardId.map((item) => {
-        return (
-          <article
-            key={item.id}
-            className="flex flex-col px-6 pb-6 bg-white rounded-2xl shadow-lg min-h-[230px] sm:min-h-[284px] xl:min-h-[280px]"
-          >
-            <RollingCard item={item} />
-          </article>
-        );
-      })}
-    </div>
+    <>
+      <div className="h-screen bg-beige2">
+        <div className="grid grid-cols-1 py-24 max-w-[1200px] mx-auto sm:grid-cols-2 xl:grid-cols-3 gap-y-5">
+          <CardCreate />
+          {userCardId.map((item) => {
+            return (
+              <article
+                key={item.id}
+                className="flex flex-col px-6 pb-6 w-96 bg-white rounded-2xl shadow-lg min-h-[230px] sm:min-h-[284px] xl:min-h-[280px]"
+              >
+                <RollingCard item={item} />
+              </article>
+            );
+          })}
+        </div>
+      </div>
+    </>
   );
 }
 
 //카드 만들기 버튼
 function CardCreate() {
   return (
-    <div className="flex justify-center items-center bg-white rounded-2xl shadow-lg min-h-[230px] sm:min-h-[284px] xl:min-h-[280px]">
-      {/*영훈님 컴포넌트로 버튼 교체할 자리 */}
-      <Button />
+    <div className="flex justify-center items-center w-96 bg-white rounded-2xl shadow-lg min-h-[230px] sm:min-h-[284px] xl:min-h-[280px]">
+      <CircleIconButton size={56} variant="dark" iconSrc={Plus} demo="hover" />
     </div>
   );
 }
