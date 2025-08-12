@@ -16,6 +16,7 @@ module.exports = {
           'sans-serif',
         ],
       },
+
       screens: {
         mobile: { max: '767px' },
         tablet: { min: '768px', max: '1279px' },
