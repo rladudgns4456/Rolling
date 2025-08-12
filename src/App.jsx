@@ -6,7 +6,7 @@ import UserProfileInput from './components/UserProfileInput';
 function App() {
   return (
     <>
-      <div className="px-5 sm:px-6 xl:px-10 w-max-[80rem]">
+      <div className="px-5 sm:px-6 xl:px-10 w-max-[1280px]">
         <CardContainer />
         <BackgroundSelect />
         <UserProfileInput />

@@ -1,7 +1,7 @@
 import { Children, useState } from 'react';
 import items from '../mock.json';
 
-const userObject = items.find((obj) => obj.id === 2);
+const userObject = items.find((obj) => obj.id === 2);// 목록에서 클릭했을때 내려주는 Prop 대용
 function CardContainer({ userCardId = userObject.recentMessages }) {
   const [userData, setUserData] = useState(userCardId);
   return (
@@ -12,7 +12,7 @@ function CardContainer({ userCardId = userObject.recentMessages }) {
           return (
             <article
               key={item.id}
-              className="flex flex-col px-6 pb-6 bg-white rounded-2xl drop-shadow-md min-h-[14.375rem] sm:min-h-[17.75rem] xl:min-h-[17.5rem]"
+              className="flex flex-col px-6 pb-6 bg-white rounded-2xl drop-shadow-md min-h-[230px] sm:min-h-[284px] xl:min-h-[280px]"
             >
               <Card item={item} />
             </article>
@@ -27,7 +27,7 @@ function CardContainer({ userCardId = userObject.recentMessages }) {
 function CardCreate() {
   return (
     <>
-      <article className="flex justify-center items-center bg-white rounded-2xl drop-shadow-md min-h-[14.375rem] sm:min-h-[17.75rem] xl:min-h-[17.5rem]">
+      <article className="flex justify-center items-center bg-white rounded-2xl drop-shadow-md min-h-[230px] sm:min-h-[284px] xl:min-h-[280px]">
         <button>버튼</button>
       </article>
     </>
@@ -108,7 +108,7 @@ function Badge({ relationship }) {
 function CardBodyView({ content }) {
   return (
     <>
-      <div className="my-4 text-[.9375rem] sm:text-lg text-grayscale6 line-clamp-3">
+      <div className="my-4 text-[15px] sm:text-lg text-grayscale6 line-clamp-3">
         {content}
       </div>
     </>

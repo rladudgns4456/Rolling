@@ -31,13 +31,13 @@ function SelectTab({ tab, handleClick }) {
       {/*선택 탭*/}
       <ul className="flex h-10 w-fit rounded-2xl bg-grayscale1">
         <li
-          className="flex items-center justify-center w-[7.275rem] sm:w-[7.625rem] "
+          className="flex items-center justify-center w-[118px] sm:w-[122px] "
           onClick={handleClick}
         >
           color
         </li>
         <li
-          className="flex items-center justify-center w-[7.275rem] sm:w-[7.625rem] "
+          className="flex items-center justify-center w-[118px] sm:w-[122px] "
           onClick={handleClick}
         >
           image
@@ -132,7 +132,7 @@ function OptionItem({ value, bgImg, formName, selectOption, onChange }) {
   const bgImage = formName === 'bgImage';
 
   return (
-    <label className="overflow-hidden flex items-center justify-center w-[9.625rem] y-[9.625rem] sm:w-[10.5rem] sm:h-[10.5rem] rounded-2xl border border-black[.8] cursor-pointer">
+    <label className="overflow-hidden flex items-center justify-center w-[154px] y-[154px] sm:w-[168px] sm:h-[168px] rounded-2xl border border-black[.8] cursor-pointer">
       <input
         className="hidden"
         type="radio"
