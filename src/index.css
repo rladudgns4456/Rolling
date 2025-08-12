@@ -1,13 +1,3 @@
-
-
-/* Pretendard 불러오기 (npm 설치 시) */
-@import 'pretendard/dist/web/static/pretendard.css';
-@layer base {
-  html {
-    @apply font-sans;
-  }
-}
-
 @import 'pretendard/dist/web/static/pretendard.css';
 
 @tailwind base;
