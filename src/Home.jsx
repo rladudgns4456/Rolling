@@ -16,7 +16,7 @@ export default function MainPage() {
       "
       >
         {/* Point 01 */}
-        <section className="px-6 py-8  rounded-2xl bg-indigo-50/50 md:px-8 md:py-12 lg:px-10 lg:py-16">
+        <section className="px-6 py-8 rounded-2xl bg-indigo-50/50 md:px-8 md:py-12 lg:px-10 lg:py-16">
           <div className="flex flex-col items-center gap-8 xl:flex-row xl:gap-10">
             <div className="basis-1/2 max-w-[560px]">
               <span className="inline-block px-3 py-1 text-sm font-semibold text-white rounded-full bg-purple6">
@@ -42,7 +42,7 @@ export default function MainPage() {
         </section>
 
         {/* Point 02 */}
-        <section className="px-6 py-8  rounded-2xl bg-indigo-50/50 md:px-8 md:py-12 lg:px-10 lg:py-16">
+        <section className="px-6 py-8 rounded-2xl bg-indigo-50/50 md:px-8 md:py-12 lg:px-10 lg:py-16">
           <div className="flex flex-col items-center gap-8 xl:flex-row-reverse xl:gap-10">
             <div className="basis-1/2 max-w-[560px]">
               <span className="inline-block px-3 py-1 text-sm font-semibold text-white rounded-full bg-purple6">
