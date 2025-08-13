@@ -1,6 +1,6 @@
-import UserProfile from './UserProfile';
+import UserProfile from '../common/UserProfile';
 import CardCreateAt from './CardCreateAt';
-import items from '../mock.json';
+import items from '../../mock.json';
 
 const userObject = items.find((obj) => obj.id === 2); // 목록에서 클릭했을때 내려주는 Prop 대용
 

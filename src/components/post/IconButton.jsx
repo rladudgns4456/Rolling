@@ -1,5 +1,5 @@
-import ButtonBase from './ButtonBase';
-import { ICON_SIZE } from './Tokens';
+import ButtonBase from '../common/ButtonBase';
+import { ICON_SIZE } from '../common/Tokens';
 
 export default function IconButton({
   iconSrc, // URL로 import한 SVG
