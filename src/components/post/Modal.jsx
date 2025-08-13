@@ -26,9 +26,9 @@ export default function Modal({}) {
             <p className="w-[520px] h-64 mx-auto text-lg text-gray-600 border-t border-t-grayscale2 py-2">
               API 내용
             </p>
-            <button className="mt-5" onClick={() => setIsOpen(false)}>
-              확인
-            </button>
+            <div className="flex justify-center mt-5">
+              <button onClick={() => setIsOpen(false)}>확인</button>
+            </div>
             {/* 버튼 컴포넌트 쓸 예정 */}
           </div>
         </div>

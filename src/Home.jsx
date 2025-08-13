@@ -6,4 +6,6 @@ export default function Home() {
       <RollingPostPage />
     </div>
   );
+
+  return <RollingPostPage />;
 }

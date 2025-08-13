@@ -45,7 +45,7 @@ const RecipientInfo = () => {
   }, [toastVisible]);
 
   return (
-    <div className="flex items-center justify-between h-16 max-w-full px-5 m-auto tablet:max-w-7xl pc:max-w-screen-xl">
+    <div className="flex items-center justify-between h-16 max-w-full m-auto tablet:max-w-7xl pc:max-w-[1200px]">
       <p className="text-center font-bold text-lg tablet:text-[1.75rem] pc:text-[1.75rem]  text-grayscale8">
         To. (이름 데이터)
       </p>
