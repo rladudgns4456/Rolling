@@ -19,15 +19,15 @@
 //   (이 파일은 데모 유지, 실제 제품 화면에선 RB* 사용 권장)
 // -----------------------------------------------------------------------------
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import IconButton from './components/IconButton';
-import IconLabelButton from './components/IconLabelButton';
-import TextButton from './components/TextButton';
-import CircleIconButton from './components/CircleIconButton';
-import ToggleButtonGroup from './components/ToggleButtonGroup';
-import RichTextEditor from './components/RichTexteditor';
+import IconButton from './components/post/IconButton';
+import IconLabelButton from './components/common/IconLabelButton';
+import TextButton from './components/common/TextButton';
+import CircleIconButton from './components/common/CircleIconButton';
+import ToggleButtonGroup from './components/common/ToggleButtonGroup';
+import RichTextEditor from './components/message/RichTexteditor';
 import './App.css';
-import Dropdown from './components/Dropdown';
-import Header from './components/Header';
+import Dropdown from './components/message/Dropdown';
+import Header from './components/common/Header';
 import InputField from './components/InputField';
 import RecipientInfo from './components/RecipientInfo';
 // 아이콘(asset 경로/파일명 대소문자 주의)
