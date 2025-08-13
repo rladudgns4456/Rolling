@@ -1,11 +1,24 @@
 import { useEffect, useState, useRef } from 'react';
+import ProfileCount from '../common/ProfileCount';
+import Emoges from '../common/Emoge';
+import Toast from './Toast';
 
 const RecipientInfo = () => {
   const [isShare, setIsShare] = useState(false);
+  const [toastVisible, setToastVisible] = useState(false);
   const shareMenuRef = useRef(null);
 
   const handleShareClick = () => {
     setIsShare(!isShare);
+  };
+
+  const copyUrl = async () => {
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      setToastVisible(true);
+    } catch (error) {
+      alert('URL 복사가 실패하였습니다.', error);
+    }
   };
 
   // 컴포넌트 외부를 클릭하면 공유 메뉴가 닫히도록 하는 로직
@@ -16,12 +29,20 @@ const RecipientInfo = () => {
         setIsShare(false); // 메뉴 닫기
       }
     };
-
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
+
+  useEffect(() => {
+    if (toastVisible) {
+      const timer = setTimeout(() => {
+        setToastVisible(false);
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [toastVisible]);
 
   return (
     <div className="flex items-center justify-between h-16 max-w-full px-5 m-auto tablet:max-w-7xl pc:max-w-screen-xl">
@@ -30,8 +51,8 @@ const RecipientInfo = () => {
       </p>
 
       <div className="flex items-center gap-4">
-        <div className="hidden md:inline">(23명이 작성했어요)</div>
-        <button>(좋아요 아이콘)</button>
+        <ProfileCount totalCount="30" isColumn={false} />
+        <Emoges className="flex gap-3 pl-8 border-l border-[#0000001F]" />
         <button className="flex items-center  gap-1 w-9 h-9 px-2 py-[6px] md:px-4 rounded-md md:w-[88px] border border-grayscale3">
           <img src="/emoji_add_icon.svg" alt="add emoji" />
           <span className="hidden md:inline">추가</span>
@@ -56,13 +77,21 @@ const RecipientInfo = () => {
               <li className="px-4 py-3 cursor-pointer text-grayscale9 hover:bg-grayscale1 whitespace-nowrap">
                 카카오톡 공유
               </li>
-              <li className="px-4 py-3 cursor-pointer text-grayscale9 hover:bg-grayscale1 whitespace-nowrap">
+              <li
+                onClick={copyUrl}
+                className="px-4 py-3 cursor-pointer text-grayscale9 hover:bg-grayscale1 whitespace-nowrap"
+              >
                 URL 공유
               </li>
             </ul>
           )}
         </div>
       </div>
+      <Toast
+        visible={toastVisible}
+        onClose={() => setToastVisible(false)}
+        message="URL이 복사 되었습니다."
+      />
     </div>
   );
 };

@@ -1,34 +1,40 @@
 import UserProfile from '../common/UserProfile';
 import CardCreateAt from './CardCreateAt';
 import items from '../../mock.json';
+import CircleIconButton from '../common/CircleIconButton';
+import Plus from '../../assets/icon/ic_plus.svg';
+import Badge from './Badge';
 
 const userObject = items.find((obj) => obj.id === 2); // 목록에서 클릭했을때 내려주는 Prop 대용
 
 //개인롤링페이지 컨테이너
 function UserRollingContainer({ userCardId = userObject.recentMessages }) {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-x-6 gap-7">
-      <CardCreate />
-      {userCardId.map((item) => {
-        return (
-          <article
-            key={item.id}
-            className="flex flex-col px-6 pb-6 bg-white rounded-2xl shadow-lg min-h-[230px] sm:min-h-[284px] xl:min-h-[280px]"
-          >
-            <RollingCard item={item} />
-          </article>
-        );
-      })}
-    </div>
+    <>
+      <div className="h-screen bg-beige2">
+        <div className="grid grid-cols-1 py-20 max-w-[1200px] mx-auto sm:grid-cols-2 xl:grid-cols-3 gap-y-5">
+          <CardCreate />
+          {userCardId.map((item) => {
+            return (
+              <article
+                key={item.id}
+                className="flex flex-col px-6 pb-6 w-96 bg-white rounded-2xl shadow-lg min-h-[230px] sm:min-h-[284px] xl:min-h-[280px]"
+              >
+                <RollingCard item={item} />
+              </article>
+            );
+          })}
+        </div>
+      </div>
+    </>
   );
 }
 
 //카드 만들기 버튼
 function CardCreate() {
   return (
-    <div className="flex justify-center items-center bg-white rounded-2xl shadow-lg min-h-[230px] sm:min-h-[284px] xl:min-h-[280px]">
-      {/*영훈님 컴포넌트로 버튼 교체할 자리 */}
-      <Button />
+    <div className="flex justify-center items-center w-96 bg-white rounded-2xl shadow-lg min-h-[230px] sm:min-h-[284px] xl:min-h-[280px]">
+      <CircleIconButton size={56} variant="dark" iconSrc={Plus} demo="hover" />
     </div>
   );
 }
@@ -59,12 +65,9 @@ function CardHeader({ userName, relationship, proFile }) {
             From.
             <h3 className="font-bold">{userName}</h3>
           </div>
-          {/*재영님 컴포넌트로 배지 교체할 자리*/}
-          <Badge relationship={relationship} />
+          <Badge relationship="친구" />
         </div>
       </div>
-      {/*영훈님 컴포넌트로 버튼 교체할 자리 */}
-      <Button />
     </div>
   );
 }
@@ -78,38 +81,6 @@ function CardBodyView({ content }) {
   );
 }
 
-//-- 컴포넌트 교체시 삭제할 부분
-//배지
-function Badge({ relationship }) {
-  let bgColor;
-  let textColor;
-  switch (relationship) {
-    case '지인':
-      bgColor = 'bg-beige1';
-      textColor = 'text-beige5';
-      break;
-    case '동료':
-      bgColor = 'bg-purple1';
-      textColor = 'text-purple5';
-      break;
-    case '가족':
-      bgColor = 'bg-green1';
-      textColor = 'text-green5';
-      break;
-    case '친구':
-      bgColor = 'bg-blue1';
-      textColor = 'text-blue5';
-      break;
-  }
-  return (
-    <>
-      <div className={`px-2 w-fit text-[14px] ${bgColor} ${textColor}`}>
-        {relationship}
-      </div>
-    </>
-  );
-}
-
 //식제버튼
 function Button() {
   return (
@@ -120,6 +91,5 @@ function Button() {
     </>
   );
 }
-//-- 컴포넌트 교체시 삭제할 부분
 
 export default UserRollingContainer;

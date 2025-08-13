@@ -25,37 +25,13 @@ import {
   Link,
   Navigate,
 } from 'react-router-dom';
-import IconButton from './components/IconButton';
-import IconLabelButton from './components/IconLabelButton';
-import TextButton from './components/TextButton';
-import CircleIconButton from './components/CircleIconButton';
-import ToggleButtonGroup from './components/ToggleButtonGroup';
-import RichTextEditor from './components/RichTexteditor';
-import './App.css';
-import Dropdown from './components/Dropdown';
-import Header from './components/Header';
-import InputField from './components/InputField';
-import RecipientInfo from './components/RecipientInfo';
-// 아이콘(asset 경로/파일명 대소문자 주의)
-import Smile from './assets/icon/ic_smile.svg';
-import Deleted from './assets/icon/ic_deleted.svg';
-import Plus from './assets/icon/ic_plus.svg';
-import ArrowLeft from './assets/icon/arrow_left.svg';
-import ArrowRight from './assets/icon/arrow_right.svg';
 
 import { useState, useEffect } from 'react';
-import UserRollingContainer from './components/UserRollingContainer';
-import BackgroundSelect from './components/BackgroundSelect';
-import UserProfilePreview from './components/UserProfilePreview';
-import './App.css';
 
-import Modal from './components/Modal';
-import Toast from './components/Toast';
 import Home from './Home';
 
 const BaseURL = 'https://rolling-api.vercel.app';
 
-import CardListCard from './components/CardListCard';
 import AllComponent from './AllComponent';
 
 export default function App() {
