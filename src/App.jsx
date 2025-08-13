@@ -15,6 +15,7 @@ export default function App() {
       console.log('Kakao 초기화 완료:', window.Kakao.isInitialized());
     }
   }, []);
+
   return (
     <BrowserRouter>
       <Routes>

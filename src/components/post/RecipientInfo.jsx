@@ -71,12 +71,12 @@ const RecipientInfo = ({
     setShowEmojiPicker(false);
   };
 
+  const BASE_URL = 'netlify 배포 주소 들어올 곳';
+
   const shareToKakao = () => {
     if (window.Kakao) {
-      const currentPath = window.location.pathname; // 현재 페이지의 경로
-      const ngrokBaseUrl = 'https://d56d0eb8fc76.ngrok-free.app';
-
-      const finalShareUrl = `${ngrokBaseUrl}${currentPath}`;
+      const currentPath = window.location.pathname;
+      const shareUrl = BASE_URL + currentPath;
 
       window.Kakao.Link.sendDefault({
         objectType: 'feed',
@@ -86,16 +86,16 @@ const RecipientInfo = ({
           imageUrl:
             'https://rolling-paper-client-blue.vercel.app/imgs/thumbnail.png',
           link: {
-            mobileWebUrl: finalShareUrl,
-            webUrl: finalShareUrl,
+            mobileWebUrl: shareUrl,
+            webUrl: shareUrl,
           },
         },
         buttons: [
           {
             title: '웹으로 보기',
             link: {
-              mobileWebUrl: finalShareUrl,
-              webUrl: finalShareUrl,
+              mobileWebUrl: shareUrl,
+              webUrl: shareUrl,
             },
           },
         ],
