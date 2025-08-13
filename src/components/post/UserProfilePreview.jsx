@@ -1,4 +1,4 @@
-import previewNull from '../assets/profile/person.svg';
+import previewNull from '../../assets/profile/person.svg';
 
 function UserProfilePreview({ preview }) {
   return (

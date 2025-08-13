@@ -1,6 +1,6 @@
-import profileManLeft from '../assets/profile/profile-man-left.png';
-import profileManRight from '../assets/profile/profile-man-right.png';
-import profileWoman from '../assets/profile/profile-woman.png';
+import profileManLeft from '../../assets/profile/profile-man-left.png';
+import profileManRight from '../../assets/profile/profile-man-right.png';
+import profileWoman from '../../assets/profile/profile-woman.png';
 export default function ProfileCount({ isColumn, totalCount }) {
   return (
     <div

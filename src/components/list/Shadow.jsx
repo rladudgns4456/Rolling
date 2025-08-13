@@ -1,7 +1,7 @@
-import beige from '../assets/images/beige.svg';
-import blue from '../assets/images/blue.svg';
-import green from '../assets/images/green.svg';
-import purple from '../assets/images/purple.svg';
+import beige from '../../assets/images/beige.svg';
+import blue from '../../assets/images/blue.svg';
+import green from '../../assets/images/green.svg';
+import purple from '../../assets/images/purple.svg';
 
 const SHADOW_IMAGES = { purple, beige, blue, green };
 
