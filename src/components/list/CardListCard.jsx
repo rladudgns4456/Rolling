@@ -1,5 +1,5 @@
-import Emoges from './Emoge';
-import ProfileCount from './profileCount';
+import Emoges from '../common/Emoge';
+import ProfileCount from '../common/profileCount';
 
 import Shadow from './Shadow';
 
