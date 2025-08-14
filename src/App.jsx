@@ -30,9 +30,9 @@ import {
 import './App.css';
 
 import { useState, useEffect } from 'react';
-
+import Header from './components/common/Header';
 import './App.css';
-import Home from './Home';
+import Home from './pages/Home';
 import List from './pages/list';
 
 const BaseURL = 'https://rolling-api.vercel.app';
@@ -57,13 +57,13 @@ export default function App() {
     <>
       <Router>
         {/* 페이지 라우팅 영역 */}
-        <nav>
+        {/* <nav>
           <Link to="/"></Link>
           <Link className="ml-3 w-[40px] h-[40px]" to="/Allcomponent">
             컴포넌트
           </Link>
-        </nav>
-
+        </nav> */}
+        <Header className="w-full z-5000 border-grayscale2" />
         <Routes>
           <Route path="/Allcomponent" element={<AllComponent />} />
           <Route path="list" element={<List />} />
@@ -71,7 +71,6 @@ export default function App() {
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Router>
-      <div className="bg-black px-5 sm:px-6 xl:px-10 max-w-[1280px]"></div>
     </>
   );
 }
