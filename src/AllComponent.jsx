@@ -19,7 +19,7 @@
 //   (이 파일은 데모 유지, 실제 제품 화면에선 RB* 사용 권장)
 // -----------------------------------------------------------------------------
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import IconButton from './components/IconButton';
+import IconButton from './components/post/IconButton';
 import IconLabelButton from './components/IconLabelButton';
 import TextButton from './components/TextButton';
 import CircleIconButton from './components/CircleIconButton';
@@ -43,7 +43,7 @@ import BackgroundSelect from './components/BackgroundSelect';
 import UserProfilePreview from './components/UserProfilePreview';
 import './App.css';
 import App from './App';
-import Modal from './components/Modal';
+saa;
 import Toast from './components/Toast';
 
 const BaseURL = 'https://rolling-api.vercel.app';
