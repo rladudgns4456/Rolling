@@ -28,11 +28,12 @@ import {
 
 import { useState, useEffect } from 'react';
 
-import Home from './Home';
+import Home from './pages/Home';
 
 const BaseURL = 'https://rolling-api.vercel.app';
 
 import AllComponent from './AllComponent';
+import RollingPostPage from './pages/RollingPostPage';
 
 export default function App() {
   const [bgImageUrl, setBgImageUrl] = useState([]);
@@ -63,9 +64,9 @@ export default function App() {
           <Route path="/Allcomponent" element={<AllComponent />} />
           <Route path="/" element={<Home />} />
           <Route path="*" element={<Navigate to="/" replace />} />
+          <Route path="/post" element={<RollingPostPage />} />
         </Routes>
       </Router>
-      <div className="bg-black px-5 sm:px-6 xl:px-10 max-w-[1280px]"></div>
     </>
   );
 }

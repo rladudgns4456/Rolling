@@ -3,7 +3,13 @@ import ProfileCount from '../common/ProfileCount';
 import Emoges from '../common/Emoge';
 import Toast from './Toast';
 
-const RecipientInfo = () => {
+const RecipientInfo = ({
+  name,
+  messageCount,
+  recentMessages,
+  topReactions,
+}) => {
+  console.log('props:', name, messageCount, recentMessages, topReactions);
   const [isShare, setIsShare] = useState(false);
   const [toastVisible, setToastVisible] = useState(false);
   const shareMenuRef = useRef(null);
@@ -47,15 +53,15 @@ const RecipientInfo = () => {
   return (
     <div className="flex items-center justify-between h-16 max-w-full m-auto tablet:max-w-7xl pc:max-w-[1200px]">
       <p className="text-center font-bold text-lg tablet:text-[1.75rem] pc:text-[1.75rem]  text-grayscale8">
-        To. (이름 데이터)
+        To. {name}
       </p>
 
       <div className="flex items-center gap-4">
         <ProfileCount totalCount="30" isColumn={false} />
         <Emoges className="flex gap-3 pl-8 border-l border-[#0000001F]" />
-        <button className="flex items-center  gap-1 w-9 h-9 px-2 py-[6px] md:px-4 rounded-md md:w-[88px] border border-grayscale3">
-          <img src="/emoji_add_icon.svg" alt="add emoji" />
-          <span className="hidden md:inline">추가</span>
+        <button className="flex items-center gap-1 w-9 h-9 px-2 py-[6px] md:px-4 rounded-md md:w-[88px] border border-grayscale3">
+          <img className="w-6 h-6" src="/emoji_add_icon.svg" alt="add emoji" />
+          <span className="hidden text-base md:inline">추가</span>
         </button>
         <div className="border-l border-grayscale2 h-7"></div>
 

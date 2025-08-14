@@ -10,7 +10,7 @@ export default function Badge({ relationship }) {
   return (
     <>
       <div
-        className={`w-[41px] h-5 px-2 text-sm font-normal rounded ${styles}`}
+        className={`w-[44px] h-5 px-2 text-sm font-normal rounded ${styles}`}
       >
         {relationship}
       </div>
