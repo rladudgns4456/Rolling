@@ -24,19 +24,18 @@ import {
   Route,
   Link,
   Navigate,
+  BrowserRouter,
 } from 'react-router-dom';
 
 import './App.css';
-
-
 
 import { useState, useEffect } from 'react';
 
 import './App.css';
 import Home from './Home';
+import List from './pages/list';
 
 const BaseURL = 'https://rolling-api.vercel.app';
-
 
 import AllComponent from './AllComponent';
 
@@ -67,6 +66,7 @@ export default function App() {
 
         <Routes>
           <Route path="/Allcomponent" element={<AllComponent />} />
+          <Route path="list" element={<List />} />
           <Route path="/" element={<Home />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
