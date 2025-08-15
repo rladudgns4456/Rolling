@@ -27,3 +27,14 @@ export async function getReactions(recipientId) {
     throw new Error(`상품을 불러오는데 실패했습니다 : ${error.message}`);
   }
 }
+
+export async function getMessages(recipientId) {
+  try {
+    const response = await instance.get(
+      `/${TEAM_ID}/recipients/${recipientId}/messages/`
+    );
+    return response.data;
+  } catch (error) {
+    throw new Error(`상품을 불러오는데 실패했습니다 : ${error.message}`);
+  }
+}

@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
 import RecipientInfo from '../components/post/RecipientInfo';
 import UserRollingContainer from '../components/post/UserRollingContainer';
-import { getReactions, getRecipients } from '../api/api';
+import { getMessages, getReactions, getRecipients } from '../api/api';
 
 export default function PostPage() {
   const [recipientsInfo, setRecipientsInfo] = useState({});
   const [reactionsInfo, setReactionsInfo] = useState({});
+  const [messageInfo, setMessageInfo] = useState({ results: [] });
 
   useEffect(() => {
     async function fetchRecipients() {
@@ -26,8 +27,18 @@ export default function PostPage() {
         throw new Error(`데이터를 불러오는데 실패했습니다 : ${error.message}`);
       }
     }
+    async function fetchMessages() {
+      try {
+        const res = await getMessages(12942);
+        setMessageInfo(res);
+        console.log('message테스트', res);
+      } catch (error) {
+        throw new Error(`데이터를 불러오는데 실패했습니다 : ${error.message}`);
+      }
+    }
     fetchRecipients();
     fetchReactions();
+    fetchMessages();
   }, []);
 
   return (
@@ -41,7 +52,10 @@ export default function PostPage() {
           Reactions={reactionsInfo.results}
         />
       </div>
-      <UserRollingContainer />
+      <UserRollingContainer
+        recipientsInfo={recipientsInfo}
+        messageInfo={messageInfo.results}
+      />
     </>
   );
 }
