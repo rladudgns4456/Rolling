@@ -12,7 +12,7 @@ function UserRollingContainer({ userCardId = userObject.recentMessages }) {
   return (
     <>
       <div className="h-screen bg-beige2">
-        <div className="grid grid-cols-1 py-20 max-w-[1200px] mx-auto sm:grid-cols-2 xl:grid-cols-3 gap-y-5">
+        <div className="grid grid-cols-1 py-28 max-w-[1200px] mx-auto sm:grid-cols-2 xl:grid-cols-3 gap-y-5">
           <CardCreate />
           {userCardId.map((item) => {
             return (

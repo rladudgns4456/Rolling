@@ -2,17 +2,25 @@ import { useEffect, useState, useRef } from 'react';
 import ProfileCount from '../common/ProfileCount';
 import Emoges from '../common/Emoge';
 import Toast from './Toast';
+import ArrowDown from '../../assets/icon/arrow_down.svg';
 
 const RecipientInfo = ({
-  name,
-  messageCount,
-  recentMessages,
-  topReactions,
+  name = '',
+  messageCount = 0,
+  recentMessages = [],
+  topReactions = [],
+  Reactions = [],
 }) => {
-  console.log('props:', name, messageCount, recentMessages, topReactions);
   const [isShare, setIsShare] = useState(false);
   const [toastVisible, setToastVisible] = useState(false);
+  const [isEmojiOpen, setIsEmojiOpen] = useState(false);
   const shareMenuRef = useRef(null);
+
+  const recentImage = recentMessages.map((message) => message.profileImageURL);
+
+  const handleEmojiOpen = () => {
+    setIsEmojiOpen(!isEmojiOpen);
+  };
 
   const handleShareClick = () => {
     setIsShare(!isShare);
@@ -57,9 +65,33 @@ const RecipientInfo = ({
       </p>
 
       <div className="flex items-center gap-4">
-        <ProfileCount totalCount="30" isColumn={false} />
-        <Emoges className="flex gap-3 pl-8 border-l border-[#0000001F]" />
-        <button className="flex items-center gap-1 w-9 h-9 px-2 py-[6px] md:px-4 rounded-md md:w-[88px] border border-grayscale3">
+        <ProfileCount
+          messageCount={messageCount}
+          isColumn={false}
+          recentImage={recentImage}
+        />
+        <Emoges
+          topReactions={topReactions}
+          className="flex gap-3 pl-8 border-l border-[#0000001F]"
+        />
+        <div className="relative">
+          <button onClick={handleEmojiOpen}>
+            <img src={ArrowDown} alt="이모지 더보기 버튼" />
+          </button>
+          {isEmojiOpen && (
+            <div className="flex justify-center items-center absolute border shadow-[0_2px_12px_rgba(0,0,0,0.08)] rounded-lg bg-white top-10 right-1/2 w-[312px] h-[134px]">
+              <div className="grid grid-cols-4 gap-[10px]">
+                {Reactions.map((reaction) => (
+                  <div className="gap-[2px] text-white px-3 py-[6px] rounded-[32px] flex items-center justify-center w-16 bg-black/55 h-9">
+                    {reaction.emoji}
+                    <span>{reaction.count}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+        <button className="flex items-center gap-1 w-[88px] h-9 px-2 py-[6px] rounded-md border border-grayscale3">
           <img className="w-6 h-6" src="/emoji_add_icon.svg" alt="add emoji" />
           <span className="hidden text-base md:inline">추가</span>
         </button>
