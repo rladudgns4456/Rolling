@@ -1,14 +1,15 @@
 import { useState, useEffect, useRef } from 'react';
 import classNames from 'classnames';
 
-const Dropdown = () => {
+const Dropdown = ({ data, value, onChange, name }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isError, setIsError] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
   const dropdownRef = useRef(null);
 
-  const handleClick = () => {
+  const handleDropdownClick = () => {
     if (isError || isDisabled) return;
+    console.log(isOpen);
     setIsOpen(!isOpen);
   };
 
@@ -29,9 +30,11 @@ const Dropdown = () => {
 
   return (
     <div className="relative w-80" ref={dropdownRef}>
+      <input type="hidden" name={name} value={value} />
       <div>
         <button
-          onClick={handleClick}
+          type="button"
+          onClick={handleDropdownClick}
           disabled={isError || isDisabled}
           className={classNames(
             // 공통 기본 스타일
@@ -51,7 +54,7 @@ const Dropdown = () => {
             }
           )}
         >
-          드롭다운
+          {value}
           {/* 상태에 따라 다른 화살표 아이콘을 조건부로 렌더링 */}
           {isDisabled ? (
             <img src="/arrow_disabled.svg" alt="비활성화 화살표 아이콘" />
@@ -66,11 +69,19 @@ const Dropdown = () => {
 
       {/* 메뉴가 열려있고, 에러 또는 비활성화 상태가 아닐 때만 목록을 표시 */}
       {!isError && !isDisabled && isOpen && (
-        <ul className="absolute bg-white border rounded-lg w-80 border-grayscale3">
-          <li className="p-4 cursor-pointer hover:bg-grayscale1">데이터1</li>
-          <li className="p-4 cursor-pointer hover:bg-grayscale1">데이터2</li>
-          <li className="p-4 cursor-pointer hover:bg-grayscale1">데이터3</li>
-          <li className="p-4 cursor-pointer hover:bg-grayscale1">데이터4</li>
+        <ul className="absolute z-10 bg-white border rounded-lg w-80 border-grayscale3">
+          {data.map((item, index) => (
+            <li
+              key={index}
+              className="p-4 cursor-pointer hover:bg-grayscale1"
+              onClick={() => {
+                onChange(item);
+                setIsOpen(false);
+              }}
+            >
+              {item}
+            </li>
+          ))}
         </ul>
       )}
 

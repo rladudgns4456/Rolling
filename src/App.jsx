@@ -18,78 +18,19 @@
 //   → 예: <RBText map={{ mobile: 28, tablet: 40, pc: 56 }} variant="outlined">Enabled</RBText>
 //   (이 파일은 데모 유지, 실제 제품 화면에선 RB* 사용 권장)
 // -----------------------------------------------------------------------------
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Link,
-  Navigate,
-} from 'react-router-dom';
-import IconButton from './components/IconButton';
-import IconLabelButton from './components/IconLabelButton';
-import TextButton from './components/TextButton';
-import CircleIconButton from './components/CircleIconButton';
-import ToggleButtonGroup from './components/ToggleButtonGroup';
-import RichTextEditor from './components/RichTexteditor';
-import './App.css';
-import Dropdown from './components/Dropdown';
-import Header from './components/Header';
-import InputField from './components/InputField';
-import RecipientInfo from './components/RecipientInfo';
+
 // 아이콘(asset 경로/파일명 대소문자 주의)
-import Smile from './assets/icon/ic_smile.svg';
-import Deleted from './assets/icon/ic_deleted.svg';
-import Plus from './assets/icon/ic_plus.svg';
-import ArrowLeft from './assets/icon/arrow_left.svg';
-import ArrowRight from './assets/icon/arrow_right.svg';
+import { Routes, Route, Link } from 'react-router-dom';
+import './index.css';
 
-import { useState, useEffect } from 'react';
-import UserRollingContainer from './components/UserRollingContainer';
-import BackgroundSelect from './components/BackgroundSelect';
-import UserProfilePreview from './components/UserProfilePreview';
-import './App.css';
-
-import Modal from './components/Modal';
-import Toast from './components/Toast';
-import Home from './Home';
-
-const BaseURL = 'https://rolling-api.vercel.app';
-
-import CardListCard from './components/CardListCard';
-import AllComponent from './AllComponent';
+import Message from './pages/Message';
 
 export default function App() {
-  const [bgImageUrl, setBgImageUrl] = useState([]);
-  useEffect(() => {
-    fetch(`${BaseURL}/background-images/`, { method: 'GET' })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log('API 응답 데이터:', data);
-        if (data.imageUrls) {
-          setBgImageUrl(data.imageUrls);
-          console.log(data.imageUrls);
-        }
-      })
-      .catch((err) => console.error(err));
-  }, []);
   return (
     <>
-      <Router>
-        {/* 페이지 라우팅 영역 */}
-        <nav>
-          <Link to="/"></Link>
-          <Link className="ml-3 w-[40px] h-[40px]" to="/Allcomponent">
-            컴포넌트
-          </Link>
-        </nav>
-
-        <Routes>
-          <Route path="/Allcomponent" element={<AllComponent />} />
-          <Route path="/" element={<Home />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
-      </Router>
-      <div className="bg-black px-5 sm:px-6 xl:px-10 max-w-[1280px]"></div>
+      <Routes>
+        <Route path="/" element={<Message />}></Route>
+      </Routes>
     </>
   );
 }

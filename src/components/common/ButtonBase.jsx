@@ -1,4 +1,4 @@
-import { BASE, SIZES, VARIANTS, DEMO, responsiveWidth } from '../Tokens';
+import { BASE, SIZES, VARIANTS, DEMO, responsiveWidth } from './Tokens';
 
 export default function ButtonBase({
   size = 56,
