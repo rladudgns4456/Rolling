@@ -9,23 +9,46 @@ const bgColorMap = {
   purple: 'bg-purple2', // purple → purple2
   beige: 'bg-beige2', // beige → beige2
 };
+// CardListCard.jsx
 export default function CardListCard({ bgColor, color, name, bgImageUrl }) {
   return (
-    <>
-      <div
-        className={`bg-center bg-cover cardList relative z-1 ${bgColorMap[bgColor]} w-[275px] h-[260px] pt-[30px] pr-[24px] pb-[20px] pl-[24px] rounded-[16px]  border border-[#0000001A] shadow-[0px_2px_12px_0px_#00000014]`}
-        style={{ backgroundImage: `url(${bgImageUrl})` }}
-      >
-        <div className="p-0 w-[227px] h-[210px]">
-          <span className="z-10 flex justify-start mb-3 text-[24px] font-bold leading-9 tracking-[-0.01em] whitespace-nowrap overflow-hidden text-ellipsis">
-            To. {name}
-          </span>
+    <div
+      className={`cardList relative z-1 ${bgColorMap[bgColor]}
+                  bg-center bg-cover shrink-0
+                  /* 모바일 */
+                  w-[208px] h-[232px]
+                  /* 태블릿 */
+                  tablet:w-[275px] tablet:h-[260px]
+                  /* PC (태블릿과 동일) */
+                  pc:w-[275px] pc:h-[260px]
+                  pt-[30px] pr-[24px] pb-[20px] pl-[24px]
+                  rounded-[16px] border border-[#0000001A] opacity-100
+                  shadow-[0px_2px_12px_0px_#00000014]`}
+      style={{ backgroundImage: bgImageUrl ? `url(${bgImageUrl})` : undefined }}
+    >
+      <div className="w-full h-full p-0">
+        <span
+          className="
+            text-[18px] leading-[28px] tracking-[-0.01em] font-pretendard font-bold
+            tablet:z-10 pc:z-10
+            tablet:flex pc:flex
+            tablet:justify-start pc:justify-start
+            tablet:mb-3 pc:mb-3
+            tablet:text-[24px] pc:text-[24px]
+            tablet:leading-9 pc:leading-9
+            tablet:tracking-[-0.01em] pc:tracking-[-0.01em]
+            tablet:whitespace-nowrap pc:whitespace-nowrap
+            tablet:overflow-hidden pc:overflow-hidden
+            tablet:text-ellipsis pc:text-ellipsis
+          "
+        >
+          To. {name}
+        </span>
 
-          <ProfileCount totalCount="30" isColumn={true} />
-          <Emoges className="flex z-10 pt-[17px] pr-[28px] gap-[10px] mt-[43px] w-[227px] h-[53px] border-t border-[#0000001F]" />
-          {!bgImageUrl && <Shadow color={color} />}
-        </div>
+        <ProfileCount totalCount="30" isColumn={true} />
+        <Emoges />
+        {!bgImageUrl && <Shadow color={color} />}
       </div>
-    </>
+    </div>
   );
 }
