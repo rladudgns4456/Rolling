@@ -3,14 +3,25 @@ import CardCreateAt from './CardCreateAt';
 import CircleIconButton from '../common/CircleIconButton';
 import Plus from '../../assets/icon/ic_plus.svg';
 import Badge from './Badge';
+import Modal from './Modal';
+import { useState } from 'react';
 
 //개인롤링페이지 컨테이너
 function UserRollingContainer({ recipientsInfo, messageInfo }) {
+  const [isOpenModal, setIsOpenModal] = useState(null);
   const bgMap = {
     beige: 'bg-beige2',
     green: 'bg-green2',
     blue: 'bg-blue2',
     purple: 'bg-purple2',
+  };
+
+  const handleCardClick = (message) => {
+    setIsOpenModal(message);
+  };
+
+  const closeModal = () => {
+    setIsOpenModal(null);
   };
 
   if (!Array.isArray(messageInfo) || messageInfo.length === 0) {
@@ -37,12 +48,23 @@ function UserRollingContainer({ recipientsInfo, messageInfo }) {
         {messageInfo.map((message) => (
           <article
             key={message.id}
-            className="flex flex-col px-6 pb-6 w-96 bg-white rounded-2xl shadow-lg min-h-[230px] sm:min-h-[284px] xl:min-h-[280px]"
+            className="flex flex-col px-6 pb-6 w-96 bg-white rounded-2xl shadow-lg min-h-[230px] sm:min-h-[284px] xl:min-h-[280px] cursor-pointer"
+            onClick={() => handleCardClick(message)}
           >
             <RollingCard message={message} />
           </article>
         ))}
       </div>
+      {isOpenModal && (
+        <Modal
+          proFile={isOpenModal.profileImageURL}
+          userName={isOpenModal.sender}
+          relationship={isOpenModal.relationship}
+          createDate={isOpenModal.createdAt}
+          content={isOpenModal.content}
+          onClose={closeModal}
+        />
+      )}
     </div>
   );
 }
