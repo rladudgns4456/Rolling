@@ -1,13 +1,13 @@
-import AlignLeft from '../assets/icon/ic_Alignment.svg';
-import AlignCenter from '../assets/icon/ic_Center_Alignment.svg';
-import AlignRight from '../assets/icon/ic_Right_Alignment.svg';
-import Bullet from '../assets/icon/ic_Bullet.svg';
-import NumBullet from '../assets/icon/ic_Num_Bullet.svg';
-import FontB from '../assets/icon/ic_font_style_B.svg';
-import FontI from '../assets/icon/ic_font_style_I.svg';
-import FontU from '../assets/icon/ic_font_style_U.svg';
-import FontColor from '../assets/icon/ic_font_color.svg';
-import FontT from '../assets/icon/ic_font_style_T.svg';
+import AlignLeft from '../../assets/icon/ic_Alignment.svg';
+import AlignCenter from '../../assets/icon/ic_Center_Alignment.svg';
+import AlignRight from '../../assets/icon/ic_Right_Alignment.svg';
+import Bullet from '../../assets/icon/ic_Bullet.svg';
+import NumBullet from '../../assets/icon/ic_Num_Bullet.svg';
+import FontB from '../../assets/icon/ic_font_style_B.svg';
+import FontI from '../../assets/icon/ic_font_style_I.svg';
+import FontU from '../../assets/icon/ic_font_style_U.svg';
+import FontColor from '../../assets/icon/ic_font_color.svg';
+import FontT from '../../assets/icon/ic_font_style_T.svg';
 
 export default function RichTexteditor({
   text = 'I am your reach text editor.',

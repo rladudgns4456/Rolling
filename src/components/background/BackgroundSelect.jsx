@@ -1,24 +1,27 @@
-import { useState } from 'react';
-import SelectTab from './SelectTab';
+import {  useState } from 'react';
+import ToggleButtonGroup from '../common/ToggleButtonGroup';
 import BackgroundOption from './BackgroundOption';
 
+//배경 옵션 선택 wrap
 function BackgroundSelect() {
-  const [tab, setTab] = useState(1);
-  const handleClick = (e) => {
-    if (e.target.innerText === 'color') {
-      setTab(1);
-    } else {
-      setTab(0);
-    }
+  const [tab, setTab] = useState(0); //첫번째 탭 선택
+
+  const onHandleClick = (index) => {
+    setTab(index);
   };
 
   return (
     <>
-      {/*탭 버튼 영훈님 컴포넌트로 교체 */}
-      <SelectTab tab={tab} handleClick={handleClick} />
+      <ToggleButtonGroup
+        className={`mb-[45px]`}
+        options={['컬러', '이미지']}
+        defaultIndex={tab}
+        onChange={onHandleClick}
+      />
       <BackgroundOption tab={tab} />
     </>
   );
 }
+
 
 export default BackgroundSelect;

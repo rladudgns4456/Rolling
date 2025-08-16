@@ -1,7 +1,8 @@
 import classNames from 'classnames';
 import React, { useState } from 'react';
 
-const InputField = () => {
+const InputField = ({ placeholder }) => {
+  //placeholder prop으로 받음
   const [inputState, setInputState] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
@@ -19,7 +20,7 @@ const InputField = () => {
       onBlur={() => setIsTyping(false)}
       value={inputState}
       disabled={isDisabled}
-      placeholder="placeholder"
+      placeholder={placeholder} //placeholder prop으로 받음
       className={classNames(
         // 모든 상태에 공통으로 적용될 기본 스타일
         'flex justify-between p-4 mb-2 border-2 text-left rounded-lg w-80 focus:outline-none',
