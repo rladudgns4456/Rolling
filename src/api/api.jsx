@@ -38,3 +38,15 @@ export async function getMessages(recipientId) {
     throw new Error(`상품을 불러오는데 실패했습니다 : ${error.message}`);
   }
 }
+
+export async function postReactions(recipientId, body) {
+  try {
+    const response = await instance.post(
+      `/${TEAM_ID}/recipients/${recipientId}/reactions/`,
+      body
+    );
+    return response.data;
+  } catch (error) {
+    throw new Error(`상품을 불러오는데 실패했습니다 : ${error.message}`);
+  }
+}

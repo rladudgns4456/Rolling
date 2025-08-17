@@ -17,7 +17,7 @@ export default function App() {
 
         {/* 버튼이 보이면 안 되는 라우트 묶음 */}
         <Route element={<Layout showCta={false} />}>
-          <Route path="/post" element={<PostPage />} />
+          <Route path="/post/:recipientId" element={<PostPage />} />
 
           {/* 예: /post/preview, /editor 등도 여기에 */}
           {/* <Route path="/post/preview" element={<PostPreview />} /> */}

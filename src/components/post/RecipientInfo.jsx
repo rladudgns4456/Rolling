@@ -3,6 +3,8 @@ import ProfileCount from '../common/ProfileCount';
 import Emoges from '../common/Emoge';
 import Toast from './Toast';
 import ArrowDown from '../../assets/icon/arrow_down.svg';
+import EmojiPicker from 'emoji-picker-react';
+import { getReactions, postReactions } from '../../api/api';
 
 const RecipientInfo = ({
   name = '',
@@ -10,13 +12,19 @@ const RecipientInfo = ({
   recentMessages = [],
   topReactions = [],
   Reactions = [],
+  recipientId,
 }) => {
   const [isShare, setIsShare] = useState(false);
   const [toastVisible, setToastVisible] = useState(false);
   const [isEmojiOpen, setIsEmojiOpen] = useState(false);
+  const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const shareMenuRef = useRef(null);
 
   const recentImage = recentMessages.map((message) => message.profileImageURL);
+
+  const handleEmojiAddButton = () => {
+    setShowEmojiPicker(!showEmojiPicker);
+  };
 
   const handleEmojiOpen = () => {
     setIsEmojiOpen(!isEmojiOpen);
@@ -58,6 +66,24 @@ const RecipientInfo = ({
     }
   }, [toastVisible]);
 
+  // ** 해결해야되는 부분
+  //
+  //
+  //
+  //
+  //
+  //
+
+  async function handleEmojiPost(newEmoji) {
+    try {
+      await postReactions(recipientId, { emoji: newEmoji, type: 'increase' });
+    } catch (error) {
+      console.error('이모지 추가 실패:', error);
+    } finally {
+      setShowEmojiPicker(false);
+    }
+  }
+
   return (
     <div className="flex items-center justify-between h-16 max-w-full m-auto tablet:max-w-7xl pc:max-w-[1200px]">
       <p className="text-center font-bold text-lg tablet:text-[1.75rem] pc:text-[1.75rem]  text-grayscale8">
@@ -82,7 +108,10 @@ const RecipientInfo = ({
             <div className="flex justify-center items-center absolute border shadow-[0_2px_12px_rgba(0,0,0,0.08)] rounded-lg bg-white top-10 right-1/2 w-[312px] h-[134px]">
               <div className="grid grid-cols-4 gap-[10px]">
                 {Reactions.map((reaction) => (
-                  <div className="gap-[2px] text-white px-3 py-[6px] rounded-[32px] flex items-center justify-center w-16 bg-black/55 h-9">
+                  <div
+                    key={reaction.id}
+                    className="gap-[2px] text-white px-3 py-[6px] rounded-[32px] flex items-center justify-center w-16 bg-black/55 h-9"
+                  >
                     {reaction.emoji}
                     <span>{reaction.count}</span>
                   </div>
@@ -91,10 +120,26 @@ const RecipientInfo = ({
             </div>
           )}
         </div>
-        <button className="flex items-center gap-1 w-[88px] h-9 px-2 py-[6px] rounded-md border border-grayscale3">
-          <img className="w-6 h-6" src="/emoji_add_icon.svg" alt="add emoji" />
-          <span className="hidden text-base md:inline">추가</span>
-        </button>
+        <div className="relative">
+          <button
+            onClick={handleEmojiAddButton}
+            className="flex items-center gap-1 w-[88px] h-9 px-2 py-[6px] rounded-md border border-grayscale3"
+          >
+            <img
+              className="w-6 h-6"
+              src="/emoji_add_icon.svg"
+              alt="add emoji"
+            />
+            <span className="hidden text-base md:inline">추가</span>
+          </button>
+          {showEmojiPicker && (
+            <div className="absolute right-0 top-11">
+              <EmojiPicker
+                onEmojiClick={(emojiData) => handleEmojiPost(emojiData.emoji)}
+              />
+            </div>
+          )}
+        </div>
         <div className="border-l border-grayscale2 h-7"></div>
 
         {/* 공유 버튼 및 메뉴 영역 */}
