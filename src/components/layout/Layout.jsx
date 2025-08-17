@@ -1,5 +1,4 @@
-// src/layout/Layout.jsx
-import Header from './components/common/Header';
+import Header from '../common/Header';
 import { Outlet } from 'react-router-dom';
 
 export default function Layout({ showCta = true }) {
