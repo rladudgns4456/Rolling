@@ -20,6 +20,7 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         {/* ✅ 버튼이 보여야 하는 라우트 묶음 */}
+
         {/* 버튼 보이는 페이지를 여기에 계속 추가 */}
         {/* <Route path="/list" element={<ListPage />} /> */}
         <Route element={<Layout showCta={true} />}>
