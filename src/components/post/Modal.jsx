@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import Badge from './Badge';
 
 export default function Modal({

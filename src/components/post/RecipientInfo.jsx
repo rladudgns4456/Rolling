@@ -11,8 +11,8 @@ const RecipientInfo = ({
   messageCount = 0,
   recentMessages = [],
   topReactions = [],
-  Reactions = [],
-  recipientId,
+  reactionsInfo,
+  handleEmojiPost,
 }) => {
   const [isShare, setIsShare] = useState(false);
   const [toastVisible, setToastVisible] = useState(false);
@@ -23,15 +23,15 @@ const RecipientInfo = ({
   const recentImage = recentMessages.map((message) => message.profileImageURL);
 
   const handleEmojiAddButton = () => {
-    setShowEmojiPicker(!showEmojiPicker);
+    setShowEmojiPicker((prev) => !prev);
   };
 
   const handleEmojiOpen = () => {
-    setIsEmojiOpen(!isEmojiOpen);
+    setIsEmojiOpen((prev) => !prev);
   };
 
   const handleShareClick = () => {
-    setIsShare(!isShare);
+    setIsShare((prev) => !prev);
   };
 
   const copyUrl = async () => {
@@ -66,23 +66,10 @@ const RecipientInfo = ({
     }
   }, [toastVisible]);
 
-  // ** 해결해야되는 부분
-  //
-  //
-  //
-  //
-  //
-  //
-
-  async function handleEmojiPost(newEmoji) {
-    try {
-      await postReactions(recipientId, { emoji: newEmoji, type: 'increase' });
-    } catch (error) {
-      console.error('이모지 추가 실패:', error);
-    } finally {
-      setShowEmojiPicker(false);
-    }
-  }
+  const handleEmojiClick = (emoji) => {
+    handleEmojiPost(emoji);
+    setShowEmojiPicker(false);
+  };
 
   return (
     <div className="flex items-center justify-between h-16 max-w-full m-auto tablet:max-w-7xl pc:max-w-[1200px]">
@@ -107,7 +94,7 @@ const RecipientInfo = ({
           {isEmojiOpen && (
             <div className="flex justify-center items-center absolute border shadow-[0_2px_12px_rgba(0,0,0,0.08)] rounded-lg bg-white top-10 right-1/2 w-[312px] h-[134px]">
               <div className="grid grid-cols-4 gap-[10px]">
-                {Reactions.map((reaction) => (
+                {reactionsInfo.map((reaction) => (
                   <div
                     key={reaction.id}
                     className="gap-[2px] text-white px-3 py-[6px] rounded-[32px] flex items-center justify-center w-16 bg-black/55 h-9"
@@ -135,7 +122,7 @@ const RecipientInfo = ({
           {showEmojiPicker && (
             <div className="absolute right-0 top-11">
               <EmojiPicker
-                onEmojiClick={(emojiData) => handleEmojiPost(emojiData.emoji)}
+                onEmojiClick={(emojiData) => handleEmojiClick(emojiData.emoji)}
               />
             </div>
           )}

@@ -1,12 +1,17 @@
 import { useEffect, useState } from 'react';
 import RecipientInfo from '../components/post/RecipientInfo';
 import UserRollingContainer from '../components/post/UserRollingContainer';
-import { getMessages, getReactions, getRecipients } from '../api/api';
+import {
+  getMessages,
+  getReactions,
+  getRecipients,
+  postReactions,
+} from '../api/api';
 import { useParams } from 'react-router-dom';
 
 export default function PostPage() {
   const [recipientsInfo, setRecipientsInfo] = useState({});
-  const [reactionsInfo, setReactionsInfo] = useState({});
+  const [reactionsInfo, setReactionsInfo] = useState([]);
   const [messageInfo, setMessageInfo] = useState({ results: [] });
   const { recipientId } = useParams();
 
@@ -20,7 +25,7 @@ export default function PostPage() {
             getMessages(recipientId),
           ]);
           setRecipientsInfo(recipientsRes);
-          setReactionsInfo(reactionsRes);
+          setReactionsInfo(reactionsRes.results);
           setMessageInfo(messagesRes);
         } catch (error) {
           throw new Error(
@@ -32,6 +37,33 @@ export default function PostPage() {
     fetchData();
   }, [recipientId]);
 
+  async function handleEmojiPost(newEmoji) {
+    try {
+      await postReactions(recipientId, {
+        emoji: newEmoji,
+        type: 'increase',
+      });
+      const updated = await getReactions(recipientId);
+      setReactionsInfo(updated.results || []);
+
+      // 성능 최적화 위해 API 두 번 호출 대신 직접 topReactions 업데이트
+      setRecipientsInfo((prev) => {
+        if (!prev) return prev;
+        const sorted = [...updated.results]
+          .sort((a, b) => b.count - a.count)
+          .slice(0, 3);
+
+        return {
+          ...prev,
+          topReactions: sorted,
+        };
+      });
+    } catch (error) {
+      console.error('이모지 추가 실패:', error);
+    }
+  }
+
+  console.log(recipientsInfo);
   return (
     <>
       <div className="w-[1200px] mx-auto">
@@ -40,8 +72,9 @@ export default function PostPage() {
           messageCount={recipientsInfo.messageCount}
           recentMessages={recipientsInfo.recentMessages}
           topReactions={recipientsInfo.topReactions}
-          Reactions={reactionsInfo.results}
           recipientId={recipientId}
+          reactionsInfo={reactionsInfo}
+          handleEmojiPost={handleEmojiPost}
         />
       </div>
       <UserRollingContainer

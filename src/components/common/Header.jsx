@@ -1,7 +1,8 @@
 // src/Header.jsx
 import { useNavigate } from 'react-router-dom';
+import RollingIcon from '../../assets/icon/Rolling_icon.svg';
 
-export default function Header({ showButton = true }) {
+export default function Header({ showCta = true }) {
   const nav = useNavigate();
 
   return (
@@ -14,12 +15,12 @@ export default function Header({ showButton = true }) {
           className="inline-flex items-center gap-[clamp(8px,8vw,16px)] tablet:gap-6 pc:gap-16"
           aria-label="메인으로 이동"
         >
-          <img src="Rolling_icon.svg" alt="롤링 로고" width={28} height={28} />
+          <img src={RollingIcon} alt="롤링 로고" width={28} height={28} />
           <span className="text-xl font-bold text-gray-900">Rolling</span>
         </button>
 
         {/* 우측 CTA → /post (페이지에 따라 노출 제어) */}
-        {showButton && (
+        {showCta && (
           <button
             onClick={() => nav('/post')}
             className="px-4 py-2 border rounded-md border-gray-300 text-gray-900 hover:bg-gray-50 active:scale-[.98]"
