@@ -5,7 +5,7 @@ import InputField from '../components/common/InputField';
 import TextButton from '../components/common/TextButton';
 import { use } from 'react';
 
-function BackgroundCreate({ bgImageUrl }) {
+function List({ bgImageUrl }) {
   const [toSpace, setToSpace] = useState(true); //받는 사람 이름
   const [isDisabled, setIsDisabled] = useState(true); //받는 사람 이름
   const [placeholder, setPlaceholder] =
@@ -31,11 +31,11 @@ function BackgroundCreate({ bgImageUrl }) {
           responsive="hug"
           disabled={isDisabled}
         >
-          생성하기
+          리스트 페이지
         </TextButton>
       )}
     </article>
   );
 }
 
-export default BackgroundCreate;
+export default Post;

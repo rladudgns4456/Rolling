@@ -5,68 +5,76 @@ import bgBeige from '/src/assets/images/beige.png';
 import bgPurple from '/src/assets/images/purple.png';
 import bgBlue from '/src/assets/images/blue.png';
 import bgGreen from '/src/assets/images/green.png';
-import bgImage1 from '/src/assets/images/bg_img_1.jpg';
-import bgImage2 from '/src/assets/images/bg_img_2.jpg';
-import bgImage3 from '/src/assets/images/bg_img_3.jpg';
-import bgImage4 from '/src/assets/images/bg_img_4.jpg';
 
+const backgroundOptions = {
+  colorOptions: [
+    { item: 'bgBeige', bgImg: bgBeige, value: 'beige' },
+    { item: 'bgPurple', bgImg: bgPurple, value: 'purple' },
+    { item: 'bgBlue', bgImg: bgBlue, value: 'blue' },
+    { item: 'bgGreen', bgImg: bgGreen, value: 'green' },
+  ],
+  imageOptions: [
+    {
+      item: 'bgImage1',
+      bgImg: 'https://picsum.photos/id/683/3840/2160',
+      value: 'https://picsum.photos/id/683/3840/2160',
+    },
+    {
+      item: 'bgImage2',
+      bgImg: 'https://picsum.photos/id/24/3840/2160',
+      value: 'https://picsum.photos/id/24/3840/2160',
+    },
+    {
+      item: 'bgImage3',
+      bgImg: 'https://picsum.photos/id/599/3840/2160',
+      value: 'https://picsum.photos/id/599/3840/2160',
+    },
+    {
+      item: 'bgImage4',
+      bgImg: 'https://picsum.photos/id/1058/3840/2160',
+      value: 'https://picsum.photos/id/1058/3840/2160',
+    },
+  ],
+};
 
 //배경 옵션 라디오 폼
-function BackgroundOption({ tab }) {
-  const backgroundOptions = {
-    colorOptions: [
-      { item: 'bgBeige', bgImg: bgBeige, value: 'beige' },
-      { item: 'bgPurple', bgImg: bgPurple, value: 'purple' },
-      { item: 'bgBlue', bgImg: bgBlue, value: 'blue' },
-      { item: 'bgGreen', bgImg: bgGreen, value: 'green' },
-    ],
-    imageOptions: [
-      {
-        item: 'bgImage1',
-        bgImg: bgImage1,
-        value: '/src/assets/images/bg_img_1.jpg',
-      },
-      {
-        item: 'bgImage2',
-        bgImg: bgImage2,
-        value: '/src/assets/images/bg_img_2.jpg',
-      },
-      {
-        item: 'bgImage3',
-        bgImg: bgImage3,
-        value: '/src/assets/images/bg_img_3.jpg',
-      },
-      {
-        item: 'bgImage4',
-        bgImg: bgImage4,
-        value: '/src/assets/images/bg_img_4.jpg',
-      },
-    ],
-  };
-
+function BackgroundOption({ tabIndex, handleBgChange }) {
+  //첫번째 요소 체크
   const [selectOption, setSelectOption] = useState(
-    tab == 0
+    tabIndex == 0
       ? backgroundOptions.colorOptions[0].item
       : backgroundOptions.imageOptions[0].item
-  ); //첫번째 요소 체크
+  );
+
+  useEffect(()=>{
+    setSelectOption(tabIndex);
+  },[tabIndex])
 
   const handleChange = (e) => {
+    const selectedValue = e.target.value;
     setSelectOption(e.target.dataset.value);
+    //배경 선택 요소 상위로 전달
+    if (tabIndex == 0) {
+      handleBgChange(selectedValue, null);
+    } else {
+      handleBgChange('beige', selectedValue);
+    }
+    return selectedValue; // 선택된 값을 반환
   };
 
   useEffect(() => {
-    if (tab === 0) {
+    if (tabIndex === 0) {
       setSelectOption(backgroundOptions.colorOptions[0].item);
     } else {
       setSelectOption(backgroundOptions.imageOptions[0].item);
     }
-  }, [tab]);
+  }, [tabIndex]);
 
   return (
     <>
       {/*선택 라디오 폼*/}
       <form>
-        {tab === 0 ? (
+        {tabIndex === 0 ? (
           <div className="flex flex-wrap gap-3 overflow-hidden sm:gap-x-4">
             {backgroundOptions.colorOptions.map((option) => (
               <OptionItem

@@ -28,7 +28,7 @@ function CardCreate() {
   return (
     <div className="flex justify-center items-center bg-white rounded-2xl shadow-lg min-h-[230px] sm:min-h-[284px] xl:min-h-[280px]">
       {/*영훈님 컴포넌트로 버튼 교체할 자리 */}
-      <Button />
+      <Button />  
     </div>
   );
 }

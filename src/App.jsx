@@ -30,24 +30,39 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import Home from './pages/Home';
 import Header from './components/common/Header';
-const BaseURL = 'https://rolling-api.vercel.app';
+// import { getRollingPaper } from './components/api/api';
+// const BaseURL = 'https://rolling-api.vercel.app';
 
 import AllComponent from './AllComponent';
 
 export default function App() {
-  const [bgImageUrl, setBgImageUrl] = useState([]);
-  useEffect(() => {
-    fetch(`${BaseURL}/background-images/`, { method: 'GET' })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log('API 응답 데이터:', data);
-        if (data.imageUrls) {
-          setBgImageUrl(data.imageUrls);
-          console.log(data.imageUrls);
-        }
-      })
-      .catch((err) => console.error(err));
-  }, []);
+  // const [bgImageUrl, setBgImageUrl] = useState([]);
+  // useEffect(() => {
+  //   fetch(`${BaseURL}/background-images/`, { method: 'GET' })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       console.log('API 응답 데이터:', data);
+  //       if (data.imageUrls) {
+  //         setBgImageUrl(data.imageUrls);
+  //         console.log(data.imageUrls);
+  //       }
+  //     })
+  //     .catch((err) => console.error(err));
+  // }, []);
+
+
+  //api 리퀘스트
+  // const [papers, setPapers] = useState([]);
+
+  // const handleLoad = async () => {
+  //   const { results } = await getRollingPaper();
+  //   setPapers(results);
+  //   console.log(papers[0].name)
+  // };
+
+  // useEffect(() => {
+  //   handleLoad();
+  // }, []);
 
   return (
     <>
