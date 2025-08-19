@@ -1,49 +1,105 @@
-import { data, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { getRollingPaper } from '../components/api/api';
+import RecipientInfo from '../components/post/RecipientInfo';
 import UserRollingContainer from '../components/post/UserRollingContainer';
+import {
+  deleteMessages,
+  getMessages,
+  getReactions,
+  getRecipients,
+  postReactions,
+} from '../api/api';
+import { useParams } from 'react-router-dom';
 
-function PostPage() {
-  const { id } = useParams(); // URL에서 ID 추출
-
-  const [postData, setPostData] = useState(null);
+export default function PostPage() {
+  const [recipientsInfo, setRecipientsInfo] = useState({});
+  const [reactionsInfo, setReactionsInfo] = useState([]);
+  const [messageInfo, setMessageInfo] = useState({ results: [] });
+  const { recipientId } = useParams();
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const body = await getRollingPaper({ id });
-        setPostData(body);
-      } catch (error) {
-        console.error('이미지를 가져오지 못했습니다.:', error);
+    async function fetchData() {
+      if (recipientId) {
+        try {
+          const [recipientsRes, reactionsRes, messagesRes] = await Promise.all([
+            getRecipients(recipientId),
+            getReactions(recipientId),
+            getMessages(recipientId),
+          ]);
+          setRecipientsInfo(recipientsRes);
+          setReactionsInfo(reactionsRes.results);
+          setMessageInfo(messagesRes);
+        } catch (error) {
+          throw new Error(
+            `데이터를 불러오는데 실패했습니다 : ${error.message}`
+          );
+        }
       }
-    };
-
-    if (id) {
-      fetchData(); //api 호출
     }
-  }, [id]);
+    fetchData();
+  }, [recipientId]);
 
-  const bgColorStyle =
-    postData && postData.backgroundColor
-      ? { backgroundColor: postData.backgroundColor }
-      : {};
-  const bgImageStyle =
-    postData && postData.backgroundImageURL
-      ? { backgroundImage: `url(${postData.backgroundImageURL})` }
-      : { backgroundImage: 'none' };
+  async function handleEmojiPost(newEmoji) {
+    try {
+      await postReactions(recipientId, {
+        emoji: newEmoji,
+        type: 'increase',
+      });
+      const updated = await getReactions(recipientId);
+      setReactionsInfo(updated.results || []);
 
-  return (    
-    <div
-      className={`min-h-screen bg-cover bg-no-repeat bg-center`}
-      style={
-        postData && postData.backgroundImageURL ? bgImageStyle : bgColorStyle
-      }
-    >
-      <div className="max-w-[1280px] mx-auto px-5 sm:px-6 xl:px-10">
-        {postData !== null && <UserRollingContainer newUserId={postData} />}
+      // 성능 최적화 위해 API 두 번 호출 대신 직접 topReactions
+      setRecipientsInfo((prev) => {
+        if (!prev) return prev;
+        const sorted = [...updated.results]
+          .sort((a, b) => b.count - a.count)
+          .slice(0, 3);
+
+        return {
+          ...prev,
+          topReactions: sorted,
+        };
+      });
+    } catch (error) {
+      console.error('이모지 추가 실패:', error);
+    }
+  }
+
+  async function handleDeleteMessage(messageId) {
+    try {
+      await deleteMessages(messageId);
+      setMessageInfo((prev) => ({
+        ...prev,
+        messageCount: prev.messageCount - 1,
+      }));
+      setMessageInfo((prev) => ({
+        ...prev,
+        results: prev.results.filter((message) => message.id !== messageId),
+      }));
+    } catch (error) {
+      console.log('메시지 삭제 실패:', error);
+    }
+  }
+
+  console.log(messageInfo);
+  return (
+    <>
+      <div className="w-[1200px] mx-auto">
+        <RecipientInfo
+          name={recipientsInfo.name}
+          messageCount={recipientsInfo.messageCount}
+          recentMessages={recipientsInfo.recentMessages}
+          topReactions={recipientsInfo.topReactions}
+          recipientId={recipientId}
+          reactionsInfo={reactionsInfo}
+          handleEmojiPost={handleEmojiPost}
+        />
       </div>
-    </div>
+      <UserRollingContainer
+        recipientsInfo={recipientsInfo}
+        messageInfo={messageInfo.results}
+        onDeleteMessage={handleDeleteMessage}
+        recipientId={recipientId}
+      />
+    </>
   );
 }
-
-export default PostPage;
