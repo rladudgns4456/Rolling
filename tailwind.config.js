@@ -66,6 +66,11 @@ module.exports = {
         black: '#000000',
         error: '#DC3A3A',
         surface: '#F6F8FF',
+
+        beige: '#FFE2AD',
+        purple: '#ECD9FF',
+        blue: '#B1E4FF',
+        green: '#D0F5C3',
       },
     },
   },

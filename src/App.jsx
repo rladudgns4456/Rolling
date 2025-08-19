@@ -29,55 +29,20 @@ import {
 import { useState, useEffect } from 'react';
 import './App.css';
 import Home from './pages/Home';
+import MainPage from './pages/Main';
 import Header from './components/common/Header';
-// import { getRollingPaper } from './components/api/api';
-// const BaseURL = 'https://rolling-api.vercel.app';
-
-import AllComponent from './AllComponent';
+import PostPage from './pages/PostPage';
+import CreateRollingPaper from './pages/CreateRollingPaper';
 
 export default function App() {
-  // const [bgImageUrl, setBgImageUrl] = useState([]);
-  // useEffect(() => {
-  //   fetch(`${BaseURL}/background-images/`, { method: 'GET' })
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       console.log('API 응답 데이터:', data);
-  //       if (data.imageUrls) {
-  //         setBgImageUrl(data.imageUrls);
-  //         console.log(data.imageUrls);
-  //       }
-  //     })
-  //     .catch((err) => console.error(err));
-  // }, []);
-
-
-  //api 리퀘스트
-  // const [papers, setPapers] = useState([]);
-
-  // const handleLoad = async () => {
-  //   const { results } = await getRollingPaper();
-  //   setPapers(results);
-  //   console.log(papers[0].name)
-  // };
-
-  // useEffect(() => {
-  //   handleLoad();
-  // }, []);
-
   return (
     <>
       <Router>
         {/* 페이지 라우팅 영역 */}
-        {/* <nav>
-          <Link to="/"></Link>
-          <Link className="ml-3 w-[40px] h-[40px]" to="/Allcomponent">
-            컴포넌트
-          </Link>
-        </nav> */}
         <Header />
         <Routes>
-          <Route path="/Allcomponent" element={<AllComponent />} />
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<CreateRollingPaper />} />
+          <Route path="/PostPage/:id" element={<PostPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Router>

@@ -5,6 +5,10 @@ import bgBeige from '/src/assets/images/beige.png';
 import bgPurple from '/src/assets/images/purple.png';
 import bgBlue from '/src/assets/images/blue.png';
 import bgGreen from '/src/assets/images/green.png';
+import bgImage1 from '/src/assets/images/bgImage1.jpg';
+import bgImage2 from '/src/assets/images/bgImage2.jpg';
+import bgImage3 from '/src/assets/images/bgImage3.jpg';
+import bgImage4 from '/src/assets/images/bgImage4.jpg';
 
 const backgroundOptions = {
   colorOptions: [
@@ -16,22 +20,22 @@ const backgroundOptions = {
   imageOptions: [
     {
       item: 'bgImage1',
-      bgImg: 'https://picsum.photos/id/683/3840/2160',
+      bgImg: bgImage1,
       value: 'https://picsum.photos/id/683/3840/2160',
     },
     {
       item: 'bgImage2',
-      bgImg: 'https://picsum.photos/id/24/3840/2160',
+      bgImg: bgImage2,
       value: 'https://picsum.photos/id/24/3840/2160',
     },
     {
       item: 'bgImage3',
-      bgImg: 'https://picsum.photos/id/599/3840/2160',
+      bgImg: bgImage3,
       value: 'https://picsum.photos/id/599/3840/2160',
     },
     {
       item: 'bgImage4',
-      bgImg: 'https://picsum.photos/id/1058/3840/2160',
+      bgImg: bgImage4,
       value: 'https://picsum.photos/id/1058/3840/2160',
     },
   ],
@@ -45,10 +49,6 @@ function BackgroundOption({ tabIndex, handleBgChange }) {
       ? backgroundOptions.colorOptions[0].item
       : backgroundOptions.imageOptions[0].item
   );
-
-  useEffect(()=>{
-    setSelectOption(tabIndex);
-  },[tabIndex])
 
   const handleChange = (e) => {
     const selectedValue = e.target.value;
@@ -74,35 +74,22 @@ function BackgroundOption({ tabIndex, handleBgChange }) {
     <>
       {/*선택 라디오 폼*/}
       <form>
-        {tabIndex === 0 ? (
-          <div className="flex flex-wrap gap-3 overflow-hidden sm:gap-x-4">
-            {backgroundOptions.colorOptions.map((option) => (
-              <OptionItem
-                key={option.item}
-                value={option.value}
-                dataValue={option.item}
-                bgImg={option.bgImg}
-                formName="bgColor"
-                selectOption={selectOption}
-                onChange={handleChange}
-              />
-            ))}
-          </div>
-        ) : (
-          <div className="flex flex-wrap gap-3 sm:gap-x-4">
-            {backgroundOptions.imageOptions.map((option) => (
-              <OptionItem
-                key={option.item}
-                value={option.value}
-                dataValue={option.item}
-                bgImg={option.bgImg}
-                formName="bgImage"
-                selectOption={selectOption}
-                onChange={handleChange}
-              />
-            ))}
-          </div>
-        )}
+        <div className="flex flex-wrap gap-3 overflow-hidden sm:gap-x-4">
+          {(tabIndex === 0
+            ? backgroundOptions.colorOptions
+            : backgroundOptions.imageOptions
+          ).map((option) => (
+            <OptionItem
+              key={option.item}
+              value={option.value}
+              dataValue={option.item}
+              bgImg={option.bgImg}
+              formName={tabIndex === 0 ? 'bgColor' : 'bgImage'}
+              selectOption={selectOption}
+              onChange={handleChange}
+            />
+          ))}
+        </div>
       </form>
     </>
   );
@@ -132,19 +119,11 @@ function OptionItem({
         onChange={onChange}
       />
 
-      {isSelected && bgImage ? (
-        <img
-          className="object-cover h-full transition-opacity opacity-30 hover:opacity-30"
-          src={bgImg}
-          alt=""
-        />
-      ) : (
-        <img
-          className="object-cover h-full transition-opacity hover:opacity-30"
-          src={bgImg}
-          alt=""
-        />
-      )}
+      <img
+        className={`object-cover h-full transition-opacity ${isSelected && bgImage ? 'opacity-30' : 'hover:opacity-30'}`}
+        src={bgImg}
+        alt={bgImg}
+      />
 
       {/*선택 체크 표시 */}
       {isSelected && (

@@ -13,7 +13,7 @@ function BackgroundSelect({ handleTabChange, handleBgChange, defaultIndex }) {
 
   useEffect(()=>{
     setTabIndex(defaultIndex);
-  },[defaultIndex]); //prop 받은 인덱스의 변화에 의해 변경
+  },[defaultIndex]);  
 
   return (
     <>
