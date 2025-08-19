@@ -20,17 +20,31 @@
 // -----------------------------------------------------------------------------
 
 // 아이콘(asset 경로/파일명 대소문자 주의)
-import { Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './index.css';
 
+import Layout from './layout/Layout';
 import Message from './pages/Message';
 
 export default function App() {
   return (
     <>
-      <Routes>
-        <Route path="/" element={<Message />}></Route>
-      </Routes>
+      <BrowserRouter>
+        <Routes>
+          {/* 버튼이 보여야 하는 라우트 묶음 */}
+          <Route element={<Layout showCta={true} />}>
+            <Route path="/post/:recipientId/message" element={<Message />} />
+
+            {/* 버튼이 보여야 하는 추가 페이지들을 여기에 */}
+          </Route>
+
+          {/* 버튼이 보이면 안 되는 라우트 묶음 */}
+          <Route element={<Layout showCta={false} />}>
+            {/* 예: /post/preview, /editor 등도 여기에 */}
+            {/* <Route path="/post/preview" element={<PostPreview />} /> */}
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }

@@ -47,3 +47,12 @@
 .text-editor-container .ql-formats .ql-color {
   width: 30px;
 }
+
+.font-nanum .ql-editor strong,
+.font-nanum .ql-editor b {
+  font-family: 'NanumMyeongjoExtraBold', serif;
+}
+
+.text-editor-container .ql-editor {
+  font-size: 16px;
+}
