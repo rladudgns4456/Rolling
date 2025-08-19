@@ -1,42 +1,36 @@
-import { useState } from 'react';
-import './App.css';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import Layout from './components/layout/Layout';
+import Home from './Home';
+import Header from './components/common/Header';
+import List from './pages/list';
+import CreateRollingPaper from './pages/CreateRollingPaper';
+import Message from './pages/Message';
 
-function App() {
-  const [count, setCount] = useState(0);
-
+export default function App() {
   return (
-    <>
-      <div>
-        <a
-          href="https://v
-        
-        ite.dev"
-          target="_blank"
-        >
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://r    eact.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logo s to learn more
-      </p>
-      <h1 className="text-3xl text-blue-950">Hello world !</h1>
-      <h1 className="bg-blue-700">Hello world!</h1>
-    </>
+    <BrowserRouter>
+      <Routes>
+        {/* ✅ 버튼이 보여야 하는 라우트 묶음 */}
+        {/* 버튼 보이는 페이지를 여기에 계속 추가 */}
+        {/* <Route path="/list" element={<ListPage />} /> */}
+        <Route element={<Layout showCta={true} />}>
+          <Route path="/" element={<Home />} />
+          <Route path="list" element={<List />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Route>
+        {/* 🚫 버튼이 보이면 안 되는 라우트 묶음 */}
+        {/* <Route path="/post" element={<PostPage />}</Route>
+        {/* 숨겨야 하는 페이지들을 여기에 */}
+        <Route element={<Layout showCta={false} />}>
+          <Route
+            path="/CreateRollingPaper"
+            element={<CreateRollingPaper />}
+          ></Route>
+          {/* <Route path="/post" element={<PostPage />} /> */}
+          {/* 숨겨야 하는 페이지들을 여기에 */}
+          <Route path="/post/:recipientId/message" element={<Message />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
-
-export default App;
