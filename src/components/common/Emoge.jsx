@@ -1,5 +1,6 @@
-const emogeClass =
-  'w-[66px] z-10 h-[36px] rounded-[32px] bg-[#0000008A] pt-2 pr-3 pb-2 pl-3 flex justify-center items-center text-[16px] text-white leading-[20px] tracking-[0]';
+const emogeClass = `
+  w-[53px] h-[32px] text-[14px] leading-[20px] tracking-[-0.5%] 
+  rounded-[32px] pt-[6px] pr-[8px] pb-[6px] pl-[8px] opacity-100 gap-1`;
 
 export default function Emoges({ topReactions, className }) {
   return (

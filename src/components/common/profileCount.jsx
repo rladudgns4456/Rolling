@@ -26,7 +26,6 @@ export default function ProfileCount({ isColumn, messageCount, recentImage }) {
           {`+${messageCount - 3}`}
         </div>
       </div>
-
       <p className="text-lg leading-6 tracking-wide">
         <span className="font-bold ">{messageCount}</span>명이 작성했어요!
       </p>
