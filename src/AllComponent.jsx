@@ -25,13 +25,6 @@ import TextButton from './components/common/TextButton';
 import CircleIconButton from './components/common/CircleIconButton';
 import ToggleButtonGroup from './components/common/ToggleButtonGroup';
 import RichTextEditor from './components/message/RichTexteditor';
-import IconButton from './components/post/IconButton';
-import IconLabelButton from './components/IconLabelButton';
-import TextButton from './components/TextButton';
-import CircleIconButton from './components/CircleIconButton';
-import ToggleButtonGroup from './components/ToggleButtonGroup';
-import RichTextEditor from './components/RichTexteditor';
-import './App.css';
 import Dropdown from './components/message/Dropdown';
 import Header from './components/common/Header';
 import InputField from './components/common/InputField';
@@ -47,13 +40,8 @@ import { useState, useEffect } from 'react';
 import UserRollingContainer from './components/post/UserRollingContainer';
 import BackgroundSelect from './components/background/BackgroundSelect';
 import UserProfilePreview from './components/post/UserProfilePreview';
-import './App.css';
-
 import Modal from './components/post/Modal';
 import Toast from './components/post/Toast';
-import App from './App';
-saa;
-import Toast from './components/Toast';
 
 const BaseURL = 'https://rolling-api.vercel.app';
 

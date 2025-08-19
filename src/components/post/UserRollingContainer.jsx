@@ -1,24 +1,23 @@
 import UserProfile from '../common/UserProfile';
 import CardCreateAt from './CardCreateAt';
-import items from '../../mock.json';
-
-const userObject = items.find((obj) => obj.id === 2); // 목록에서 클릭했을때 내려주는 Prop 대용
 
 //개인롤링페이지 컨테이너
-function UserRollingContainer({ userCardId = userObject.recentMessages }) {
+function UserRollingContainer({ newUserId }) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-x-6 gap-7">
       <CardCreate />
-      {userCardId.map((item) => {
-        return (
-          <article
-            key={item.id}
-            className="flex flex-col px-6 pb-6 bg-white rounded-2xl shadow-lg min-h-[230px] sm:min-h-[284px] xl:min-h-[280px]"
-          >
-            <RollingCard item={item} />
-          </article>
-        );
-      })}
+      {newUserId &&
+        newUserId.length > 0 &&
+        newUserId.map((item) => {
+          return (
+            <article
+              key={item.id}
+              className="flex flex-col px-6 pb-6 bg-white rounded-2xl shadow-lg min-h-[230px] sm:min-h-[284px] xl:min-h-[280px]"
+            >
+              <RollingCard item={item} />
+            </article>
+          );
+        })}
     </div>
   );
 }

@@ -1,13 +1,17 @@
 // src/components/ToggleButtonGroup.jsx
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function ToggleButtonGroup({
   options, // ['컨텐츠','이미지','컬러','이미지']
-  defaultIndex = 0,
+  defaultIndex,
   onChange,
   className = '',
 }) {
   const [idx, setIdx] = useState(defaultIndex);
+
+  useEffect(() => {
+    setIdx(defaultIndex);
+  }, [defaultIndex]); //prop 받은 인덱스의 변화에 의해 변경
 
   return (
     <div
