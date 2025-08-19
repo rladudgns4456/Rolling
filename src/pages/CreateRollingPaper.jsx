@@ -64,7 +64,7 @@ function CreateRollingPaper() {
     try {
       const result = await postRollingPaper({ senderNameInput, bgUrl });
       const { id } = result;
-   
+
       navigate(`/PostPage/${id}`);
     } catch (error) {
       alert(error);

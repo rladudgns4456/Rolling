@@ -1,5 +1,6 @@
 // src/Header.jsx
 import { useNavigate } from 'react-router-dom';
+import CreateRollingPaper from '../../pages/CreateRollingPaper';
 
 export default function Header({ showButton = true }) {
   const nav = useNavigate();
@@ -21,7 +22,7 @@ export default function Header({ showButton = true }) {
         {/* 우측 CTA → /post (페이지에 따라 노출 제어) */}
         {showButton && (
           <button
-            onClick={() => nav('/post')}
+            onClick={() => nav('/CreateRollingPaper')}
             className="px-4 py-2 border rounded-md border-gray-300 text-gray-900 hover:bg-gray-50 active:scale-[.98]"
           >
             롤링 페이퍼 만들기
