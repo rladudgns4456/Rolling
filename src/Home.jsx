@@ -81,7 +81,6 @@ export default function MainPage() {
           </div>
         </section>
 
-        {/* CTA */}
         <div className="flex justify-center">
           <TextButton
             variant="primary"
