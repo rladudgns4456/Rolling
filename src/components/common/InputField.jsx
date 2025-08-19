@@ -46,6 +46,7 @@ const InputField = ({
         disabled={isDisabled}
         placeholder={placeholder} //placeholder prop으로 받음
         className={className}
+        maxLength="9" //9자 글자 제한
       />
       {isError === true && <p className="text-error">값을 입력해 주세요.</p>}
     </div>

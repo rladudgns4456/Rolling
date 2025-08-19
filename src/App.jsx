@@ -4,6 +4,7 @@ import Home from './Home';
 import Header from './components/common/Header';
 import List from './pages/list';
 import CreateRollingPaper from './pages/CreateRollingPaper';
+import Message from './pages/Message';
 
 export default function App() {
   return (
@@ -25,6 +26,9 @@ export default function App() {
             path="/CreateRollingPaper"
             element={<CreateRollingPaper />}
           ></Route>
+          {/* <Route path="/post" element={<PostPage />} /> */}
+          {/* 숨겨야 하는 페이지들을 여기에 */}
+          <Route path="/post/:recipientId/message" element={<Message />} />
         </Route>
       </Routes>
     </BrowserRouter>

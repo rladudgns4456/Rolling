@@ -16,6 +16,7 @@ export default function Header({ showButton = true }) {
           aria-label="메인으로 이동"
         >
           <img src="Rolling_icon.svg" alt="롤링 로고" width={28} height={28} />
+
           <span className="text-xl font-bold text-gray-900">Rolling</span>
         </button>
 

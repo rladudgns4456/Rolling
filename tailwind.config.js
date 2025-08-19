@@ -9,12 +9,33 @@ module.exports = {
       fontFamily: {
         sans: [
           'Pretendard',
+          'Noto Sans KR', // Noto Sans KR은 후순위로
           'system-ui',
           'Avenir',
           'Helvetica',
           'Arial',
           'sans-serif',
         ],
+        // 2. Noto Sans KR 전용 유틸리티 추가 (새로운 부분)
+        noto: [
+          'Noto Sans KR',
+          'Pretendard',
+          'system-ui',
+          'Avenir',
+          'Helvetica',
+          'Arial',
+          'sans-serif',
+        ],
+        Pretendard: [
+          'Pretendard',
+          'system-ui',
+          'Avenir',
+          'Helvetica',
+          'Arial',
+          'sans-serif',
+        ],
+        nanum: ['NanumMyeongjo', 'serif'],
+        handwritten: ['NanumSonPyeonJiCe', 'cursive'],
       },
 
       screens: {
