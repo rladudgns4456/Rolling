@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import checkIcon from '../assets/icon/check.svg';
-import bgImage1 from '../assets/images/bg_img_1.png';
-import bgImage2 from '../assets/images/bg_img_2.png';
-import bgBeige from '../assets/images/beige.png';
-import bgPurple from '../assets/images/purple.png';
-import bgBlue from '../assets/images/blue.png';
-import bgGreen from '../assets/images/green.png';
+import checkIcon from '../../assets/icon/check.svg';
+import bgImage1 from '../../assets/images/bg_img_1.png';
+import bgImage2 from '../../assets/images/bg_img_2.png';
+import bgBeige from '../../assets/images/beige.png';
+import bgPurple from '../../assets/images/purple.png';
+import bgBlue from '../../assets/images/blue.png';
+import bgGreen from '../../assets/images/green.png';
 
 const backgroundOptions = {
   colorOptions: [
