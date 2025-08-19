@@ -18,34 +18,32 @@
 //   → 예: <RBText map={{ mobile: 28, tablet: 40, pc: 56 }} variant="outlined">Enabled</RBText>
 //   (이 파일은 데모 유지, 실제 제품 화면에선 RB* 사용 권장)
 // -----------------------------------------------------------------------------
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Link,
-  Navigate,
-} from 'react-router-dom';
-
-import { useState, useEffect } from 'react';
-import './App.css';
-import Home from './pages/Home';
-import MainPage from './pages/Main';
-import Header from './components/common/Header';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Layout from './components/common/Layout';
 import PostPage from './pages/PostPage';
 import CreateRollingPaper from './pages/CreateRollingPaper';
 
 export default function App() {
   return (
     <>
-      <Router>
-        {/* 페이지 라우팅 영역 */}
-        <Header />
+      <BrowserRouter>
         <Routes>
-          <Route path="/" element={<CreateRollingPaper />} />
-          <Route path="/PostPage/:id" element={<PostPage />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
+          {/* 버튼이 보여야 하는 라우트 묶음 */}
+          <Route element={<Layout showCta={true} />}>
+            {/* <Route path="/" element={<MainPage />} /> */}
+            {/* <Route path="/list" element={<ListPage />} /> */}
+            {/* 버튼이 보여야 하는 추가 페이지들을 여기에 */}
+          </Route>
+
+          {/* 버튼이 보이면 안 되는 라우트 묶음 */}
+          <Route element={<Layout showCta={false} />}>
+            <Route path="/" element={<CreateRollingPaper />} />
+            <Route path="/PostPage/:id" element={<PostPage />} />
+            {/* 예: /post/preview, /editor 등도 여기에 */}
+            {/* <Route path="/post/preview" element={<PostPreview />} /> */}
+          </Route>
         </Routes>
-      </Router>
+      </BrowserRouter>
     </>
   );
 }
