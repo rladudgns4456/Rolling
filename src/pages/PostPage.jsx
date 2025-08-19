@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import RecipientInfo from '../components/post/RecipientInfo';
 import UserRollingContainer from '../components/post/UserRollingContainer';
 import {
+  deleteMessages,
   getMessages,
   getReactions,
   getRecipients,
@@ -46,7 +47,7 @@ export default function PostPage() {
       const updated = await getReactions(recipientId);
       setReactionsInfo(updated.results || []);
 
-      // 성능 최적화 위해 API 두 번 호출 대신 직접 topReactions 업데이트
+      // 성능 최적화 위해 API 두 번 호출 대신 직접 topReactions
       setRecipientsInfo((prev) => {
         if (!prev) return prev;
         const sorted = [...updated.results]
@@ -63,7 +64,23 @@ export default function PostPage() {
     }
   }
 
-  console.log(recipientsInfo);
+  async function handleDeleteMessage(messageId) {
+    try {
+      await deleteMessages(messageId);
+      setMessageInfo((prev) => ({
+        ...prev,
+        messageCount: prev.messageCount - 1,
+      }));
+      setMessageInfo((prev) => ({
+        ...prev,
+        results: prev.results.filter((message) => message.id !== messageId),
+      }));
+    } catch (error) {
+      console.log('메시지 삭제 실패:', error);
+    }
+  }
+
+  console.log(messageInfo);
   return (
     <>
       <div className="w-[1200px] mx-auto">
@@ -80,6 +97,8 @@ export default function PostPage() {
       <UserRollingContainer
         recipientsInfo={recipientsInfo}
         messageInfo={messageInfo.results}
+        onDeleteMessage={handleDeleteMessage}
+        recipientId={recipientId}
       />
     </>
   );

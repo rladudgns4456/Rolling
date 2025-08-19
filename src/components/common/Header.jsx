@@ -12,7 +12,7 @@ export default function Header({ showCta = true }) {
         {/* 로고 → / */}
         <button
           onClick={() => nav('/')}
-          className="inline-flex items-center gap-[clamp(8px,8vw,16px)] tablet:gap-6 pc:gap-16"
+          className="inline-flex items-center gap-[clamp(8px,8vw,16px)] tablet:gap-6 pc:gap-4"
           aria-label="메인으로 이동"
         >
           <img src={RollingIcon} alt="롤링 로고" width={28} height={28} />

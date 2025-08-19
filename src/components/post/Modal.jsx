@@ -16,7 +16,7 @@ export default function Modal({
   });
   return (
     <>
-      <div className="fixed inset-0 flex items-center justify-center bg-black/60">
+      <div className="fixed inset-0 z-30 flex items-center justify-center bg-black/60">
         <div className="w-[600px] h-[476px] shadow-[0_2px_12px_rgba(0,0,0,0.08)] bg-white rounded-2xl">
           <div className="w-[520px] flex justify-between items-center mx-auto pt-8 pb-4">
             <div className="flex items-center gap-4">

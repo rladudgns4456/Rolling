@@ -92,7 +92,7 @@ const RecipientInfo = ({
             <img src={ArrowDown} alt="이모지 더보기 버튼" />
           </button>
           {isEmojiOpen && (
-            <div className="flex justify-center items-center absolute border shadow-[0_2px_12px_rgba(0,0,0,0.08)] rounded-lg bg-white top-10 right-1/2 w-[312px] h-[134px]">
+            <div className="z-20 flex justify-center items-center absolute border shadow-[0_2px_12px_rgba(0,0,0,0.08)] rounded-lg bg-white top-10 right-1/2 w-[312px] h-[134px]">
               <div className="grid grid-cols-4 gap-[10px]">
                 {reactionsInfo.map((reaction) => (
                   <div
@@ -120,7 +120,7 @@ const RecipientInfo = ({
             <span className="hidden text-base md:inline">추가</span>
           </button>
           {showEmojiPicker && (
-            <div className="absolute right-0 top-11">
+            <div className="absolute right-0 z-20 top-11">
               <EmojiPicker
                 onEmojiClick={(emojiData) => handleEmojiClick(emojiData.emoji)}
               />
@@ -142,7 +142,7 @@ const RecipientInfo = ({
           {isShare && (
             <ul
               ref={shareMenuRef} // 외부 클릭 감지를 위해 ref를 DOM에 연결
-              className="absolute right-0 flex flex-col bg-white border rounded-lg top-12 border-grayscale3"
+              className="absolute right-0 z-20 flex flex-col bg-white border rounded-lg top-12 border-grayscale3"
             >
               <li className="px-4 py-3 cursor-pointer text-grayscale9 hover:bg-grayscale1 whitespace-nowrap">
                 카카오톡 공유
