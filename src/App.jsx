@@ -6,8 +6,15 @@ import List from './pages/list';
 import CreateRollingPaper from './pages/CreateRollingPaper';
 import PostPage from './pages/PostPage';
 import Message from './pages/Message';
+import { useEffect } from 'react';
 
 export default function App() {
+  useEffect(() => {
+    if (window.Kakao && !window.Kakao.isInitialized()) {
+      window.Kakao.init('3131c75376163a60b38a030574f69c83');
+      console.log('Kakao 초기화 완료:', window.Kakao.isInitialized());
+    }
+  }, []);
   return (
     <BrowserRouter>
       <Routes>
