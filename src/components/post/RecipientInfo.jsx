@@ -71,6 +71,38 @@ const RecipientInfo = ({
     setShowEmojiPicker(false);
   };
 
+  const shareToKakao = () => {
+    if (window.Kakao) {
+      const currentPath = window.location.pathname; // 현재 페이지의 경로
+      const ngrokBaseUrl = 'https://d56d0eb8fc76.ngrok-free.app';
+
+      const finalShareUrl = `${ngrokBaseUrl}${currentPath}`;
+
+      window.Kakao.Link.sendDefault({
+        objectType: 'feed',
+        content: {
+          title: '롤링페이퍼',
+          description: 'FE_18_2_TEAM RollingPaper',
+          imageUrl:
+            'https://rolling-paper-client-blue.vercel.app/imgs/thumbnail.png',
+          link: {
+            mobileWebUrl: finalShareUrl,
+            webUrl: finalShareUrl,
+          },
+        },
+        buttons: [
+          {
+            title: '웹으로 보기',
+            link: {
+              mobileWebUrl: finalShareUrl,
+              webUrl: finalShareUrl,
+            },
+          },
+        ],
+      });
+    }
+  };
+
   return (
     <div className="flex items-center justify-between h-16 max-w-full m-auto tablet:max-w-7xl pc:max-w-[1200px]">
       <p className="text-center font-bold text-lg tablet:text-[1.75rem] pc:text-[1.75rem]  text-grayscale8">
@@ -154,7 +186,10 @@ const RecipientInfo = ({
               ref={shareMenuRef} // 외부 클릭 감지를 위해 ref를 DOM에 연결
               className="absolute right-0 z-20 flex flex-col bg-white border rounded-lg top-12 border-grayscale3"
             >
-              <li className="px-4 py-3 cursor-pointer text-grayscale9 hover:bg-grayscale1 whitespace-nowrap">
+              <li
+                onClick={shareToKakao}
+                className="px-4 py-3 cursor-pointer text-grayscale9 hover:bg-grayscale1 whitespace-nowrap"
+              >
                 카카오톡 공유
               </li>
               <li
