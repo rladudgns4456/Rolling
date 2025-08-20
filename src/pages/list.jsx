@@ -2,15 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import CardListCard from '../components/list/CardListCard';
 
-const firstURL =
+const goodURL =
+  'https://rolling-api.vercel.app/18-2/recipients/?limit=4&offset=1&sort=like';
+const createURL =
   'https://rolling-api.vercel.app/18-2/recipients/?limit=4&offset=1';
 function List() {
-  const [sortGood, setSortGood] = useState('reactionCount');
-  const [sortNew, setSortNew] = useState('createdAt');
   const [goodRecipients, setGoodRecipients] = useState([]);
   const [creatRecipients, setCreateRecipients] = useState([]);
-  const [createListApiUrl, setCreateListApiUrl] = useState(firstURL);
-  const [goodListApiUrl, setGoodListApiUrl] = useState(firstURL);
+  const [createListApiUrl, setCreateListApiUrl] = useState(createURL);
+  const [goodListApiUrl, setGoodListApiUrl] = useState(goodURL);
 
   const handleGoodNextPaginationBtn = () => {
     setGoodListApiUrl(goodRecipients.next);
@@ -43,13 +43,10 @@ function List() {
       });
   }, [createListApiUrl]);
 
-  const goodRecipientsSort = goodRecipients.results
-    ? goodRecipients.results.slice().sort((a, b) => b[sortGood] - a[sortGood])
-    : [];
+  const goodRecipientsSort = goodRecipients.results || [];
 
-  const newRecipients = creatRecipients.results
-    ? creatRecipients.results.slice().sort((a, b) => b[sortNew] - a[sortNew])
-    : [];
+  const newRecipients = creatRecipients.results || [];
+
   return (
     <div className="max-w-[1280px] pt-[50px] mx-auto px-5 sm:px-6 xl:px-10">
       <p className="mb-4 text-2xl font-bold leading-6 tracking-widest ">
@@ -81,7 +78,7 @@ function List() {
                   />
                 </Link>
 
-                {goodListApiUrl !== firstURL && isFirstInGroup && (
+                {goodListApiUrl !== goodURL && isFirstInGroup && (
                   <button
                     className="absolute left-[-12px] top-1/2 -translate-y-1/2 
                          bg-white rounded-full shadow-md 
@@ -165,7 +162,7 @@ function List() {
                   />
                 </Link>
 
-                {createListApiUrl !== firstURL && isFirstInGroup && (
+                {createListApiUrl !== createURL && isFirstInGroup && (
                   <button
                     className="absolute left-[-12px] top-1/2 -translate-y-1/2
                          bg-white rounded-full shadow-md
@@ -225,7 +222,7 @@ function List() {
         <div className="mx-auto max-w-[1280px] px-5 tablet:px-6 pc:px-10 flex justify-center items-center">
           <Link
             to="/post"
-            className="bg-purple-600 rounded-xl w-[280px] min-w-[280px] h-[56px]
+            className="bg-purple6 rounded-xl w-[280px] min-w-[280px] h-[56px]
                 shrink-0 whitespace-nowrap
                 flex justify-center items-center
                 font-bold text-[18px] tracking-[-1%] leading-[28px] text-white"
