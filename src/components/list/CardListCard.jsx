@@ -10,10 +10,18 @@ const bgColorMap = {
   beige: 'bg-beige2', // beige → beige2
 };
 // CardListCard.jsx
-export default function CardListCard({ bgColor, color, name, bgImageUrl }) {
+export default function CardListCard({
+  bgColor,
+  color,
+  name,
+  bgImageUrl,
+  messageCount = 0,
+  recentImage = [],
+  topReactions = [], // ← 추가: 이모지 상위 배열
+}) {
   return (
     <div
-      className={`cardList relative z-1 ${bgColorMap[bgColor]}
+      className={`cardList relative z-0 ${bgColorMap[bgColor]}
                   bg-center bg-cover shrink-0
                   /* 모바일 */
                   w-[208px] h-[232px]
@@ -26,7 +34,7 @@ export default function CardListCard({ bgColor, color, name, bgImageUrl }) {
                   shadow-[0px_2px_12px_0px_#00000014]`}
       style={{ backgroundImage: bgImageUrl ? `url(${bgImageUrl})` : undefined }}
     >
-      <div className="w-full h-full p-0">
+      <div className="relative z-30 w-full h-full p-0 re ">
         <span
           className="
             text-[18px] leading-[28px] tracking-[-0.01em] font-pretendard font-bold
@@ -45,10 +53,18 @@ export default function CardListCard({ bgColor, color, name, bgImageUrl }) {
           To. {name}
         </span>
 
-        <ProfileCount totalCount="30" isColumn={true} />
-        <Emoges />
-        {!bgImageUrl && <Shadow color={color} />}
+        <ProfileCount
+          messageCount={messageCount}
+          recentImage={recentImage}
+          isColumn
+        />
+
+        <Emoges
+          topReactions={topReactions}
+          className="flex gap-3 mt-[43px] border-t border-[#0000001F] pt-[17px] z-30"
+        />
       </div>
+      {!bgImageUrl && <Shadow color={color} />}
     </div>
   );
 }

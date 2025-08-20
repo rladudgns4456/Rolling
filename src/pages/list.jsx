@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-
-import Header from '../components/common/Header';
 import CardListCard from '../components/list/CardListCard';
+
 const firstURL =
   'https://rolling-api.vercel.app/18-2/recipients/?limit=4&offset=1';
 function List() {
@@ -66,12 +65,19 @@ function List() {
             return (
               // 줄어들지 않도록 shrink-0
               <div className="relative shrink-0" key={index}>
-                <Link to={`/post${item.id}`}>
+                <Link to={`/post/${item.id}`}>
                   <CardListCard
                     bgColor={item.backgroundColor}
                     bgImageUrl={item.backgroundImageURL}
                     color={item.backgroundColor}
                     name={item.name}
+                    // ✅ 프로필/카운트
+                    messageCount={item.messageCount ?? 0}
+                    recentImage={(item.recentMessages ?? [])
+                      .map((m) => m.profileImageURL)
+                      .filter(Boolean)}
+                    // ✅ 이모지: 목록에 없으면 빈 배열로
+                    topReactions={item.topReactions ?? []}
                   />
                 </Link>
 
@@ -144,12 +150,18 @@ function List() {
             return (
               // 카드가 줄어들지 않도록 shrink-0 추가
               <div className="relative cursor-pointer shrink-0" key={index}>
-                <Link to={`/post${item.id}`}>
+                <Link to={`/post/${item.id}`}>
                   <CardListCard
                     bgColor={item.backgroundColor}
                     bgImageUrl={item.backgroundImageURL}
                     color={item.backgroundColor}
                     name={item.name}
+                    messageCount={item.messageCount ?? 0}
+                    recentImage={(item.recentMessages ?? [])
+                      .map((m) => m.profileImageURL)
+                      .filter(Boolean)}
+                    // ✅ 이모지: 목록에 없으면 빈 배열로
+                    topReactions={item.topReactions ?? []}
                   />
                 </Link>
 
@@ -214,9 +226,9 @@ function List() {
           <Link
             to="/post"
             className="bg-purple-600 rounded-xl w-[280px] min-w-[280px] h-[56px]
-                 shrink-0 whitespace-nowrap
-                 flex justify-center items-center
-                 font-bold text-[18px] tracking-[-1%] leading-[28px] text-white"
+                shrink-0 whitespace-nowrap
+                flex justify-center items-center
+                font-bold text-[18px] tracking-[-1%] leading-[28px] text-white"
           >
             나도 만들어보기
           </Link>

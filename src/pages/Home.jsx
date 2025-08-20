@@ -1,5 +1,9 @@
-import List from './list';
-import Header from '../components/common/Header';
+import RollingPostPage from './RollingPostPage';
+
 export default function Home() {
-  return;
+  return (
+    <>
+      <div>메인페이지</div>
+    </>
+  );
 }
