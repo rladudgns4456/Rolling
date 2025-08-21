@@ -30,73 +30,78 @@ function Message() {
   } = ui;
 
   return (
-    <>
-      <form
-        onSubmit={handleSubmit}
-        className="mobile:w-[360px] w-[720px] flex flex-col gap-12 px-5 mx-auto tablet:max-w-7xl pc:max-w-screen-xl"
-      >
-        <div>
-          <p className="mb-3 text-2xl font-bold text-grayscale9">From.</p>
-          <InputField
-            value={sender}
-            placeholder="이름을 입력해 주세요."
-            isDisabled={isSubmitting}
-            isError={isSenderError}
-            onChange={(e) => {
-              setSender(e.target.value);
-              setIsSenderError(false);
-            }}
-            onBlur={() => !sender && setIsSenderError(true)}
+    <form
+      onSubmit={handleSubmit}
+      className="mobile:w-[360px] w-[720px] flex flex-col gap-12 px-5 mx-auto tablet:max-w-7xl pc:max-w-screen-xl"
+    >
+      <fieldset>
+        <legend className="mb-3 text-2xl font-bold text-grayscale9">
+          From.
+        </legend>
+        <InputField
+          value={sender}
+          placeholder="이름을 입력해 주세요."
+          isDisabled={isSubmitting}
+          isError={isSenderError}
+          onChange={(e) => {
+            setSender(e.target.value);
+            setIsSenderError(false);
+          }}
+          onBlur={() => !sender && setIsSenderError(true)}
+        />
+      </fieldset>
+      <fieldset>
+        <legend className="mb-3 text-2xl font-bold text-grayscale9 whitespace-nowrap ">
+          프로필 이미지
+        </legend>
+        {isLoading ? (
+          <ProfileImageSkeleton />
+        ) : (
+          <ProfileImages
+            profileImages={profileImages}
+            profileImageURL={profileImageURL}
+            setProfileImageURL={setProfileImageURL}
           />
-        </div>
-        <div className="flex  mobile:w-[320px] ">
-          {isLoading ? (
-            <ProfileImageSkeleton />
-          ) : (
-            <ProfileImages
-              profileImages={profileImages}
-              profileImageURL={profileImageURL}
-              setProfileImageURL={setProfileImageURL}
-            />
-          )}
-        </div>
-        <div>
-          <p className="mb-3 text-2xl font-bold text-grayscale9">
-            상대와의 관계
-          </p>
-          <Dropdown
-            value={relationship}
-            onChange={setRelationship}
-            data={DROPDOWN_MENUS.relationship}
-            isError={isDropdownError}
-            isDisabled={isSubmitting}
-          />
-        </div>
-        <div className="">
-          <p className="mb-3 text-2xl font-bold text-grayscale9 ">
-            내용을 입력해 주세요
-          </p>
-          <TextEditor
-            value={content}
-            className={`text-[100px] ${FONT_CLASSES[font]}`}
-            onChange={setContent}
-          />
-        </div>
-        <div>
-          <p className="text-2xl font-bold text-grayscale9">폰트 선택</p>
-          <Dropdown
-            value={font}
-            onChange={setFont}
-            data={DROPDOWN_MENUS.font}
-            isError={isDropdownError}
-            isDisabled={isSubmitting}
-          />
-        </div>
-        <ButtonBase disabled={isButtonDisabled || isSubmitting}>
-          생성하기
-        </ButtonBase>
-      </form>
-    </>
+        )}
+      </fieldset>
+      <fieldset>
+        <legend className="mb-3 text-2xl font-bold text-grayscale9">
+          상대와의 관계
+        </legend>
+        <Dropdown
+          value={relationship}
+          onChange={setRelationship}
+          data={DROPDOWN_MENUS.relationship}
+          isError={isDropdownError}
+          isDisabled={isSubmitting}
+        />
+      </fieldset>
+      <fieldset className="">
+        <legend className="mb-3 text-2xl font-bold text-grayscale9 ">
+          내용을 입력해 주세요
+        </legend>
+        <TextEditor
+          value={content}
+          className={`text-[100px] ${FONT_CLASSES[font]}`}
+          onChange={setContent}
+        />
+      </fieldset>
+      <fieldset>
+        <legend className="text-2xl font-bold text-grayscale9">
+          폰트 선택
+        </legend>
+        <Dropdown
+          value={font}
+          onChange={setFont}
+          data={DROPDOWN_MENUS.font}
+          isError={isDropdownError}
+          isDisabled={isSubmitting}
+        />
+      </fieldset>
+      <ButtonBase disabled={isButtonDisabled || isSubmitting}>
+        생성하기
+      </ButtonBase>
+    </form>
   );
 }
 
