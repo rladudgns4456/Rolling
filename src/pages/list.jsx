@@ -1,64 +1,88 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import {
+  getRecipientsByUrl,
+  POPULAR_FIRST_URL,
+  NEW_FIRST_URL,
+} from '../components/api/api';
 import CardListCard from '../components/list/CardListCard';
 
-const goodURL =
-  'https://rolling-api.vercel.app/18-2/recipients/?limit=4&offset=1&sort=like';
-const createURL =
-  'https://rolling-api.vercel.app/18-2/recipients/?limit=4&offset=1';
 function List() {
-  const [goodRecipients, setGoodRecipients] = useState([]);
-  const [creatRecipients, setCreateRecipients] = useState([]);
-  const [createListApiUrl, setCreateListApiUrl] = useState(createURL);
-  const [goodListApiUrl, setGoodListApiUrl] = useState(goodURL);
+  const [popularRecipientsData, setPopularRecipientsData] = useState(null);
+  const [popularRecipientsDataURL, setPopularRecipientsDataURL] =
+    useState(POPULAR_FIRST_URL);
 
-  const handleGoodNextPaginationBtn = () => {
-    setGoodListApiUrl(goodRecipients.next);
+  const [newRecipientsData, setNewRecipientsData] = useState(null);
+  const [newRecipientsDataURL, setNewRecipientsDataURL] =
+    useState(NEW_FIRST_URL);
+  const handlePopularPaginationBtn = (dir) => {
+    const target =
+      dir === 'prev'
+        ? popularRecipientsData.previous
+        : popularRecipientsData.next;
+
+    if (target) {
+      setPopularRecipientsDataURL(target); // URL만 state에 저장
+    }
   };
-  const handleGoodPrevPaginationBtn = (e) => {
-    setGoodListApiUrl(goodRecipients.previous);
-  };
-  const handleCreateNextPaginationBtn = () => {
-    setCreateListApiUrl(creatRecipients.next);
-  };
-  const handleCreatePrevPaginationBtn = (e) => {
-    setCreateListApiUrl(creatRecipients.previous);
+
+  const handleNewPaginationBtn = (dir) => {
+    const target =
+      dir === 'prev' ? newRecipientsData.previous : newRecipientsData.next;
+
+    if (target) {
+      setNewRecipientsDataURL(target);
+    }
   };
 
   useEffect(() => {
-    fetch(goodListApiUrl)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        setGoodRecipients(data);
-      });
-  }, [goodListApiUrl]);
+    if (!popularRecipientsDataURL) return;
+    let alive = true;
+    (async () => {
+      try {
+        const res = await getRecipientsByUrl(popularRecipientsDataURL);
+        if (!alive) return;
+        setPopularRecipientsData(res.body);
+      } catch (e) {
+        console.error('[popular] fetch error:', e);
+      }
+    })();
+    return () => {
+      alive = false;
+    };
+  }, [popularRecipientsDataURL]);
 
   useEffect(() => {
-    fetch(createListApiUrl)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        setCreateRecipients(data);
-      });
-  }, [createListApiUrl]);
+    if (!newRecipientsDataURL) return;
+    let alive = true;
+    (async () => {
+      try {
+        const res = await getRecipientsByUrl(newRecipientsDataURL);
+        if (!alive) return;
+        setNewRecipientsData(res.body);
+      } catch (e) {
+        console.error('[recent] fetch error:', e);
+      }
+    })();
+    return () => {
+      alive = false;
+    };
+  }, [newRecipientsDataURL]);
 
-  const goodRecipientsSort = goodRecipients.results || [];
-
-  const newRecipients = creatRecipients.results || [];
+  const popularRecipientsItem = popularRecipientsData?.results ?? [];
+  const newRecipientsItem = newRecipientsData?.results ?? [];
 
   return (
     <div className="max-w-[1280px] pt-[50px] mx-auto px-5 sm:px-6 xl:px-10">
-      <p className="mb-4 text-2xl font-bold leading-6 tracking-widest ">
+      <h2 className="mb-4 text-2xl font-bold leading-6 tracking-widest ">
         인기 롤링 페이퍼🔥
-      </p>
+      </h2>
       {/* 인기 섹션: 가로 스크롤 래퍼 추가 */}
       <div className="mb-[50px] xl:w-[1160px] -mx-5 px-5 md:-mx-6 md:px-6 overflow-x-auto xl:overflow-visible no-scrollbar">
         <div className="flex gap-5 w-max xl:w-auto">
-          {goodRecipientsSort.map((item, index) => {
+          {popularRecipientsItem.map((item, index) => {
             const isLastInGroup = (index + 1) % 4 === 0; // 4번째 카드
             const isFirstInGroup = index % 4 === 0; // 첫 번째 카드
-
             return (
               // 줄어들지 않도록 shrink-0
               <div className="relative shrink-0" key={index}>
@@ -78,13 +102,13 @@ function List() {
                   />
                 </Link>
 
-                {goodListApiUrl !== goodURL && isFirstInGroup && (
+                {popularRecipientsData?.previous && isFirstInGroup && (
                   <button
                     className="absolute left-[-12px] top-1/2 -translate-y-1/2 
-                         bg-white rounded-full shadow-md 
-                         w-8 h-8 flex items-center justify-center
-                         border border-gray-200 hover:bg-gray-100"
-                    onClick={handleGoodPrevPaginationBtn}
+                      bg-white rounded-full shadow-md 
+                      w-8 h-8 flex items-center justify-center
+                      border border-gray-200 hover:bg-gray-100"
+                    onClick={() => handlePopularPaginationBtn('prev')}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -103,13 +127,13 @@ function List() {
                   </button>
                 )}
 
-                {isLastInGroup && (
+                {popularRecipientsData?.next && isLastInGroup && (
                   <button
                     className="absolute right-[-12px] top-1/2 -translate-y-1/2 
-                         bg-white rounded-full shadow-md 
-                         w-8 h-8 flex items-center justify-center
-                         border border-gray-200 hover:bg-gray-100"
-                    onClick={handleGoodNextPaginationBtn}
+                      bg-white rounded-full shadow-md 
+                      w-8 h-8 flex items-center justify-center
+                      border border-gray-200 hover:bg-gray-100"
+                    onClick={() => handlePopularPaginationBtn('next')}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -140,12 +164,10 @@ function List() {
       <div className="mb-[40px] xl:w-[1160px] -mx-5 px-5 md:-mx-6 md:px-6 overflow-x-auto xl:overflow-visible no-scrollbar ">
         {/* 안쪽: 실제 너비만큼 확장되게 */}
         <div className="flex gap-5 w-max xl:w-auto">
-          {newRecipients.map((item, index) => {
-            const isLastInGroup = (index + 1) % 4 === 0;
-            const isFirstInGroup = index % 4 === 0;
-
+          {newRecipientsItem.map((item, index) => {
+            const isLastInGroup = (index + 1) % 4 === 0; // 4번째 카드
+            const isFirstInGroup = index % 4 === 0; // 첫 번째 카드
             return (
-              // 카드가 줄어들지 않도록 shrink-0 추가
               <div className="relative cursor-pointer shrink-0" key={index}>
                 <Link to={`/post/${item.id}`}>
                   <CardListCard
@@ -161,14 +183,14 @@ function List() {
                     topReactions={item.topReactions ?? []}
                   />
                 </Link>
-
-                {createListApiUrl !== createURL && isFirstInGroup && (
+                {/* Prev 버튼 */}
+                {newRecipientsData?.previous && isFirstInGroup && (
                   <button
                     className="absolute left-[-12px] top-1/2 -translate-y-1/2
-                         bg-white rounded-full shadow-md
-                         w-8 h-8 flex items-center justify-center
-                         border border-gray-200 hover:bg-gray-100"
-                    onClick={handleCreatePrevPaginationBtn}
+                      bg-white rounded-full shadow-md
+                      w-8 h-8 flex items-center justify-center
+                      border border-gray-200 hover:bg-gray-100"
+                    onClick={() => handleNewPaginationBtn('prev')}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -187,13 +209,14 @@ function List() {
                   </button>
                 )}
 
-                {isLastInGroup && (
+                {/* Next 버튼 */}
+                {newRecipientsData?.next && isLastInGroup && (
                   <button
                     className="absolute right-[-12px] top-1/2 -translate-y-1/2
-                         bg-white rounded-full shadow-md
-                         w-8 h-8 flex items-center justify-center
-                         border border-gray-200 hover:bg-gray-100"
-                    onClick={handleCreateNextPaginationBtn}
+                    bg-white rounded-full shadow-md
+                    w-8 h-8 flex items-center justify-center
+                    border border-gray-200 hover:bg-gray-100"
+                    onClick={() => handleNewPaginationBtn('next')}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
