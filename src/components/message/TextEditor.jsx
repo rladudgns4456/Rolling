@@ -3,6 +3,7 @@ import { useState } from 'react';
 import 'react-quill/dist/quill.snow.css';
 import './TextEditor.css';
 import CustomToolbar from './CustomToolbar';
+import { EDITOR_FORMATS } from '../../constants/EDITOR_FORMATS';
 
 const TextEditor = ({ className, onChange }) => {
   const [value, setValue] = useState(''); // HTML 값 (에디터용)
@@ -13,16 +14,6 @@ const TextEditor = ({ className, onChange }) => {
       container: '#toolbar',
     },
   };
-
-  const formats = [
-    'bold',
-    'italic',
-    'underline',
-    'align',
-    'list',
-    'bullet',
-    'color',
-  ];
 
   return (
     <div className={`text-editor-container ${className}`}>
@@ -40,7 +31,7 @@ const TextEditor = ({ className, onChange }) => {
           }
         }}
         modules={modules}
-        formats={formats}
+        formats={EDITOR_FORMATS}
       />
     </div>
   );
