@@ -36,7 +36,7 @@ export default function ProfileCount({
           />
         )}
         {extra > 0 && (
-          <div className="z-30 font-bold-500 bg-white absolute rounded-full border border-[#E3E3E3] left-12 w-[33px] h-[28px] flex justify-center items-center text-[12px] leading-[18px] tracking-normal">
+          <div className="z-40 font-bold-500 bg-white absolute rounded-full border border-[#E3E3E3] left-12 w-[33px] h-[28px] flex justify-center items-center text-[12px] leading-[18px] tracking-normal">
             {`+${extra}`}
           </div>
         )}
