@@ -5,14 +5,14 @@ import CardListCard from './CardListCard';
 export default function RollingSection({
   title,
   items = [],
-  pageMeta, 
-  onPaginate, 
-  groupSize = 4, 
-  outerClassName = '', 
+  pageMeta,
+  onPaginate,
+  groupSize = 4,
+  outerClassName = '',
 }) {
   const showPrev = !!pageMeta?.previous;
   const showNext = !!pageMeta?.next;
-
+  console.log('delete');
   return (
     <>
       <h2 className="mb-4 text-2xl font-bold leading-6 tracking-widest">

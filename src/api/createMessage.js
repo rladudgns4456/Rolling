@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'https://rolling-api.vercel.app';
+const API_BASE_URL = import.meta.env.VITE_BASE_URL;
 
 export async function createMessage(messageInfo) {
   const { team, recipientId, ...bodyData } = messageInfo;

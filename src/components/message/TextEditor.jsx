@@ -4,7 +4,7 @@ import 'react-quill/dist/quill.snow.css';
 import './TextEditor.css';
 import CustomToolbar from './CustomToolbar';
 
-const TextEditor = ({ name, className, onChange }) => {
+const TextEditor = ({ className, onChange }) => {
   const [value, setValue] = useState(''); // HTML 값 (에디터용)
   const [plainText, setPlainText] = useState(''); // 태그 제거된 값 (DB 저장용)
 
