@@ -4,7 +4,7 @@ import CreateRollingPaper from '../../pages/CreateRollingPaper';
 import RollingIcon from '../../assets/icon/Rolling_icon.svg';
 
 export default function Header({ showCta = true }) {
-  const navigate = useNavigate();
+  const nav = useNavigate();//onClick에 nav 로 되어 있음
 
   return (
     <header className="sticky top-0 z-50 border-b bg-white/80 backdrop-blur">
@@ -15,7 +15,6 @@ export default function Header({ showCta = true }) {
         <h1
           onClick={() => nav('/')}
           className="inline-flex items-center gap-[clamp(8px,8vw,16px)] tablet:gap-6 pc:gap-4 cursor-pointer"
-
           aria-label="메인으로 이동"
           tabIndex={0}
           role="link"

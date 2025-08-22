@@ -4,8 +4,8 @@ const ProfileImages = ({
   setProfileImageURL,
 }) => {
   return (
-    <div className="flex gap-8 mobile:w-[320px] ">
-      <div className="flex-shrink-0">
+    <div className="flex items-center gap-8">
+      <div className="flex flex-col items-center flex-shrink-0">
         <img
           src={profileImageURL || profileImages[0]}
           className="w-20 h-20 rounded-full"
@@ -13,10 +13,10 @@ const ProfileImages = ({
         />
       </div>
       <div>
-        <h3 className="mb-1 whitespace-nowrap">
+        <h3 className="mb-3 font-normal whitespace-nowrap text-grayscale5">
           프로필 이미지를 선택해주세요!
         </h3>
-        <div className="flex mobile:flex-wrap">
+        <div className="flex gap-1 mobile:flex-wrap">
           {profileImages.map(
             (url) =>
               url !==
@@ -24,7 +24,7 @@ const ProfileImages = ({
                 <label
                   key={url}
                   htmlFor={url}
-                  className="relative rounded-full cursor-pointer focus-within:ring-2 focus-within:ring-grayscale5"
+                  className="relative inline-block overflow-hidden rounded-full cursor-pointer focus-within:ring-2 focus-within:ring-grayscale5 w-9 h-9 md:w-14 md:h-14"
                 >
                   <input
                     type="radio"
@@ -38,7 +38,7 @@ const ProfileImages = ({
                   <img
                     src={url}
                     alt="선택할 프로필 이미지"
-                    className="m-[1px] bg-white rounded-full cursor-pointer mobile:w-9 mobile:h-9 w-14 h-14"
+                    className="object-cover w-full h-full"
                   />
                 </label>
               )

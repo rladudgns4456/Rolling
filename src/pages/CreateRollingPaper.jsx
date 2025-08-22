@@ -90,7 +90,7 @@ function CreateRollingPaper() {
         }}
       >
         <div className="flex flex-col mb-[42px] gap-y-3">
-          <h2 className="text-2xl font-bold">To.</h2>
+          <h2 className="text-2xl font-bold leading-10 text-grayscale9">To.</h2>
           <form onKeyDown={handlePreventSubmit}>
             <InputField
               name={'from'}

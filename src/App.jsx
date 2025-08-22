@@ -24,7 +24,7 @@ export default function App() {
         {/* <Route path="/post" element={<PostPage>}*/}
         {/* 숨겨야 하는 페이지들을 여기에 */}
         <Route element={<Layout showCta={false} />}>
-          <Route path="/post/" element={<CreateRollingPaper />} />
+          <Route path="/post" element={<CreateRollingPaper />} />
           <Route path="/post/:recipientId" element={<PostPage />} />
           <Route path="/post/:recipientId/message" element={<Message />} />   
         </Route>
