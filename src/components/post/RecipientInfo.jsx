@@ -73,11 +73,6 @@ const RecipientInfo = ({
 
   const shareToKakao = () => {
     if (window.Kakao) {
-      const currentPath = window.location.pathname; // 현재 페이지의 경로
-      const ngrokBaseUrl = 'https://d56d0eb8fc76.ngrok-free.app';
-
-      const finalShareUrl = `${ngrokBaseUrl}${currentPath}`;
-
       window.Kakao.Link.sendDefault({
         objectType: 'feed',
         content: {
@@ -86,16 +81,16 @@ const RecipientInfo = ({
           imageUrl:
             'https://rolling-paper-client-blue.vercel.app/imgs/thumbnail.png',
           link: {
-            mobileWebUrl: finalShareUrl,
-            webUrl: finalShareUrl,
+            mobileWebUrl: window.location.href,
+            webUrl: window.location.href,
           },
         },
         buttons: [
           {
             title: '웹으로 보기',
             link: {
-              mobileWebUrl: finalShareUrl,
-              webUrl: finalShareUrl,
+              mobileWebUrl: window.location.href,
+              webUrl: window.location.href,
             },
           },
         ],

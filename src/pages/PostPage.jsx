@@ -69,18 +69,22 @@ export default function PostPage() {
       await deleteMessages(messageId);
       setMessageInfo((prev) => ({
         ...prev,
-        messageCount: prev.messageCount - 1,
-      }));
-      setMessageInfo((prev) => ({
-        ...prev,
+        count: prev.count - 1,
         results: prev.results.filter((message) => message.id !== messageId),
       }));
+      setRecipientsInfo((prev) => ({
+        ...prev,
+        messageCount: prev.messageCount - 1,
+      }));
+      const updated = await getMessages(recipientId);
+      setMessageInfo(updated);
     } catch (error) {
       console.log('메시지 삭제 실패:', error);
     }
   }
 
   console.log(messageInfo);
+  console.log(recipientsInfo);
   return (
     <>
       <div className="w-[1200px] mx-auto">
