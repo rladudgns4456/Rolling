@@ -24,6 +24,7 @@ export default function MainPage() {
                 Point. 01
               </span>
               <h2 className="mt-3 text-lg font-bold text-gray-900 md:text-2xl">
+
                 누구나 손쉽게, 온라인
                 <br />
                 롤링 페이퍼를 만들 수 있어요

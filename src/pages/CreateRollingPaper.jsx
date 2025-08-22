@@ -6,6 +6,7 @@ import { postRollingPaper } from '../components/api/api';
 import { useNavigate } from 'react-router-dom';
 import useWindowReSize from '../hooks/useWindowResize';
 
+
 function CreateRollingPaper() {
   const [senderNameInput, setSenderNameInput] = useState(''); //받는 사람 이름
   const [isDisabled, setIsDisabled] = useState(false); //인풋 박스 Disabled
@@ -66,8 +67,8 @@ function CreateRollingPaper() {
     try {
       const result = await postRollingPaper({ senderNameInput, bgUrl });
       const { id } = result;
-
       navigate(`/post/${id}`);
+
     } catch (error) {
       alert(error);
       return;

@@ -7,6 +7,7 @@ import CreateRollingPaper from './pages/CreateRollingPaper';
 import PostPage from './pages/PostPage';
 import Message from './pages/Message';
 
+
 export default function App() {
   return (
     <BrowserRouter>
@@ -25,7 +26,7 @@ export default function App() {
         <Route element={<Layout showCta={false} />}>
           <Route path="/post/" element={<CreateRollingPaper />} />
           <Route path="/post/:recipientId" element={<PostPage />} />
-          <Route path="/post/:recipientId/message" element={<Message />} />         
+          <Route path="/post/:recipientId/message" element={<Message />} />   
         </Route>
       </Routes>
     </BrowserRouter>

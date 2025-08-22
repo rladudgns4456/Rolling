@@ -1,5 +1,6 @@
 // src/Header.jsx
 import { useNavigate } from 'react-router-dom';
+import CreateRollingPaper from '../../pages/CreateRollingPaper';
 import RollingIcon from '../../assets/icon/Rolling_icon.svg';
 
 export default function Header({ showCta = true }) {
