@@ -83,7 +83,7 @@ export default function PostPage() {
     }
   }
 
-  console.log(messageInfo);
+  console.log('테스트', messageInfo);
   console.log(recipientsInfo);
   return (
     <>
