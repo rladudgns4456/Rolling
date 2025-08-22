@@ -27,7 +27,7 @@ const TITLE =
   'tablet:whitespace-nowrap pc:whitespace-nowrap tablet:overflow-hidden pc:overflow-hidden ' +
   'tablet:text-ellipsis pc:text-ellipsis';
 
-const INNER_WRAP = 'relative z-30 w-full h-full p-0';
+const INNER_WRAP = 'relative flex flex-col z-30 w-full h-full p-0';
 
 export default function CardListCard({
   bgColor,
@@ -60,7 +60,7 @@ export default function CardListCard({
 
         <Emoges
           topReactions={topReactions}
-          className="flex gap-3 mt-[43px] border-t border-[#0000001F] pt-[17px] z-30"
+          className="flex gap-1 md:gap-3 mt-[43px] border-t border-[#0000001F] pt-[17px] z-30 mt-auto"
         />
       </div>
 
