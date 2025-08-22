@@ -82,6 +82,7 @@ function Message() {
           isError={isDropdownError}
           isDisabled={isSubmitting}
           ariaLabel={'관계 선택'}
+          position={'absolute'}
         />
       </fieldset>
       <fieldset className="">
@@ -106,6 +107,7 @@ function Message() {
           isError={isDropdownError}
           isDisabled={isSubmitting}
           ariaLabel={'폰트 선택'}
+          position={'relative'}
         />
       </fieldset>
       <ButtonBase disabled={isButtonDisabled || isSubmitting}>
