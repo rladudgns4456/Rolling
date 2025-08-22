@@ -94,7 +94,6 @@ function List() {
       {isNewLoading ? (
         <div className="font-bold text-[30px] h-[274px] tablet:h-[312px] pc:h-[312px] mb-[66px] tablet:mb-[156px] pc:mb-[64px]">
           최근에 만든 롤링 페이퍼 데이터 로딩중입니다
-
         </div>
       ) : (
         <RollingSection

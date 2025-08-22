@@ -4,16 +4,18 @@ import CreateRollingPaper from '../../pages/CreateRollingPaper';
 import RollingIcon from '../../assets/icon/Rolling_icon.svg';
 
 export default function Header({ showCta = true }) {
-  const nav = useNavigate();
+  const navigate = useNavigate();
 
   return (
     <header className="sticky top-0 z-50 border-b bg-white/80 backdrop-blur">
       {/* PC: 1248px 컨테이너 / 그 미만은 좌우 24px 고정 */}
       <div className="mx-auto w-full max-w-[1248px] mobile:px-6 tablet:px-6 pc:px-0  md:h-16 flex items-center justify-between h-[52px]">
         {/* 로고 → / */}
+
         <h1
           onClick={() => nav('/')}
           className="inline-flex items-center gap-[clamp(8px,8vw,16px)] tablet:gap-6 pc:gap-4 cursor-pointer"
+
           aria-label="메인으로 이동"
           tabIndex={0}
           role="link"

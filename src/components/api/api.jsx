@@ -35,6 +35,7 @@ export async function postRollingPaper({ senderNameInput, bgUrl }) {
   const result = await response.json();
   return result; // 성공 시 결과 반환
 }
+
 // 페이지네이션 포함: 넘긴 URL 그대로 가져오기
 export async function getRecipientsByUrl(url) {
   const res = await fetch(url);
