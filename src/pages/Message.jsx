@@ -7,6 +7,7 @@ import ProfileImageSkeleton from '../components/message/ProfileImageSkeleton';
 import ProfileImages from '../components/message/ProfileImages';
 import { FONT_CLASSES } from '../constants/FONT_CLASSES';
 import { DROPDOWN_MENUS } from '../constants/DROPDOWN_MENUS';
+import useWindowReSize from '../hooks/useWindowResize';
 
 function Message() {
   const { values, setters, ui, handleSubmit } = useMessageForm();
@@ -28,9 +29,14 @@ function Message() {
     isSubmitting,
     isButtonDisabled,
   } = ui;
+  const windowWidth = useWindowReSize(); //브라우저 크기 변화 감지
 
   return (
-    <>
+    <div
+      style={{
+        minHeight: windowWidth >= 768 ? 'calc(100vh - 65px)' : 0,
+      }}
+    >
       <form
         onSubmit={handleSubmit}
         className="mobile:w-[360px] w-[720px] flex flex-col gap-12 px-5 mx-auto tablet:max-w-7xl pc:max-w-screen-xl"
@@ -96,7 +102,7 @@ function Message() {
           생성하기
         </ButtonBase>
       </form>
-    </>
+    </div>
   );
 }
 

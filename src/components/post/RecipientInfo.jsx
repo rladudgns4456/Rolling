@@ -72,12 +72,12 @@ const RecipientInfo = ({
   };
 
   return (
-    <div className="flex items-center justify-between h-16 max-w-full m-auto tablet:max-w-7xl pc:max-w-[1200px]">
-      <p className="text-center font-bold text-lg tablet:text-[1.75rem] pc:text-[1.75rem]  text-grayscale8">
+    <div className="flex flex-col md:flex-row md:items-center md:justify-between h-auto md:h-16 max-w-full m-auto tablet:max-w-7xl pc:max-w-[1200px] ">
+      <h2 className="h-[52px] flex items-center md:h-fit md:text-center font-bold text-lg tablet:text-[1.75rem] pc:text-[1.75rem] text-grayscale8 border-b md:border-0">
         To. {name}
-      </p>
+      </h2>
 
-      <div className="flex items-center gap-4">
+      <div className="flex justify-end items-center gap-2 md:gap-4 h-[52px] md:h-fit">
         <ProfileCount
           messageCount={messageCount}
           isColumn={false}
@@ -85,15 +85,15 @@ const RecipientInfo = ({
         />
         <Emoges
           topReactions={topReactions}
-          className="flex gap-3 pl-8 border-l border-[#0000001F]"
+          className="flex gap-3 md:pl-8 md:border-l border-[#0000001F]"
         />
         <div className="relative">
           <button onClick={handleEmojiOpen}>
             <img src={ArrowDown} alt="이모지 더보기 버튼" />
           </button>
           {isEmojiOpen && (
-            <div className="z-20 flex justify-center items-center absolute border shadow-[0_2px_12px_rgba(0,0,0,0.08)] rounded-lg bg-white top-10 right-1/2 w-[312px] h-[134px]">
-              <div className="grid grid-cols-4 gap-[10px]">
+            <div className="z-20 overflow-auto scrollbar-0 flex absolute px-4 py-4 md:px-6 md:py-6 border shadow-[0_2px_12px_rgba(0,0,0,0.08)] rounded-lg bg-white top-10 right-1/2 min-w-[200px] max-w-[210px] md:min-w-[312px] md:max-w-[312px] h-fit">
+              <div className="flex flex-wrap gap-x-2 gap-y-[10px] md:gap-[10px]">
                 {(reactionsInfo ?? []).map((reaction, idx) => {
                   const key =
                     reaction?.id ?? `${reaction?.emoji ?? 'emoji'}-${idx}`;
@@ -106,7 +106,7 @@ const RecipientInfo = ({
                   return (
                     <div
                       key={key}
-                      className="gap-[2px] text-white px-3 py-[6px] rounded-[32px] flex items-center justify-center w-16 bg-black/55 h-9"
+                      className="gap-[2px] text-white px-2.5 md:px-3 py-[6px] rounded-[32px] flex items-center justify-center bg-black/55 h-fit w-fit text-[14px] md:text-base"
                     >
                       {emoji}
                       <span>{count}</span>
@@ -120,7 +120,7 @@ const RecipientInfo = ({
         <div className="relative">
           <button
             onClick={handleEmojiAddButton}
-            className="flex items-center gap-1 w-[88px] h-9 px-2 py-[6px] rounded-md border border-grayscale3"
+            className="flex items-center gap-1 w-fit md:w-[88px] h-9 px-2 py-[6px] rounded-md border border-grayscale3"
           >
             <img
               className="w-6 h-6"
@@ -137,10 +137,10 @@ const RecipientInfo = ({
             </div>
           )}
         </div>
-        <div className="border-l border-grayscale2 h-7"></div>
+        <div className="border-l border-grayscale2 h-7 mx-[7px] md:mx-0"></div>
 
         {/* 공유 버튼 및 메뉴 영역 */}
-        <div className="relative flex items-center w-14 h-9">
+        <div className="relative flex items-center md:w-14 h-9">
           <button
             onClick={handleShareClick}
             className="border border-grayscale3 w-9 h-9 md:w-14 px-2 py-[6px] flex justify-center rounded-md md:px-4"

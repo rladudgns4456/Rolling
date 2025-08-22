@@ -52,12 +52,12 @@ function List() {
     : [];
   return (
     <div className="max-w-[1280px] pt-[50px] mx-auto px-5 sm:px-6 xl:px-10">
-      <p className="mb-4 text-2xl font-bold leading-6 tracking-widest ">
+      <h2 className="mb-4 text-2xl font-bold leading-9 tracking-widest ">
         인기 롤링 페이퍼🔥
-      </p>
+      </h2>
       {/* 인기 섹션: 가로 스크롤 래퍼 추가 */}
-      <div className="mb-[50px] xl:w-[1160px] -mx-5 px-5 md:-mx-6 md:px-6 overflow-x-auto xl:overflow-visible no-scrollbar">
-        <div className="flex gap-5 w-max xl:w-auto">
+      <div className="mb-[40px] xl:w-[1160px] -mx-5 px-5 md:-mx-6 md:px-6 overflow-x-auto xl:overflow-visible no-scrollbar">
+        <div className="flex gap-3 md:gap-5 pb-2.5 w-max xl:w-auto">
           {goodRecipientsSort.map((item, index) => {
             const isLastInGroup = (index + 1) % 4 === 0; // 4번째 카드
             const isFirstInGroup = index % 4 === 0; // 첫 번째 카드
@@ -136,9 +136,9 @@ function List() {
         </div>
       </div>
 
-      <p className="mb-4 text-2xl font-bold leading-6 tracking-widest">
+      <h2 className="mb-4 text-2xl font-bold leading-9 tracking-widest">
         최근에 만든 롤링 페이퍼⭐
-      </p>
+      </h2>
       {/* 최근 섹션: 가로 스크롤 래퍼 */}
       <div className="mb-[40px] xl:w-[1160px] -mx-5 px-5 md:-mx-6 md:px-6 overflow-x-auto xl:overflow-visible no-scrollbar ">
         {/* 안쪽: 실제 너비만큼 확장되게 */}

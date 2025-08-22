@@ -18,7 +18,7 @@ function BackgroundSelect({ handleTabChange, handleBgChange, defaultIndex }) {
   return (
     <>
       <ToggleButtonGroup
-        className={`mb-[45px]`}
+        className={`mb-6 md:mb-[45px]`}
         options={['컬러', '이미지']}
         defaultIndex={tabIndex}
         onChange={onHandleClick}

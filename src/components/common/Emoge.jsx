@@ -1,7 +1,7 @@
 // Emoges.jsx
 const emogeClass = `
-  w-[55px] h-[32px] text-[14px] leading-[20px] tracking-[-0.5%] 
-  rounded-[32px] pt-[6px] pr-[8px] pb-[6px] pl-[8px] opacity-100 gap-2 bg-[#0000008A] flex 
+  w-fit h-[32px] md:h-9 text-[14px] leading-[20px] tracking-[-0.5%] 
+  rounded-[32px] pt-[6px] pb-[6px] px-2 md:px-3 opacity-100 gap-1 md:gap-2 bg-[#0000008A] flex 
 `;
 
 export default function Emoges({ topReactions = [], className = '' }) {
@@ -18,7 +18,7 @@ export default function Emoges({ topReactions = [], className = '' }) {
         return (
           <div key={key} className={emogeClass}>
             {emoji}
-            <span className="text-[16px] tracking-normal leading-5 text-white">
+            <span className="text-[14px] md:text-[16px] tracking-normal leading-5 text-white">
               {count}
             </span>
           </div>

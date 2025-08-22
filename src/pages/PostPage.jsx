@@ -83,7 +83,8 @@ export default function PostPage() {
   console.log(messageInfo);
   return (
     <>
-      <div className="w-[1200px] mx-auto">
+      <div className="sticky top-0 md:top-[65px] bg-white/80 z-50 mx-auto w-full    
+        px-5 md:px-6">
         <RecipientInfo
           name={recipientsInfo.name}
           messageCount={recipientsInfo.messageCount}

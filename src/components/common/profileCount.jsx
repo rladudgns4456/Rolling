@@ -11,7 +11,7 @@ export default function ProfileCount({
 
   return (
     <div
-      className={`z-20 flex justify-start ${isColumn ? 'flex-col items-start gap-3' : 'flex-row items-center'}`}
+      className={`z-20 hidden xl:flex justify-start ${isColumn ? 'flex-col items-start gap-3' : 'flex-row items-center'}`}
     >
       <div className="mr-[11px] profileBox relative flex w-[76px] h-8">
         {messageCount > 0 && (
@@ -36,7 +36,7 @@ export default function ProfileCount({
           />
         )}
         {extra > 0 && (
-          <div className="z- font-bold-500 bg-white absolute rounded-full border border-[#E3E3E3] left-12 w-[33px] h-[28px] flex justify-center items-center text-[12px] leading-[18px] tracking-normal">
+          <div className="z-30 font-bold-500 bg-white absolute rounded-full border border-[#E3E3E3] left-12 w-[33px] h-[28px] flex justify-center items-center text-[12px] leading-[18px] tracking-normal">
             {`+${extra}`}
           </div>
         )}
