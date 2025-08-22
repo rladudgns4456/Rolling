@@ -71,9 +71,10 @@ function Message() {
         <Dropdown
           value={relationship}
           onChange={setRelationship}
-          data={DROPDOWN_MENUS.relationship}
+          dropdownMenus={DROPDOWN_MENUS.relationship}
           isError={isDropdownError}
           isDisabled={isSubmitting}
+          ariaLabel={'관계 선택'}
         />
       </fieldset>
       <fieldset className="">
@@ -91,11 +92,13 @@ function Message() {
           폰트 선택
         </legend>
         <Dropdown
+          name="font"
           value={font}
           onChange={setFont}
-          data={DROPDOWN_MENUS.font}
+          dropdownMenus={DROPDOWN_MENUS.font}
           isError={isDropdownError}
           isDisabled={isSubmitting}
+          ariaLabel={'폰트 선택'}
         />
       </fieldset>
       <ButtonBase disabled={isButtonDisabled || isSubmitting}>

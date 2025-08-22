@@ -2,7 +2,6 @@ import classNames from 'classnames';
 import React, { useState } from 'react';
 
 const InputField = ({
-  name,
   value,
   isDisabled,
   isError,
@@ -32,8 +31,11 @@ const InputField = ({
 
   return (
     <div>
+      <label htmlFor="sender-name" className="sr-only">
+        보내는 사람 이름
+      </label>
       <input
-        name={name}
+        id="sender-name"
         onChange={onChange}
         onFocus={() => {
           setIsTyping(true);

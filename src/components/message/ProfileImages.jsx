@@ -18,16 +18,29 @@ const ProfileImages = ({
         </h3>
         <div className="flex mobile:flex-wrap">
           {profileImages.map(
-            (src, index) =>
-              src !==
+            (url) =>
+              url !==
                 'https://learn-codeit-kr-static.s3.ap-northeast-2.amazonaws.com/sprint-proj-image/default_avatar.png' && (
-                <img
-                  key={index}
-                  src={src}
-                  alt="선택할 프로필 이미지"
-                  onClick={() => setProfileImageURL(src)}
-                  className="m-[1px] bg-white rounded-full cursor-pointer mobile:w-9 mobile:h-9 w-14 h-14"
-                />
+                <label
+                  key={url}
+                  htmlFor={url}
+                  className="relative rounded-full cursor-pointer focus-within:ring-2 focus-within:ring-grayscale5"
+                >
+                  <input
+                    type="radio"
+                    id={url}
+                    name="profileImage"
+                    value={url}
+                    checked={profileImageURL === url}
+                    onChange={() => setProfileImageURL(url)}
+                    className="sr-only"
+                  />
+                  <img
+                    src={url}
+                    alt="선택할 프로필 이미지"
+                    className="m-[1px] bg-white rounded-full cursor-pointer mobile:w-9 mobile:h-9 w-14 h-14"
+                  />
+                </label>
               )
           )}
         </div>
