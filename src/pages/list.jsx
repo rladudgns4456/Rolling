@@ -71,11 +71,11 @@ function List() {
   const newRecipientsItem = newRecipientsData?.results ?? [];
 
   return (
-    <div className="max-w-[1280px] pt-[50px] mx-auto px-5 sm:px-6 xl:px-10">
+    <div className="mx-auto w-full max-w-[1248px] md:pt-[50px] pt-10">
       {isPopularLoading ? (
         <div
           className={
-            ' font-bold text-[30px] h-[274px] tablet:h-[312px] pc:h-[312px] mb-[74px] tablet:mb-[50px] pc:mb-[50px]'
+            ' font-bold text-[30px] h-[274px] tablet:h-[312px] pc:h-[312px] mb-[74px] tablet:mb-[50px] pc:mb-[50px]  px-5 md:px-6'
           }
         >
           인기 롤링 페이퍼 데이터 로딩중입니다
@@ -91,7 +91,7 @@ function List() {
         />
       )}
       {isNewLoading ? (
-        <div className="font-bold text-[30px] h-[274px] tablet:h-[312px] pc:h-[312px] mb-[66px] tablet:mb-[156px] pc:mb-[64px]">
+        <div className="font-bold text-[30px] h-[274px] tablet:h-[312px] pc:h-[312px] mb-[66px] tablet:mb-[156px] pc:mb-[64px] px-5 md:px-6">
           최근에 만든 롤링 페이퍼 데이터 로딩중입니다
         </div>
       ) : (

@@ -2,8 +2,10 @@ import { useEffect, useState } from 'react';
 import BackgroundSelect from '../components/background/BackgroundSelect';
 import InputField from '../components/common/InputField';
 import TextButton from '../components/common/TextButton';
-import { postRollingPaper } from '../components/api/api';
+import { postRollingPaper } from '../api/postRollingPaper';
 import { useNavigate } from 'react-router-dom';
+import useWindowReSize from '../hooks/useWindowResize';
+
 
 function CreateRollingPaper() {
   const [senderNameInput, setSenderNameInput] = useState(''); //받는 사람 이름
@@ -16,6 +18,7 @@ function CreateRollingPaper() {
     image: null,
   }); //배경 선택
   const isButtonDisabled = !senderNameInput; //버튼 비활성화
+  const windowWidth = useWindowReSize(); //브라우저 크기 변화 감지
 
   //인풋 값 감지
   const handleInputChange = (e) => {
@@ -64,8 +67,8 @@ function CreateRollingPaper() {
     try {
       const result = await postRollingPaper({ senderNameInput, bgUrl });
       const { id } = result;
-
       navigate(`/post/${id}`);
+
     } catch (error) {
       alert(error);
       return;
@@ -76,48 +79,54 @@ function CreateRollingPaper() {
   };
 
   return (
-    <div className="min-h-screen">
-      <div className="max-w-[1280px] mx-auto px-5 sm:px-6 xl:px-10">
-        <article className="flex flex-col mx-auto min-h-screen sm:max-w-[720px] pt-[122px] pb-6">
-          <div className="flex flex-col gap-y-3 mb-[50px]">
-            <h2 className="text-2xl font-bold">To.</h2>
-            <form onKeyDown={handlePreventSubmit}>
-              <InputField
-                name={'from'}
-                value={senderNameInput}
-                placeholder="받는 사람 이름을 입력하세요."
-                isDisabled={isDisabled}
-                isError={isError}
-                onChange={handleInputChange}
-                onBlur={handleFocusout}
-              />
-            </form>
-          </div>
-          <div className="mb-[45px]">
-            <h3 className="mb-1 text-2xl font-bold">
-              배경화면을 선택해 주세요.
-            </h3>
-            <p className="mb-6">
-              컬러를 선택하거나, 이미지를 선택할 수 있습니다.
-            </p>
-            <BackgroundSelect
-              handleBgChange={handleBgChange}
-              handleTabChange={handleTabChange}
-              defaultIndex={defaultIndex}
+    <div
+      className=" mx-auto w-full max-w-[1248px]    
+        px-5 md:px-6"
+    >
+      <article
+        className="flex flex-col mx-auto sm:max-w-[720px] pt-[49px] md:pt-[57px] pb-6"
+        style={{
+          minHeight: windowWidth >= 768 ? 'calc(100vh - 65px)' : 0,
+        }}
+      >
+        <div className="flex flex-col mb-[42px] gap-y-3">
+          <h2 className="text-2xl font-bold leading-10 text-grayscale9">To.</h2>
+          <form onKeyDown={handlePreventSubmit}>
+            <InputField
+              name={'from'}
+              value={senderNameInput}
+              placeholder="받는 사람 이름을 입력하세요."
+              isDisabled={isDisabled}
+              isError={isError}
+              onChange={handleInputChange}
+              onBlur={handleFocusout}
             />
-          </div>
-          <TextButton
-            className="w-full mt-auto xl:my-6"
-            size={56}
-            variant="primary"
-            responsive="hug"
-            disabled={isButtonDisabled}
-            onClick={handleSubmit}
-          >
-            생성하기
-          </TextButton>
-        </article>
-      </div>
+          </form>
+        </div>
+        <div className="mb-[45px]">
+          <h3 className="text-2xl font-bold leading-normal">
+            배경화면을 선택해 주세요.
+          </h3>
+          <p className="mb-6 leading-relaxed">
+            컬러를 선택하거나, 이미지를 선택할 수 있습니다.
+          </p>
+          <BackgroundSelect
+            handleBgChange={handleBgChange}
+            handleTabChange={handleTabChange}
+            defaultIndex={defaultIndex}
+          />
+        </div>
+        <TextButton
+          className="w-full mt-auto xl:my-6"
+          size={56}
+          variant="primary"
+          responsive="hug"
+          disabled={isButtonDisabled}
+          onClick={handleSubmit}
+        >
+          생성하기
+        </TextButton>
+      </article>
     </div>
   );
 }

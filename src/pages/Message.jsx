@@ -6,23 +6,31 @@ import ProfileImageSkeleton from '../components/message/ProfileImageSkeleton';
 import ProfileImages from '../components/message/ProfileImages';
 import { FONT_CLASSES } from '../constants/FONT_CLASSES';
 import { DROPDOWN_MENUS } from '../constants/DROPDOWN_MENUS';
+import useWindowReSize from '../hooks/useWindowResize';
 
 import { useMessageValues } from '../hooks/useMessageValues';
 import { useMessageUI } from '../hooks/useMessageUI';
 import { useMessageActions } from '../hooks/useMessageActions';
 
 function Message() {
+  const windowWidth = useWindowReSize(); //브라우저 크기 변화 감지
   const values = useMessageValues();
   const ui = useMessageUI(values);
   const { handleSubmit } = useMessageActions(values, ui);
 
+
   return (
+    <div
+      className="
+    mx-auto w-full max-w-[1248px]    
+        px-5 md:px-6 py-12"
+    >
     <form
       onSubmit={handleSubmit}
-      className="mobile:w-[360px] w-[720px] flex flex-col gap-12 px-5 mx-auto tablet:max-w-7xl pc:max-w-screen-xl"
+      className="max-w-[720px] flex flex-col gap-12 mx-auto"
     >
       <fieldset>
-        <legend className="mb-3 text-2xl font-bold text-grayscale9">
+        <legend className="mb-3 text-2xl font-bold leading-10 text-grayscale9">
           From.
         </legend>
         <InputField
@@ -64,6 +72,7 @@ function Message() {
           isError={ui.isDropdownError}
           isDisabled={ui.isSubmitting}
           ariaLabel={'관계 선택'}
+          position={'absolute'}
         />
       </fieldset>
 
@@ -79,7 +88,7 @@ function Message() {
       </fieldset>
 
       <fieldset>
-        <legend className="text-2xl font-bold text-grayscale9">
+        <legend className="mb-3 text-2xl font-bold text-grayscale9">
           폰트 선택
         </legend>
         <Dropdown
@@ -89,6 +98,7 @@ function Message() {
           isError={ui.isDropdownError}
           isDisabled={ui.isSubmitting}
           ariaLabel={'폰트 선택'}
+          position={'relative'}
         />
       </fieldset>
 
@@ -100,6 +110,7 @@ function Message() {
         생성하기
       </ButtonBase>
     </form>
+    </div>
   );
 }
 

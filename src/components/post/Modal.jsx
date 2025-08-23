@@ -16,9 +16,9 @@ export default function Modal({
   });
   return (
     <>
-      <div className="fixed inset-0 z-30 flex items-center justify-center bg-black/60">
-        <div className="w-[600px] h-[476px] shadow-[0_2px_12px_rgba(0,0,0,0.08)] bg-white rounded-2xl">
-          <div className="w-[520px] flex justify-between items-center mx-auto pt-8 pb-4">
+      <div className="fixed inset-0 z-30 flex items-center justify-center px-5 bg-black/60">
+        <div className="max-w-[600px] h-[476px] shadow-[0_2px_12px_rgba(0,0,0,0.08)] bg-white rounded-2xl w-full">
+          <div className="flex items-center justify-between px-10 pt-8 pb-4">
             <div className="flex items-center gap-4">
               <img
                 className="rounded-full w-14 h-14"
@@ -36,7 +36,7 @@ export default function Modal({
               {formattedDate}
             </span>
           </div>
-          <p className="w-[520px] h-64 mx-auto text-lg text-gray-600 border-t border-t-grayscale2 py-2">
+          <p className="h-64 px-10 py-4 mx-auto text-lg leading-7 text-gray-600 border-t border-t-grayscale2">
             {content}
           </p>
           <div className="flex justify-center mt-5">

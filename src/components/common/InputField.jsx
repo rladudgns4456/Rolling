@@ -13,7 +13,7 @@ const InputField = ({
 
   const className = classNames(
     // 모든 상태에 공통으로 적용될 기본 스타일
-    'flex justify-between p-4 mb-2 border-2 text-left cursor-pointer  rounded-lg w-80 focus:outline-none',
+    'flex justify-between p-4 border-2 text-left cursor-pointer rounded-lg w-full focus:outline-none',
     {
       // 기본 상태 (포커스 X, 비활성화 X, 에러 X)
       'text-grayscale5 placeholder-grayscale5 bg-white border-grayscale3':
@@ -31,8 +31,9 @@ const InputField = ({
 
   return (
     <div>
+      {/* 보내는 사람과 받은 사람 공용 */}
       <label htmlFor="sender-name" className="sr-only">
-        보내는 사람 이름
+        이름을 입력해 주세요.
       </label>
       <input
         id="sender-name"
@@ -48,8 +49,8 @@ const InputField = ({
         disabled={isDisabled}
         placeholder={placeholder} //placeholder prop으로 받음
         className={className}
-        maxLength="9" //9자 글자 제한
-      />
+        maxLength="9" //9자 글자 제한      
+        />
       {isError === true && <p className="text-error">값을 입력해 주세요.</p>}
     </div>
   );

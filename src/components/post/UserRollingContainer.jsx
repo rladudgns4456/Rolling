@@ -7,14 +7,15 @@ import Modal from './Modal';
 import { useState } from 'react';
 import deleteIcon from '../../assets/icon/deleted.svg';
 import { useNavigate } from 'react-router-dom';
+import useWindowReSize from '../../hooks/useWindowResize';
 import { deleteRecipients } from '../../api/api';
-
 const bgMap = {
   beige: 'bg-beige2',
   green: 'bg-green2',
   blue: 'bg-blue2',
   purple: 'bg-purple2',
 };
+
 
 //개인롤링페이지 컨테이너
 function UserRollingContainer({
@@ -30,6 +31,15 @@ function UserRollingContainer({
     await deleteRecipients(recipientId);
   };
 
+  const bgMap = {
+    beige: 'bg-beige2',
+    green: 'bg-green2',
+    blue: 'bg-blue2',
+    purple: 'bg-purple2',
+  };
+  const windowWidth = useWindowReSize(); //브라우저 크기 변화 감지
+
+
   const handleCardClick = (message) => {
     setIsOpenModal(message);
   };
@@ -41,26 +51,42 @@ function UserRollingContainer({
   // 메시지 데이터 있을 때 아래 렌더링
   return (
     <div
-      className={`min-h-dvh ${bgMap[recipientsInfo.backgroundColor]} bg-cover bg-center`}
-      style={{ backgroundImage: `url(${recipientsInfo.backgroundImageURL})` }}
+      className={`${bgMap[recipientsInfo.backgroundColor]} bg-cover bg-center`}
+      style={{
+        backgroundImage: `url(${recipientsInfo.backgroundImageURL})`,
+        minHeight: windowWidth >= 768 ? 'calc(100vh - 129px)' : 'calc(100vh - 108px)',
+      }}
     >
-      <button
-        onClick={handleDeleteRecipientsClick}
-        className="z-10 cursor-pointer w-[92px] h-10 rounded-md text-base text-white bg-purple6 absolute top-[190px] right-[370px]"
+      <div
+        className="   
+        relative    
+        mx-auto w-full max-w-[1248px]    
+        px-5 md:px-6"
       >
-        삭제하기
-      </button>
-      <div className="relative grid grid-cols-1 py-28 max-w-[1200px] mx-auto sm:grid-cols-2 xl:grid-cols-3 gap-y-5">
-        <CardCreate recipientId={recipientId} />
-        {messageInfo.map((message) => (
-          <article
-            key={message.id}
-            className="flex flex-col px-6 pb-6 w-96 bg-white rounded-2xl shadow-lg min-h-[230px] sm:min-h-[284px] xl:min-h-[280px] cursor-pointer"
-            onClick={() => handleCardClick(message)}
-          >
-            <RollingCard message={message} onDeleteMessage={onDeleteMessage} />
-          </article>
-        ))}
+        <button
+          onClick={handleDeleteRecipientsClick}
+          className="z-10 cursor-pointer w-[calc(100%-40px)] md:w-[calc(100%-48px)] xl:w-[92px] h-10 rounded-md text-base text-white bg-purple6 xl:absolute xl:top-[63px] xl:right-[24px] fixed bottom-6"
+        >
+          삭제하기
+        </button>
+        <div className="relative grid grid-cols-1 py-28 max-w-[1200px] mx-auto sm:grid-cols-2 xl:grid-cols-3 xl:gap-y-7 xl:gap-x-6 gap-4">
+          <CardCreate recipientId={recipientId} />
+          {messageInfo.map((message) => (
+            <article
+              key={message.id}
+              tabIndex={'0'}
+              role="button"
+              aria-label="클릭하여 모달 열기"
+              className="flex flex-col px-6 pb-6 bg-white rounded-2xl shadow-lg min-h-[230px] sm:min-h-[284px] xl:min-h-[280px] cursor-pointer"
+              onClick={() => handleCardClick(message)}
+            >
+              <RollingCard
+                message={message}
+                onDeleteMessage={onDeleteMessage}
+              />
+            </article>
+          ))}
+        </div>
       </div>
       {isOpenModal && (
         <Modal
@@ -85,7 +111,7 @@ function CardCreate({ recipientId }) {
   return (
     <div
       onClick={handleCardCreateClick}
-      className="flex justify-center items-center w-96 bg-white rounded-2xl shadow-lg min-h-[230px] sm:min-h-[284px] xl:min-h-[280px]"
+      className="flex justify-center items-center bg-white rounded-2xl shadow-lg min-h-[230px] sm:min-h-[284px] xl:min-h-[280px]l"
     >
       <CircleIconButton size={56} variant="dark" iconSrc={Plus} demo="hover" />
     </div>
@@ -123,25 +149,23 @@ function CardHeader({
   };
 
   return (
-    <div className="flex justify-between pb-4 border-b pt-7 border-grayscale2">
-      <div className="flex items-center gap-x-[108px]">
-        <div className="flex gap-x-3.5">
-          <UserProfile proFile={proFile} />
-          <div className="flex flex-col gap-y-[3px]">
-            <div className="flex gap-x-1.5 text-base sm:text-xl">
-              From.
-              <h3 className="font-bold">{userName}</h3>
-            </div>
-            <Badge relationship={relationship} />
+    <div className="flex items-center justify-between w-full pb-4 border-b pt-7 border-grayscale2">
+      <div className="flex gap-x-3.5">
+        <UserProfile proFile={proFile} />
+        <div className="flex flex-col gap-y-[3px]">
+          <div className="flex gap-x-1.5 text-base sm:text-xl">
+            From.
+            <h3 className="font-bold">{userName}</h3>
           </div>
+          <Badge relationship={relationship} />
         </div>
-        <button
-          onClick={handleDeleteClick}
-          className="flex items-center justify-center w-10 h-10 border rounded-md"
-        >
-          <img className="w-6 h-6 " src={deleteIcon} alt="지우기 아이콘" />
-        </button>
       </div>
+      <button
+        onClick={handleDeleteClick}
+        className="flex items-center justify-center w-10 h-10 border rounded-md"
+      >
+        <img className="w-6 h-6 " src={deleteIcon} alt="지우기 아이콘" />
+      </button>
     </div>
   );
 }
