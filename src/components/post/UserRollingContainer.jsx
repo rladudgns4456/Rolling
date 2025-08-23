@@ -7,11 +7,9 @@ import Modal from './Modal';
 import { useState } from 'react';
 import deleteIcon from '../../assets/icon/deleted.svg';
 import { useNavigate } from 'react-router-dom';
-<<<<<<< HEAD
 import useWindowReSize from '../../hooks/useWindowResize';
-=======
 import { deleteRecipients } from '../../api/api';
->>>>>>> origin/jaeyoung
+
 
 //개인롤링페이지 컨테이너
 function UserRollingContainer({
