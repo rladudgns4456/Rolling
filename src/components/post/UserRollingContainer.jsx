@@ -9,6 +9,12 @@ import deleteIcon from '../../assets/icon/deleted.svg';
 import { useNavigate } from 'react-router-dom';
 import useWindowReSize from '../../hooks/useWindowResize';
 import { deleteRecipients } from '../../api/api';
+const bgMap = {
+  beige: 'bg-beige2',
+  green: 'bg-green2',
+  blue: 'bg-blue2',
+  purple: 'bg-purple2',
+};
 
 
 //개인롤링페이지 컨테이너
@@ -32,6 +38,7 @@ function UserRollingContainer({
     purple: 'bg-purple2',
   };
   const windowWidth = useWindowReSize(); //브라우저 크기 변화 감지
+
 
   const handleCardClick = (message) => {
     setIsOpenModal(message);
