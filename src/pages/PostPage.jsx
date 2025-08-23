@@ -124,8 +124,8 @@ export default function PostPage() {
     return () => observer.disconnect();
   }, [messageInfo.next, loadMoreMessages]);
 
-  console.log('테스트', messageInfo);
-  console.log(recipientsInfo);
+  console.log('메시지 테스트', messageInfo);
+  console.log('recipients 테스트', recipientsInfo);
   return (
     <>
       <div className="w-[1200px] mx-auto">
