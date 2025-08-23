@@ -4,6 +4,8 @@ import RollingIcon from '../../assets/icon/Rolling_icon.svg';
 
 export default function Header({ showCta = true }) {
   const navigate = useNavigate();
+  console.log('삭제용');
+  console.log('삭제용');
 
   return (
     <header className="sticky top-0 z-50 border-b bg-white/80 backdrop-blur">

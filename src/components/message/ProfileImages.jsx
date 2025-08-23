@@ -1,13 +1,20 @@
+const DEFAULT_AVATAR =
+  'https://learn-codeit-kr-static.s3.ap-northeast-2.amazonaws.com/sprint-proj-image/default_avatar.png';
+
 const ProfileImages = ({
   profileImageURL,
   profileImages,
   setProfileImageURL,
 }) => {
+  const handleImgError = (e) => {
+    e.target.onerror = null;
+    e.target.src = DEFAULT_AVATAR;
+  };
   return (
     <div className="flex gap-8 mobile:w-[320px] ">
       <div className="flex-shrink-0">
         <img
-          src={profileImageURL || profileImages[0]}
+          src={profileImageURL || DEFAULT_AVATAR}
           className="w-20 h-20 rounded-full"
           alt="선택된 프로필"
         />
@@ -19,8 +26,7 @@ const ProfileImages = ({
         <div className="flex mobile:flex-wrap">
           {profileImages.map(
             (url) =>
-              url !==
-                'https://learn-codeit-kr-static.s3.ap-northeast-2.amazonaws.com/sprint-proj-image/default_avatar.png' && (
+              url !== DEFAULT_AVATAR && (
                 <label
                   key={url}
                   htmlFor={url}
