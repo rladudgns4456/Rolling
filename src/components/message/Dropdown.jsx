@@ -1,8 +1,17 @@
 import { useState, useEffect, useRef } from 'react';
 import classNames from 'classnames';
 
-const Dropdown = ({ data, value, onChange, name, isError, isDisabled }) => {
+const Dropdown = ({
+  dropdownMenus,
+  value,
+  onChange,
+  isError,
+  isDisabled,
+  ariaLabel,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [highlightedIndex, setHighlightedIndex] = useState(-1);
+  const listRef = useRef(null);
   const dropdownRef = useRef(null);
 
   const className = classNames(
@@ -22,6 +31,48 @@ const Dropdown = ({ data, value, onChange, name, isError, isDisabled }) => {
       'text-grayscale4 bg-grayscale1 border-grayscale3': isDisabled,
     }
   );
+
+  const handleKeyDown = (e) => {
+    if (isDisabled) return;
+    switch (e.key) {
+      case 'Enter':
+      case ' ':
+        e.preventDefault();
+        setIsOpen((prev) => !prev);
+        if (isOpen && highlightedIndex >= 0) {
+          onChange(dropdownMenus[highlightedIndex]);
+        }
+        break;
+
+      case 'ArrowUp':
+        e.preventDefault();
+        if (!isOpen) setIsOpen(true);
+        setHighlightedIndex((prev) =>
+          prev > 0 ? prev - 1 : dropdownMenus.length - 1
+        );
+        break;
+
+      case 'ArrowDown':
+        e.preventDefault();
+        if (!isOpen) setIsOpen(true);
+        setHighlightedIndex((prev) =>
+          prev < dropdownMenus.length ? prev + 1 : 0
+        );
+        break;
+
+      case 'Escape':
+        setIsOpen(false);
+        break;
+
+      case 'Tab':
+        setIsOpen(false);
+        break;
+
+      default:
+        break;
+    }
+  };
+
   const handleDropdownClick = () => {
     if (isError || isDisabled) return;
     setIsOpen(!isOpen);
@@ -34,20 +85,32 @@ const Dropdown = ({ data, value, onChange, name, isError, isDisabled }) => {
         setIsOpen(false);
       }
     };
-
     document.addEventListener('mousedown', handleClickOutside);
-
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [dropdownRef]); // 의존성 배열에 ref를 전달
 
+  useEffect(() => {
+    if (isOpen && highlightedIndex >= 0) {
+      listRef.current?.children[highlightedIndex]?.scrollIntoView({
+        block: 'nearest',
+      });
+    }
+  }, [isOpen, highlightedIndex]);
+
   return (
-    <div className="relative w-80" ref={dropdownRef}>
-      <input type="hidden" name={name} value={value} />
+    <div className="relative w-80" ref={dropdownRef} onKeyDown={handleKeyDown}>
+      <label id={`dropdown-label`} className="sr-only">
+        {ariaLabel} 선택
+      </label>
+      <input type="hidden" value={value} />
       <div>
         <button
           type="button"
+          aria-labelledby="dropdown-label"
+          aria-haspopup="listbox"
+          aria-expanded={isOpen}
           onClick={handleDropdownClick}
           disabled={isError || isDisabled}
           className={className}
@@ -67,15 +130,22 @@ const Dropdown = ({ data, value, onChange, name, isError, isDisabled }) => {
 
       {/* 메뉴가 열려있고, 에러 또는 비활성화 상태가 아닐 때만 목록을 표시 */}
       {!isError && !isDisabled && isOpen && (
-        <ul className="absolute z-10 bg-white border rounded-lg w-80 border-grayscale3">
-          {data.map((item, index) => (
+        <ul
+          ref={listRef}
+          role="listbox"
+          className="absolute z-10 bg-white border rounded-lg w-80 border-grayscale3"
+        >
+          {dropdownMenus.map((item, index) => (
             <li
               key={index}
-              className="p-4 cursor-pointer hover:bg-grayscale1"
+              role="option"
+              aria-selected={highlightedIndex === index || value === item}
+              className={`p-4 cursor-pointer ${highlightedIndex === index && 'bg-grayscale1'}`}
               onClick={() => {
                 onChange(item);
                 setIsOpen(false);
               }}
+              onMouseEnter={() => setHighlightedIndex(index)}
             >
               {item}
             </li>
