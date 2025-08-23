@@ -146,7 +146,7 @@ export default function PostPage() {
         onDeleteMessage={handleDeleteMessage}
         recipientId={recipientId}
       />
-      <div ref={observerTarget} className="h-10"></div>
+      <div ref={observerTarget} className="h-[1px]"></div>
     </>
   );
 }

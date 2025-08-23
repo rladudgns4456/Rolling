@@ -9,6 +9,7 @@ export default function MainPage() {
   const windowWidth = useWindowReSize(); //브라우저 크기 변화 감지
   return (
     <div className="pb-8 md:pb-20 pt-14">
+
       <div
         className="
         mx-auto w-full max-w-[1248px]    
@@ -27,6 +28,7 @@ export default function MainPage() {
                 Point. 01
               </span>
               <h2 className="mt-3 text-lg font-bold text-gray-900 md:text-2xl">
+
                 누구나 손쉽게, 온라인
                 <br />
                 롤링 페이퍼를 만들 수 있어요
@@ -38,7 +40,7 @@ export default function MainPage() {
             <div
               className="relative overflow-hidden text-0 min-h-[114px]"
               style={{ minHeight: windowWidth < 768 ? '30.4vw' : 'auto' }}
-            >
+            > 
               <img
                 className="absolute max-h-full -translate-x-1/2 -translate-y-1/2 md:relative max-w-none md:max-w-full top-1/2 left-1/2 md:max-h-full md:translate-x-0 md:translate-y-0 md:top-0 md:left-0"
                 src={point1}
@@ -56,6 +58,7 @@ export default function MainPage() {
                 Point. 02
               </span>
               <h2 className="mt-3 text-lg font-bold text-gray-900 md:text-2xl">
+
                 서로에게 이모지로 감정을
                 <br />
                 표현해보세요

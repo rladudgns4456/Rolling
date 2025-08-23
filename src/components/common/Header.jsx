@@ -4,7 +4,7 @@ import CreateRollingPaper from '../../pages/CreateRollingPaper';
 import RollingIcon from '../../assets/icon/Rolling_icon.svg';
 
 export default function Header({ showCta = true }) {
-  const nav = useNavigate();//onClick에 nav 로 되어 있음
+  const navigate = useNavigate();
 
   return (
     <header className="sticky top-0 z-50 border-b bg-white/80 backdrop-blur">
@@ -13,7 +13,7 @@ export default function Header({ showCta = true }) {
         {/* 로고 → / */}
 
         <h1
-          onClick={() => nav('/')}
+          onClick={() => navigate('/')}
           className="inline-flex items-center gap-[clamp(8px,8vw,16px)] tablet:gap-6 pc:gap-4 cursor-pointer"
           aria-label="메인으로 이동"
           tabIndex={0}
@@ -28,7 +28,7 @@ export default function Header({ showCta = true }) {
         {showCta && (
           <button
             role="link"
-            onClick={() => nav('/post')}
+            onClick={() => navigate('/post')}
             className="px-4 py-2 border rounded-md border-gray-300 text-gray-900 hover:bg-gray-50 active:scale-[.98]"
           >
             롤링 페이퍼 만들기
