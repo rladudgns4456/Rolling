@@ -58,7 +58,7 @@ function UserRollingContainer({
       >
         <button
           onClick={handleDeleteRecipientsClick}
-          className="z-10 cursor-pointer w-[92px] h-10 rounded-md text-base text-white bg-purple6 absolute top-[63px] right-[24px]"
+          className="z-10 cursor-pointer w-[calc(100%-40px)] md:w-[calc(100%-48px)] xl:w-[92px] h-10 rounded-md text-base text-white bg-purple6 xl:absolute xl:top-[63px] xl:right-[24px] fixed bottom-6"
         >
           삭제하기
         </button>

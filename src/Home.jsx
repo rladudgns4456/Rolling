@@ -8,12 +8,11 @@ export default function MainPage() {
   const navigate = useNavigate();
   const windowWidth = useWindowReSize(); //브라우저 크기 변화 감지
   return (
-    <div className="pb-20 pt-14">
+    <div className="pb-8 md:pb-20 pt-14">
       <div
         className="
         mx-auto w-full max-w-[1248px]    
         px-5 md:px-6 
-        space-y-10 md:space-y-14 lg:space-y-16
       "
       >
         {/* Point 01 */}
@@ -24,7 +23,6 @@ export default function MainPage() {
                 Point. 01
               </span>
               <h2 className="mt-3 text-lg font-bold text-gray-900 md:text-2xl">
-
                 누구나 손쉽게, 온라인
                 <br />
                 롤링 페이퍼를 만들 수 있어요

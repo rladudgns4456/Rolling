@@ -112,7 +112,7 @@ const RecipientInfo = ({
         />
         <Emoges
           topReactions={topReactions}
-          className="flex gap-3 md:pl-8 md:border-l border-[#0000001F]"
+          className="flex gap-3 md:pl-8 xl:border-l border-[#0000001F]"
         />
         <div className="relative">
           <button onClick={handleEmojiOpen}>
@@ -157,7 +157,7 @@ const RecipientInfo = ({
             <span className="hidden text-base md:inline">추가</span>
           </button>
           {showEmojiPicker && (
-            <div className="absolute right-0 z-20 top-11">
+            <div className="absolute z-20 md:right-0 top-11 -right-20">
               <EmojiPicker
                 onEmojiClick={(emojiData) => handleEmojiClick(emojiData.emoji)}
               />

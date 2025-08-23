@@ -16,21 +16,21 @@ export default function ProfileCount({
       <div className="mr-[11px] profileBox relative flex w-[76px] h-8">
         {messageCount > 0 && (
           <img
-            className="absolute z-10 rounded-full w-7 h-7"
+            className="absolute z-10 border-2 rounded-full w-7 h-7"
             src={img0}
             alt=""
           />
         )}
         {messageCount > 1 && (
           <img
-            className="absolute z-20 rounded-full w-7 h-7 left-4"
+            className="absolute z-20 border-2 rounded-full w-7 h-7 left-4"
             src={img1}
             alt=""
           />
         )}
         {messageCount > 2 && (
           <img
-            className="absolute z-30 rounded-full w-7 h-7 left-8"
+            className="absolute z-30 border-2 rounded-full w-7 h-7 left-8"
             src={img2}
             alt=""
           />
@@ -41,7 +41,7 @@ export default function ProfileCount({
           </div>
         )}
       </div>
-      <p className="text-lg leading-6 tracking-wide">
+      <p className="text-sm leading-6 tracking-wide md:text-base text-grayscale7">
         <span className="font-bold">{messageCount}</span>명이 작성했어요!
       </p>
     </div>

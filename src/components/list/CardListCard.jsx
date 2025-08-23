@@ -22,7 +22,7 @@ const CARD_PADDING = 'pt-[30px] pr-[24px] pb-[20px] pl-[24px]';
 const TITLE =
   // 기본(모바일) + 태블릿/PC 동일 규칙만 추가
   'text-[18px] leading-[28px] tracking-[-0.01em] font-pretendard font-bold ' +
-  'tablet:mb-3 pc:mb-3 tablet:text-[24px] pc:text-[24px] tablet:leading-9 pc:leading-9 ' +
+  'tablet:mb-3 mb-3 tablet:text-[24px] pc:text-[24px] tablet:leading-9 pc:leading-9 ' +
   'tablet:flex pc:flex tablet:justify-start pc:justify-start ' +
   'tablet:whitespace-nowrap pc:whitespace-nowrap tablet:overflow-hidden pc:overflow-hidden ' +
   'tablet:text-ellipsis pc:text-ellipsis';
@@ -46,7 +46,7 @@ export default function CardListCard({
         CARD_PADDING,
         bgColorMap[bgColor] ?? '',
       ].join(' ')}
-      style={bgImageUrl ? { backgroundImage: `url(${bgImageUrl})` } : undefined}
+      style={bgImageUrl ? { backgroundImage: `url(${bgImageUrl})`} : undefined}
       aria-label={name ? `To. ${name}` : undefined}
     >
       <div className={INNER_WRAP}>
@@ -55,13 +55,15 @@ export default function CardListCard({
         <ProfileCount
           messageCount={messageCount}
           recentImage={recentImage}
+          bgImageUrl={bgImageUrl}
           isColumn
         />
-
-        <Emoges
-          topReactions={topReactions}
-          className="flex gap-1 md:gap-3 mt-[43px] border-t border-[#0000001F] pt-[17px] z-30 mt-auto"
-        />
+        {topReactions.length > 0 && (
+          <Emoges
+            topReactions={topReactions}
+            className="flex gap-1 md:gap-3 border-t border-[#0000001F] pt-[17px] z-30 mt-auto"
+          />
+        )}
       </div>
 
       {/* 배경 이미지가 없을 때만 색 그림자 */}
