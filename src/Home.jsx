@@ -12,7 +12,11 @@ export default function MainPage() {
       <div
         className="
         mx-auto w-full max-w-[1248px]    
-        px-5 md:px-6 
+        px-5 md:px-6       
+        flex
+        flex-col
+        gap-y-6
+        md:gap-y-8
       "
       >
         {/* Point 01 */}
