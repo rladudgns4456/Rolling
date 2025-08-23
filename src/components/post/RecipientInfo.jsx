@@ -71,8 +71,13 @@ const RecipientInfo = ({
     setShowEmojiPicker(false);
   };
 
+  const BASE_URL = 'netlify 배포 주소 들어올 곳';
+
   const shareToKakao = () => {
     if (window.Kakao) {
+      const currentPath = window.location.pathname;
+      const shareUrl = BASE_URL + currentPath;
+
       window.Kakao.Link.sendDefault({
         objectType: 'feed',
         content: {
@@ -81,16 +86,16 @@ const RecipientInfo = ({
           imageUrl:
             'https://rolling-paper-client-blue.vercel.app/imgs/thumbnail.png',
           link: {
-            mobileWebUrl: window.location.href,
-            webUrl: window.location.href,
+            mobileWebUrl: shareUrl,
+            webUrl: shareUrl,
           },
         },
         buttons: [
           {
             title: '웹으로 보기',
             link: {
-              mobileWebUrl: window.location.href,
-              webUrl: window.location.href,
+              mobileWebUrl: shareUrl,
+              webUrl: shareUrl,
             },
           },
         ],
