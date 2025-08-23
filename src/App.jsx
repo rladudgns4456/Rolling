@@ -6,12 +6,21 @@ import List from './pages/list';
 import CreateRollingPaper from './pages/CreateRollingPaper';
 import PostPage from './pages/PostPage';
 import Message from './pages/Message';
+import { useEffect } from 'react';
 
 export default function App() {
+  useEffect(() => {
+    if (window.Kakao && !window.Kakao.isInitialized()) {
+      window.Kakao.init('3131c75376163a60b38a030574f69c83');
+      console.log('Kakao 초기화 완료:', window.Kakao.isInitialized());
+    }
+  }, []);
+
   return (
     <BrowserRouter>
       <Routes>
         {/* ✅ 버튼이 보여야 하는 라우트 묶음 */}
+
         {/* 버튼 보이는 페이지를 여기에 계속 추가 */}
         {/* <Route path="/list" element={<ListPage />} /> */}
         <Route element={<Layout showCta={true} />}>
