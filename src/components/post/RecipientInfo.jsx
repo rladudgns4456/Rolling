@@ -71,6 +71,33 @@ const RecipientInfo = ({
     setShowEmojiPicker(false);
   };
 
+  const shareToKakao = () => {
+    if (window.Kakao) {
+      window.Kakao.Link.sendDefault({
+        objectType: 'feed',
+        content: {
+          title: '롤링페이퍼',
+          description: 'FE_18_2_TEAM RollingPaper',
+          imageUrl:
+            'https://rolling-paper-client-blue.vercel.app/imgs/thumbnail.png',
+          link: {
+            mobileWebUrl: window.location.href,
+            webUrl: window.location.href,
+          },
+        },
+        buttons: [
+          {
+            title: '웹으로 보기',
+            link: {
+              mobileWebUrl: window.location.href,
+              webUrl: window.location.href,
+            },
+          },
+        ],
+      });
+    }
+  };
+
   return (
     <div className="flex flex-col md:flex-row md:items-center md:justify-between h-auto md:h-16 max-w-full m-auto tablet:max-w-7xl pc:max-w-[1200px] ">
       <h2 className="h-[52px] flex items-center md:h-fit md:text-center font-bold text-lg tablet:text-[1.75rem] pc:text-[1.75rem] text-grayscale8 border-b md:border-0">
@@ -154,7 +181,10 @@ const RecipientInfo = ({
               ref={shareMenuRef} // 외부 클릭 감지를 위해 ref를 DOM에 연결
               className="absolute right-0 z-20 flex flex-col bg-white border rounded-lg top-12 border-grayscale3"
             >
-              <li className="px-4 py-3 cursor-pointer text-grayscale9 hover:bg-grayscale1 whitespace-nowrap">
+              <li
+                onClick={shareToKakao}
+                className="px-4 py-3 cursor-pointer text-grayscale9 hover:bg-grayscale1 whitespace-nowrap"
+              >
                 카카오톡 공유
               </li>
               <li

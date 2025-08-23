@@ -7,7 +7,11 @@ import Modal from './Modal';
 import { useState } from 'react';
 import deleteIcon from '../../assets/icon/deleted.svg';
 import { useNavigate } from 'react-router-dom';
+<<<<<<< HEAD
 import useWindowReSize from '../../hooks/useWindowResize';
+=======
+import { deleteRecipients } from '../../api/api';
+>>>>>>> origin/jaeyoung
 
 //개인롤링페이지 컨테이너
 function UserRollingContainer({
@@ -18,8 +22,9 @@ function UserRollingContainer({
 }) {
   const [isOpenModal, setIsOpenModal] = useState(null);
   const navigate = useNavigate();
-  const handleDeleteRecipientsClick = () => {
+  const handleDeleteRecipientsClick = async () => {
     navigate(`/list`);
+    await deleteRecipients(recipientId);
   };
 
   const bgMap = {
@@ -133,10 +138,11 @@ function CardHeader({
   messageId,
   onDeleteMessage,
 }) {
-  const handleDeleteClick = (event) => {
+  const handleDeleteClick = async (event) => {
     event.stopPropagation();
-    onDeleteMessage(messageId);
+    await onDeleteMessage(messageId);
   };
+
   return (
     <div className="flex items-center justify-between w-full pb-4 border-b pt-7 border-grayscale2">
       <div className="flex gap-x-3.5">

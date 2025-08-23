@@ -1,6 +1,5 @@
 import completedIcon from '../../assets/icon/ic-completed.svg';
 import closeIcon from '../../assets/icon/ic-close.svg';
-import { useEffect, useState } from 'react';
 
 export default function Toast({ visible, onCLose, message }) {
   if (!visible) return null;
