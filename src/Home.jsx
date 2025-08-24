@@ -2,81 +2,73 @@ import { useNavigate } from 'react-router-dom';
 import point1 from './assets/images/point_1.png';
 import point2 from './assets/images/point_2.png';
 import TextButton from './components/common/TextButton';
+import useWindowReSize from './hooks/useWindowResize';
 
 export default function MainPage() {
   const navigate = useNavigate();
-
+  const windowWidth = useWindowReSize(); //브라우저 크기 변화 감지
   return (
-    <div className="pt-14 pb-20">
+    <div className="pb-8 md:pb-20 pt-14">
+
       <div
         className="
-        mx-auto w-full max-w-[1248px]
-        px-6 md:px-[clamp(24px,6vw,80px)] xl:px-0
-        space-y-10 md:space-y-14 lg:space-y-16
+        mx-auto w-full max-w-[1248px]    
+        px-5 md:px-6       
+        flex
+        flex-col
+        gap-y-6
+        md:gap-y-8
       "
       >
         {/* Point 01 */}
-        <section
-          className="
-          rounded-2xl bg-indigo-50/50
-          px-6  py-8
-          md:px-8  md:py-12
-          lg:px-10 lg:py-16
-        "
-        >
-          <div className="flex flex-col xl:flex-row items-center gap-8 xl:gap-10">
-            <div className="basis-1/2 max-w-[560px]">
-              <span className="inline-block rounded-full bg-purple6 px-3 py-1 text-sm font-semibold text-white">
+        <section className="py-8 rounded-2xl bg-indigo-50/50 md:py-10  xl:py-[60px] min-h-[324px]">
+          <div className="flex flex-col justify-between h-full xl:flex-row md:gap-y-9 xl:gap-0 gap-y-12">
+            <div className="px-6 md:px-10 xl:px-0  xl:pl-[60px] xl:pr-0">
+              <span className="inline-block px-3 py-1 text-sm font-semibold text-white rounded-full bg-purple6">
                 Point. 01
               </span>
-              <h2 className="mt-3 text-2xl md:text-3xl font-bold text-gray-900">
+              <h2 className="mt-3 text-lg font-bold text-gray-900 md:text-2xl">
+
                 누구나 손쉽게, 온라인
                 <br />
                 롤링 페이퍼를 만들 수 있어요
               </h2>
-              <p className="mt-2 text-gray-600">
+              <p className="mt-2 text-gray-600 md:text-lg text-[15px]">
                 로그인 없이 자유롭게 만들어요.
               </p>
             </div>
-            <div className="basis-1/2 w-full flex justify-center xl:justify-end">
+            <div
+              className="relative overflow-hidden text-0 min-h-[114px]"
+              style={{ minHeight: windowWidth < 768 ? '30.4vw' : 'auto' }}
+            > 
               <img
+                className="absolute max-h-full -translate-x-1/2 -translate-y-1/2 md:relative max-w-none md:max-w-full top-1/2 left-1/2 md:max-h-full md:translate-x-0 md:translate-y-0 md:top-0 md:left-0"
                 src={point1}
                 alt="롤링 미리보기 1"
-                className="w-full max-w-[560px] rounded-xl"
               />
             </div>
           </div>
         </section>
 
         {/* Point 02 */}
-        <section
-          className="
-          rounded-2xl bg-indigo-50/50
-          px-6  py-8
-          md:px-8  md:py-12
-          lg:px-10 lg:py-16
-        "
-        >
-          <div className="flex flex-col xl:flex-row-reverse items-center gap-8 xl:gap-10">
-            <div className="basis-1/2 max-w-[560px]">
-              <span className="inline-block rounded-full bg-purple6 px-3 py-1 text-sm font-semibold text-white">
+        <section className="px-6 py-8 rounded-2xl bg-indigo-50/50 md:px-0 md:py-12 xl:pr-[60px] xl:pl-0  xl:py-16 min-h-[324px] ">
+          <div className="flex flex-col justify-end h-full xl:flex-row-reverse md:gap-y-9 xl:gap-0 gap-y-12">
+            <div className="md:px-10 xl:px-0">
+              <span className="inline-block px-3 py-1 text-sm font-semibold text-white rounded-full bg-purple6">
                 Point. 02
               </span>
-              <h2 className="mt-3 text-2xl md:text-3xl font-bold text-gray-900">
+              <h2 className="mt-3 text-lg font-bold text-gray-900 md:text-2xl">
+
                 서로에게 이모지로 감정을
                 <br />
                 표현해보세요
               </h2>
-              <p className="mt-2 text-gray-600">
+              <p className="mt-2 text-gray-600 md:text-lg text-[15px]">
                 롤링 페이퍼에 이모지를 추가할 수 있어요.
               </p>
             </div>
-            <div className="basis-1/2 w-full flex justify-center xl:justify-start">
-              <img
-                src={point2}
-                alt="롤링 미리보기 2"
-                className="w-full max-w-[560px] rounded-xl"
-              />
+            <div className="flex justify-center w-full max-w-[720px] xl:justify-center">
+              <img src={point2} alt="롤링 미리보기 2" />
             </div>
           </div>
         </section>

@@ -1,12 +1,12 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'https://rolling-api.vercel.app/profile-images/';
+const API_BASE_URL = import.meta.env.VITE_BASE_URL;
 
 export async function getProfileImages() {
   try {
-    const response = await axios.get(API_BASE_URL);
+    const response = await axios.get(`${API_BASE_URL}/profile-images/`);
     return response.data.imageUrls;
   } catch (error) {
-    console.log('API 요청 실패: ', error);
+    console.error('API 요청 실패: ', error);
   }
 }

@@ -2,7 +2,6 @@ import classNames from 'classnames';
 import React, { useState } from 'react';
 
 const InputField = ({
-  name,
   value,
   isDisabled,
   isError,
@@ -14,26 +13,30 @@ const InputField = ({
 
   const className = classNames(
     // 모든 상태에 공통으로 적용될 기본 스타일
-    'flex justify-between p-4 mb-2 border-2 text-left rounded-lg w-80 focus:outline-none',
+    'flex justify-between p-4 border-2 text-left cursor-pointer rounded-lg w-full focus:outline-none',
     {
       // 기본 상태 (포커스 X, 비활성화 X, 에러 X)
-      'text-grayscale5 placeholder-grayscale5 cursor-pointer bg-white border-grayscale3':
+      'text-grayscale5 placeholder-grayscale5 bg-white border-grayscale3':
         !isTyping && !isDisabled && !isError,
       // 타이핑 중인 상태
-      'text-grayscale9 placeholder-grayscale9 cursor-pointer bg-white border-grayscale5':
+      'text-grayscale9 placeholder-grayscale9  bg-white border-grayscale5':
         isTyping && !isDisabled && !isError,
       // 에러 상태
-      'placeholder-grayscale9 bg-white cursor-pointer border-error':
-        isError && !isDisabled,
+      'placeholder-grayscale9 bg-white border-error': isError && !isDisabled,
       // 비활성화 상태
-      'placeholder-grayscale4 bg-grayscale1 border-grayscale3': isDisabled,
+      'placeholder-grayscale4 bg-grayscale1 border-grayscale3 cursor-default':
+        isDisabled,
     }
   );
 
   return (
     <div>
+      {/* 보내는 사람과 받은 사람 공용 */}
+      <label htmlFor="sender-name" className="sr-only">
+        이름을 입력해 주세요.
+      </label>
       <input
-        name={name}
+        id="sender-name"
         onChange={onChange}
         onFocus={() => {
           setIsTyping(true);

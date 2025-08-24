@@ -1,56 +1,155 @@
 import UserProfile from '../common/UserProfile';
 import CardCreateAt from './CardCreateAt';
+import CircleIconButton from '../common/CircleIconButton';
+import Plus from '../../assets/icon/ic_plus.svg';
+import Badge from './Badge';
+import Modal from './Modal';
+import { useState } from 'react';
+import deleteIcon from '../../assets/icon/deleted.svg';
+import { useNavigate } from 'react-router-dom';
+import useWindowReSize from '../../hooks/useWindowResize';
+import { deleteRecipients } from '../../api/api';
+const bgMap = {
+  beige: 'bg-beige2',
+  green: 'bg-green2',
+  blue: 'bg-blue2',
+  purple: 'bg-purple2',
+};
+
 
 //개인롤링페이지 컨테이너
-function UserRollingContainer({ newUserId }) {
+function UserRollingContainer({
+  recipientsInfo,
+  messageInfo,
+  onDeleteMessage,
+  recipientId,
+}) {
+  const [isOpenModal, setIsOpenModal] = useState(null);
+  const navigate = useNavigate();
+  const handleDeleteRecipientsClick = async () => {
+    navigate(`/list`);
+    await deleteRecipients(recipientId);
+  };
+
+  const bgMap = {
+    beige: 'bg-beige2',
+    green: 'bg-green2',
+    blue: 'bg-blue2',
+    purple: 'bg-purple2',
+  };
+  const windowWidth = useWindowReSize(); //브라우저 크기 변화 감지
+
+
+  const handleCardClick = (message) => {
+    setIsOpenModal(message);
+  };
+
+  const closeModal = () => {
+    setIsOpenModal(null);
+  };
+
+  // 메시지 데이터 있을 때 아래 렌더링
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-x-6 gap-7">
-      <CardCreate />
-      {newUserId &&
-        newUserId.length > 0 &&
-        newUserId.map((item) => {
-          return (
+    <div
+      className={`${bgMap[recipientsInfo.backgroundColor]} bg-cover bg-center`}
+      style={{
+        backgroundImage: `url(${recipientsInfo.backgroundImageURL})`,
+        minHeight: windowWidth >= 768 ? 'calc(100vh - 129px)' : 'calc(100vh - 108px)',
+      }}
+    >
+      <div
+        className="   
+        relative    
+        mx-auto w-full max-w-[1248px]    
+        px-5 md:px-6"
+      >
+        <button
+          onClick={handleDeleteRecipientsClick}
+          className="z-10 cursor-pointer w-[calc(100%-40px)] md:w-[calc(100%-48px)] xl:w-[92px] h-10 rounded-md text-base text-white bg-purple6 xl:absolute xl:top-[63px] xl:right-[24px] fixed bottom-6"
+        >
+          삭제하기
+        </button>
+        <div className="relative grid grid-cols-1 py-28 max-w-[1200px] mx-auto sm:grid-cols-2 xl:grid-cols-3 xl:gap-y-7 xl:gap-x-6 gap-4">
+          <CardCreate recipientId={recipientId} />
+          {messageInfo.map((message) => (
             <article
-              key={item.id}
-              className="flex flex-col px-6 pb-6 bg-white rounded-2xl shadow-lg min-h-[230px] sm:min-h-[284px] xl:min-h-[280px]"
+              key={message.id}
+              tabIndex={'0'}
+              role="button"
+              aria-label="클릭하여 모달 열기"
+              className="flex flex-col px-6 pb-6 bg-white rounded-2xl shadow-lg min-h-[230px] sm:min-h-[284px] xl:min-h-[280px] cursor-pointer"
+              onClick={() => handleCardClick(message)}
             >
-              <RollingCard item={item} />
+              <RollingCard
+                message={message}
+                onDeleteMessage={onDeleteMessage}
+              />
             </article>
-          );
-        })}
+          ))}
+        </div>
+      </div>
+      {isOpenModal && (
+        <Modal
+          proFile={isOpenModal.profileImageURL}
+          userName={isOpenModal.sender}
+          relationship={isOpenModal.relationship}
+          createDate={isOpenModal.createdAt}
+          content={isOpenModal.content}
+          onClose={closeModal}
+        />
+      )}
     </div>
   );
 }
 
 //카드 만들기 버튼
-function CardCreate() {
+function CardCreate({ recipientId }) {
+  const navigate = useNavigate();
+  const handleCardCreateClick = () => {
+    navigate(`/post/${recipientId}/message`);
+  };
   return (
-    <div className="flex justify-center items-center bg-white rounded-2xl shadow-lg min-h-[230px] sm:min-h-[284px] xl:min-h-[280px]">
-      {/*영훈님 컴포넌트로 버튼 교체할 자리 */}
-      <Button />
+    <div
+      onClick={handleCardCreateClick}
+      className="flex justify-center items-center bg-white rounded-2xl shadow-lg min-h-[230px] sm:min-h-[284px] xl:min-h-[280px]l"
+    >
+      <CircleIconButton size={56} variant="dark" iconSrc={Plus} demo="hover" />
     </div>
   );
 }
 
 // 카드
-function RollingCard({ item }) {
+function RollingCard({ message, onDeleteMessage }) {
   return (
     <>
       <CardHeader
-        userName={item.sender}
-        relationship={item.relationship}
-        proFile={item.profileImageURL}
+        userName={message.sender}
+        relationship={message.relationship}
+        proFile={message.profileImageURL}
+        messageId={message.id}
+        onDeleteMessage={onDeleteMessage}
       />
-      <CardBodyView content={item.content} />
-      <CardCreateAt createDate={item.createdAt} />
+      <CardBodyView content={message.content} />
+      <CardCreateAt createDate={message.createdAt} />
     </>
   );
 }
 
 //카드 헤더
-function CardHeader({ userName, relationship, proFile }) {
+function CardHeader({
+  userName,
+  relationship,
+  proFile,
+  messageId,
+  onDeleteMessage,
+}) {
+  const handleDeleteClick = async (event) => {
+    event.stopPropagation();
+    await onDeleteMessage(messageId);
+  };
+
   return (
-    <div className="flex justify-between pb-4 border-b pt-7 border-grayscale2">
+    <div className="flex items-center justify-between w-full pb-4 border-b pt-7 border-grayscale2">
       <div className="flex gap-x-3.5">
         <UserProfile proFile={proFile} />
         <div className="flex flex-col gap-y-[3px]">
@@ -58,12 +157,15 @@ function CardHeader({ userName, relationship, proFile }) {
             From.
             <h3 className="font-bold">{userName}</h3>
           </div>
-          {/*재영님 컴포넌트로 배지 교체할 자리*/}
           <Badge relationship={relationship} />
         </div>
       </div>
-      {/*영훈님 컴포넌트로 버튼 교체할 자리 */}
-      <Button />
+      <button
+        onClick={handleDeleteClick}
+        className="flex items-center justify-center w-10 h-10 border rounded-md"
+      >
+        <img className="w-6 h-6 " src={deleteIcon} alt="지우기 아이콘" />
+      </button>
     </div>
   );
 }
@@ -76,49 +178,5 @@ function CardBodyView({ content }) {
     </div>
   );
 }
-
-//-- 컴포넌트 교체시 삭제할 부분
-//배지
-function Badge({ relationship }) {
-  let bgColor;
-  let textColor;
-  switch (relationship) {
-    case '지인':
-      bgColor = 'bg-beige1';
-      textColor = 'text-beige5';
-      break;
-    case '동료':
-      bgColor = 'bg-purple1';
-      textColor = 'text-purple5';
-      break;
-    case '가족':
-      bgColor = 'bg-green1';
-      textColor = 'text-green5';
-      break;
-    case '친구':
-      bgColor = 'bg-blue1';
-      textColor = 'text-blue5';
-      break;
-  }
-  return (
-    <>
-      <div className={`px-2 w-fit text-[14px] ${bgColor} ${textColor}`}>
-        {relationship}
-      </div>
-    </>
-  );
-}
-
-//식제버튼
-function Button() {
-  return (
-    <>
-      <button className="w-10 h-10 border rounded-md border-grayscale3">
-        버튼
-      </button>
-    </>
-  );
-}
-//-- 컴포넌트 교체시 삭제할 부분
 
 export default UserRollingContainer;

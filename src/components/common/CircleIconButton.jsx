@@ -12,6 +12,7 @@ export default function CircleIconButton({
     {
       32: 'w-8 h-8',
       40: 'w-10 h-10',
+      56: 'w-14 h-14',
     }[size] || 'w-8 h-8';
 
   const base = `inline-flex items-center justify-center rounded-full border transition
