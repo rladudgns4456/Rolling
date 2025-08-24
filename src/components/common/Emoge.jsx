@@ -14,7 +14,6 @@ export default function Emoges({ topReactions = [], className = '' }) {
         const emoji =
           typeof reaction?.emoji === 'string' ? reaction.emoji : '🙂';
         const count = Number.isFinite(reaction?.count) ? reaction.count : 0;
-z
         return (
           <div key={key} className={emogeClass}>
             {emoji}
