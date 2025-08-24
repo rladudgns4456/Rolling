@@ -71,11 +71,14 @@ const RecipientInfo = ({
     setShowEmojiPicker(false);
   };
 
-  const BASE_URL = 'netlify 배포 주소 들어올 곳';
+  const BASE_URL = 'https://18-2-rolling.netlify.app';
 
   const shareToKakao = () => {
     if (window.Kakao) {
-      const currentPath = window.location.pathname;
+      const currentPath =
+        window.location.pathname +
+        window.location.search +
+        window.location.hash;
       const shareUrl = BASE_URL + currentPath;
 
       window.Kakao.Link.sendDefault({
