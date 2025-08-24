@@ -5,24 +5,24 @@ import CardListCard from './CardListCard';
 export default function RollingSection({
   title,
   items = [],
-  pageMeta,
-  onPaginate,
-  groupSize = 4,
-  outerClassName = '',
+  pageMeta, 
+  onPaginate, 
+  groupSize = 4, 
+  outerClassName = '', 
 }) {
   const showPrev = !!pageMeta?.previous;
   const showNext = !!pageMeta?.next;
-  console.log('delete');
+
   return (
     <>
-      <h2 className="mb-4 text-2xl font-bold leading-6 tracking-widest">
+      <h2 className="px-5 mb-4 text-2xl font-bold leading-9 tracking-widest md:px-6 ">
         {title}
       </h2>
 
       <div
-        className={`xl:w-[1160px] -mx-5 px-5 md:-mx-6 md:px-6 overflow-x-auto xl:overflow-visible no-scrollbar ${outerClassName}`}
+        className={`xl:w-[1160px] px-5 overflow-x-auto xl:overflow-visible no-scrollbar ${outerClassName}`}
       >
-        <div className="flex gap-5 w-max xl:w-auto">
+        <div className="flex gap-3 md:gap-5 w-max xl:w-auto">
           {items.map((item, index) => {
             const isFirstInGroup = index % groupSize === 0;
             const isLastInGroup = (index + 1) % groupSize === 0;

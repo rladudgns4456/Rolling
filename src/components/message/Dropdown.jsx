@@ -8,6 +8,7 @@ const Dropdown = ({
   isError,
   isDisabled,
   ariaLabel,
+  position,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [highlightedIndex, setHighlightedIndex] = useState(-1);
@@ -16,7 +17,7 @@ const Dropdown = ({
 
   const className = classNames(
     // 공통 기본 스타일
-    'flex justify-between p-4 mb-2 border-2  text-left rounded-lg cursor-pointer w-80',
+    'flex justify-between p-4 border-2 text-left rounded-lg cursor-pointer w-full',
     {
       // --- 상태별 조건부 스타일 ---
       // 기본 닫힘 상태
@@ -100,7 +101,7 @@ const Dropdown = ({
   }, [isOpen, highlightedIndex]);
 
   return (
-    <div className="relative w-80" ref={dropdownRef} onKeyDown={handleKeyDown}>
+    <div className="relative w-full md:w-80" ref={dropdownRef} onKeyDown={handleKeyDown}>
       <label id={`dropdown-label`} className="sr-only">
         {ariaLabel} 선택
       </label>
@@ -133,7 +134,7 @@ const Dropdown = ({
         <ul
           ref={listRef}
           role="listbox"
-          className="absolute z-10 bg-white border rounded-lg w-80 border-grayscale3"
+          className={`z-10 w-full bg-white border rounded-lg border-grayscale3 ${position}`}
         >
           {dropdownMenus.map((item, index) => (
             <li

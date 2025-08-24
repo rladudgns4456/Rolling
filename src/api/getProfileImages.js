@@ -7,6 +7,6 @@ export async function getProfileImages() {
     const response = await axios.get(`${API_BASE_URL}/profile-images/`);
     return response.data.imageUrls;
   } catch (error) {
-    console.log('API 요청 실패: ', error);
+    console.error('API 요청 실패: ', error);
   }
 }

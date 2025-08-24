@@ -20,7 +20,6 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         {/* ✅ 버튼이 보여야 하는 라우트 묶음 */}
-
         {/* 버튼 보이는 페이지를 여기에 계속 추가 */}
         {/* <Route path="/list" element={<ListPage />} /> */}
         <Route element={<Layout showCta={true} />}>
@@ -32,7 +31,7 @@ export default function App() {
         {/* <Route path="/post" element={<PostPage>}*/}
         {/* 숨겨야 하는 페이지들을 여기에 */}
         <Route element={<Layout showCta={false} />}>
-          <Route path="/CreateRollingPaper" element={<CreateRollingPaper />} />
+          <Route path="/post" element={<CreateRollingPaper />} />
           <Route path="/post/:recipientId" element={<PostPage />} />
           <Route path="/post/:recipientId/message" element={<Message />} />
         </Route>
