@@ -2,6 +2,9 @@ import instance from './axiosinstance';
 
 const TEAM_ID = '18-2';
 
+export const POPULAR_FIRST_URL = import.meta.env.VITE_POPULAR_FIRST_URL;
+export const NEW_FIRST_URL = import.meta.env.VITE_NEW_FIRST_URL;
+
 // GET /{team}/recipients/{id}/ -> 롤링 페이퍼 대상 조회 / 최근 3개 메시지까지만
 export async function getRecipients(recipientId) {
   try {
@@ -61,33 +64,45 @@ export async function deleteMessages(messageId) {
   }
 }
 
-export async function deleteRecipients(recipientId) {
+export async function getRollingPaper({ id }) {
   try {
-    const response = await instance.delete(
-      `/${TEAM_ID}/recipients/${recipientId}/`
+    const response = await instance.get(`/${TEAM_ID}/recipients/${id}/`);
+    return response.data;
+  } catch (error) {
+    throw new Error('데이터를 불러오는데 실패했습니다.');
+  }
+}
+
+export async function postRollingPaper({ senderNameInput, bgUrl }) {
+  try {
+    const response = await instance.post(
+      `/${TEAM_ID}/recipients/`,
+      {
+        team: `${TEAM_ID}`,
+        name: senderNameInput,
+        backgroundColor: bgUrl.color,
+        backgroundImageURL: bgUrl.image,
+      },
+      {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          'X-CSRFToken':
+            'SiavuruSgGN33Nq0qpFxjnd1eNQZxmnKIu4we1DESeEmliQax8hnCGH1XH1dYeqU',
+        },
+      }
     );
     return response.data;
   } catch (error) {
-    throw new Error(`상품을 불러오는데 실패했습니다 : ${error.message}`);
+    throw new Error('롤링페이퍼 생성을 실패 했습니다.');
   }
 }
 
-const BASE_URL = 'https://rolling-api.vercel.app/18-2';
-export const POPULAR_FIRST_URL = //첫번째 offset (prev 버튼 X)
-  'https://rolling-api.vercel.app/18-2/recipients/?limit=4&&sort=like';
-export const NEW_FIRST_URL = //첫번째 offset (prev 버튼 X)
-  'https://rolling-api.vercel.app/18-2/recipients/?limit=4&';
-export async function getRollingPaper({ id }) {
-  const response = await fetch(`${BASE_URL}/recipients/${id}/`);
-  if (!response.ok) {
-    throw new Error('데이터를 불러오는데 실패했습니다.');
-  }
-  const body = await response.json();
-  return body;
-}
-
-// 페이지네이션 포함: 넘긴 URL 그대로 가져오기
 export async function getRecipientsByUrl(url) {
-  const res = await fetch(url);
-  return { body: await res.json(), url: res.url || url };
+  try {
+    const response = await instance.get(url);
+    return { body: response.data, url: response.config.url || url };
+  } catch (error) {
+    throw new Error('데이터 불러오기 실패');
+  }
 }
