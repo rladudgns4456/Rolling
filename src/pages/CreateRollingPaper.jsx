@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import BackgroundSelect from '../components/background/BackgroundSelect';
 import InputField from '../components/common/InputField';
 import TextButton from '../components/common/TextButton';
-import { postRollingPaper } from '../components/api/api';
+import { postRollingPaper } from '../api/api';
 import { useNavigate } from 'react-router-dom';
 
 function CreateRollingPaper() {
