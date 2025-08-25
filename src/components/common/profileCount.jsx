@@ -1,5 +1,6 @@
 // ProfileCount.jsx
 export default function ProfileCount({
+  customClassname,
   isColumn = false,
   messageCount = 0,
   recentImage = [],
@@ -11,7 +12,7 @@ export default function ProfileCount({
 
   return (
     <div
-      className={`z-20 hidden xl:flex justify-start ${isColumn ? 'flex-col items-start gap-3' : 'flex-row items-center'}`}
+      className={`${customClassname} z-20 flex justify-start ${isColumn ? 'flex-col items-start gap-3' : 'flex-row items-center'}`}
     >
       <div className="mr-[11px] profileBox relative flex w-[76px] h-8">
         {messageCount > 0 && (

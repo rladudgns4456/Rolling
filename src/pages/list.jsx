@@ -5,8 +5,9 @@ import {
   getRecipientsByUrl,
   POPULAR_FIRST_URL,
   NEW_FIRST_URL,
-} from '../components/api/api';
+} from '../api/api';
 import RollingSection from '../components/list/RollingSection';
+import CreateRollingPaper from './CreateRollingPaper';
 
 function List() {
   const [isPopularLoading, setIsPopularLoading] = useState(true);
@@ -71,7 +72,7 @@ function List() {
   const newRecipientsItem = newRecipientsData?.results ?? [];
 
   return (
-    <div className="mx-auto w-full max-w-[1248px] md:pt-[50px] pt-10">
+    <div className="xl:pb-14 mx-auto w-full max-w-[1248px] md:pt-[50px] pt-10">
       {isPopularLoading ? (
         <div
           className={

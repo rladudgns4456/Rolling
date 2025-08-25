@@ -16,7 +16,6 @@ const bgMap = {
   purple: 'bg-purple2',
 };
 
-
 //개인롤링페이지 컨테이너
 function UserRollingContainer({
   recipientsInfo,
@@ -39,7 +38,6 @@ function UserRollingContainer({
   };
   const windowWidth = useWindowReSize(); //브라우저 크기 변화 감지
 
-
   const handleCardClick = (message) => {
     setIsOpenModal(message);
   };
@@ -54,7 +52,8 @@ function UserRollingContainer({
       className={`${bgMap[recipientsInfo.backgroundColor]} bg-cover bg-center`}
       style={{
         backgroundImage: `url(${recipientsInfo.backgroundImageURL})`,
-        minHeight: windowWidth >= 768 ? 'calc(100vh - 129px)' : 'calc(100vh - 108px)',
+        minHeight:
+          windowWidth >= 768 ? 'calc(100vh - 129px)' : 'calc(100vh - 108px)',
       }}
     >
       <div
