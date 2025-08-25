@@ -110,7 +110,7 @@ function CardCreate({ recipientId }) {
   return (
     <div
       onClick={handleCardCreateClick}
-      className="flex justify-center items-center bg-white rounded-2xl shadow-lg min-h-[230px] sm:min-h-[284px] xl:min-h-[280px]l"
+      className="flex justify-center items-center bg-white rounded-2xl shadow-lg min-h-[230px] sm:min-h-[284px] xl:min-h-[280px]"
     >
       <CircleIconButton size={56} variant="dark" iconSrc={Plus} demo="hover" />
     </div>
