@@ -5,7 +5,7 @@ import {
   getRecipientsByUrl,
   POPULAR_FIRST_URL,
   NEW_FIRST_URL,
-} from '../components/api/api';
+} from '../api/api';
 import RollingSection from '../components/list/RollingSection';
 
 function List() {
