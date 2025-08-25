@@ -109,7 +109,7 @@ function List() {
       <div className="w-full py-6">
         <div className="mx-auto max-w-[1280px] px-5 tablet:px-6 pc:px-10 flex justify-center items-center">
           <Link
-            to="/CreateRollingPaper"
+            to="/post"
             className="bg-purple6 rounded-xl w-[280px] min-w-[280px] h-[56px]
               shrink-0 whitespace-nowrap flex justify-center items-center
               font-bold text-[18px] tracking-[-1%] leading-[28px] text-white"

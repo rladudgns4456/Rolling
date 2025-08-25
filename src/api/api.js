@@ -106,3 +106,14 @@ export async function getRecipientsByUrl(url) {
     throw new Error('데이터 불러오기 실패');
   }
 }
+
+export async function deleteRecipients(recipientId) {
+  try {
+    const response = await instance.delete(
+      `/${TEAM_ID}/recipients/${recipientId}/`
+    );
+    return response.data;
+  } catch (error) {
+    throw new Error(`상품을 불러오는데 실패했습니다 : ${error.message}`);
+  }
+}
