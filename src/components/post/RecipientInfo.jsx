@@ -82,6 +82,7 @@ const RecipientInfo = ({
           messageCount={messageCount}
           isColumn={false}
           recentImage={recentImage}
+          customClassname={'hidden xl:flex'}
         />
         <Emoges
           topReactions={topReactions}
